@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Containers on Words of Luke Silva</title>
+    <link>//localhost:1313/tags/containers/</link>
+    <description>Recent content in Containers on Words of Luke Silva</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Tue, 06 Feb 2024 11:54:32 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TestContainers para testes de integração com .Net</title>
+      <link>//localhost:1313/posts/testcontainers/</link>
+      <pubDate>Tue, 06 Feb 2024 11:54:32 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/testcontainers/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>
