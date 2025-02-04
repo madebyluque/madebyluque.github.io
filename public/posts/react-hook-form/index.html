@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Formulários com React Hook Form &#43; Zod :: Words of Luke Silva</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Facilite a criação de formulários em react" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="//localhost:1313/posts/react-hook-form/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.a922c0c412d300a9e6c837e1415563197d2271ecec09a96249efe9927e6f9813.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="//localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="pt-br" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Formulários com React Hook Form &#43; Zod">
+<meta property="og:description" content="Facilite a criação de formulários em react" />
+<meta property="og:url" content="//localhost:1313/posts/react-hook-form/" />
+<meta property="og:site_name" content="Words of Luke Silva" />
+
+  
+  
+  <meta property="og:image" content="//localhost:1313/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-11-07 11:58:13 -0300 -03" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Words of Lucas Silva
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/posts">Posts</a></li>
+        
+      
+        
+          <li><a href="/about">Sobre</a></li>
+        
+      
+      
+        <hr />
+        
+          <li>
+            <a href="//localhost:1313/">Português</a>
+          </li>
+        
+          <li>
+            <a href="//localhost:1313/en/">English</a>
+          </li>
+        
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+      <ul class="menu menu--desktop menu--language-selector">
+  <li class="menu__trigger">Português&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        <li><a href="//localhost:1313/">Português</a></li>
+      
+        <li><a href="//localhost:1313/en/">English</a></li>
+      
+    </ul>
+  </li>
+</ul>
+
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/posts" >Posts</a></li>
+        
+      
+        
+          <li><a href="/about" >Sobre</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/posts/react-hook-form/">Formulários com React Hook Form + Zod</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-11-07</time><span class="post-author">Lucas Silva</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="//localhost:1313/tags/react/">react</a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/web/">web</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h2 id="introdução">Introdução<a href="#introdução" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Quando comecei a programar, precisava escrever bastante código em JavaScript puro para coletar dados de um formulário. De lá para cá, o desenvolvimento web evoluiu tanto que hoje temos bibliotecas que abstraem grande parte desse trabalho, facilitando a gestão dos dados dos formulários.</p>
+<p>Neste artigo, vou mostrar como utilizar o <a href="https://www.react-hook-form.com/">React Hook Form</a> para trabalhar com dados de formulários e <a href="https://zod.dev/">zod</a> para validar esses dados de forma eficiente e organizada.</p>
+<h2 id="tô-com-pressa-me-dê-o-código-completo">Tô com pressa, me dê o código completo<a href="#tô-com-pressa-me-dê-o-código-completo" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Tá na mão:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Label</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@/components/ui/label&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Input</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@/components/ui/input&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Button</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@/components/ui/button&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Gamepad</span>, <span style="color:#a6e22e">Gamepad2</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;lucide-react&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useForm</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react-hook-form&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">z</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;zod&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">zodResolver</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@hookform/resolvers/zod&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">toast</span>, <span style="color:#a6e22e">Toaster</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;sonner&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">signUpForm</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">object</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">z</span>
+</span></span><span style="display:flex;"><span>      .<span style="color:#66d9ef">string</span>()
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">2</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Nome deve ter ao menos 2 caracteres&#39;</span> })
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">max</span>(<span style="color:#ae81ff">50</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Nome deve ter no máximo 50 caracteres&#39;</span> }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">email</span>().<span style="color:#a6e22e">max</span>(<span style="color:#ae81ff">100</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;E-mail deve ter no máximo 100 caracteres&#39;</span> }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">max</span>(<span style="color:#ae81ff">100</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Senha deve ter no máximo 100 caracteres&#39;</span> }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">confirm</span>: <span style="color:#66d9ef">z.string</span>(),
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">refine</span>((<span style="color:#a6e22e">data</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">password</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">confirm</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Senhas não conferem!&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;confirm&#39;</span>],
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">SignUpForm</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">infer</span>&lt;<span style="color:#f92672">typeof</span> <span style="color:#a6e22e">signUpForm</span>&gt;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">handleSubmit</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">register</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">reset</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">formState</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">isSubmitting</span>, <span style="color:#a6e22e">errors</span> },
+</span></span><span style="display:flex;"><span>  } <span style="color:#f92672">=</span> <span style="color:#a6e22e">useForm</span>&lt;<span style="color:#f92672">SignUpForm</span>&gt;({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resolver</span>: <span style="color:#66d9ef">zodResolver</span>(<span style="color:#a6e22e">signUpForm</span>),
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleSignup</span>(<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">SignUpForm</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Promise</span>((<span style="color:#a6e22e">resolve</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">reset</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">toast</span>.<span style="color:#a6e22e">success</span>(<span style="color:#e6db74">&#39;Conta criada com sucesso!&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">Toaster</span> <span style="color:#a6e22e">richColors</span> /&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;min-h-screen lg:grid lg:grid-cols-2 antialiased gap-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden lg:flex h-full justify-center border-r border-foreground/5 bg-foreground text-muted-foreground items-center gap-3 text-lg&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">Gamepad2</span> /&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-semibold&#34;</span>&gt;<span style="color:#a6e22e">gamers</span>.<span style="color:#a6e22e">shop</span>&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;flex flex-col items-center justify-center gap-6 min-h-screen&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;px-10 w-96 h-full flex flex-col justify-center items-center lg:w-[500px]&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;flex items-center gap-2 mb-4 text-2xl font-semibold tracking-tight&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">Gamepad</span> /&gt;
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">Crie</span> <span style="color:#a6e22e">sua</span> <span style="color:#a6e22e">conta</span>
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">Gamepad</span> /&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">onSubmit</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleSubmit</span>(<span style="color:#a6e22e">handleSignup</span>)} <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-4 w-full &#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span>&gt;<span style="color:#a6e22e">Nome</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> {<span style="color:#a6e22e">...register</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#e6db74">&#39;name&#39;</span><span style="color:#960050;background-color:#1e0010">)</span>} /&gt;
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">&amp;&amp;</span> &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-sm text-red-500&#34;</span>&gt;{<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">message</span>}&lt;/<span style="color:#f92672">span</span>&gt;}
+</span></span><span style="display:flex;"><span>                {}
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span>&gt;<span style="color:#a6e22e">Email</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> {<span style="color:#a6e22e">...register</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#e6db74">&#39;email&#39;</span><span style="color:#960050;background-color:#1e0010">)</span>} /&gt;
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">email</span> <span style="color:#f92672">&amp;&amp;</span> &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-sm text-red-500&#34;</span>&gt;{<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">email</span>.<span style="color:#a6e22e">message</span>}&lt;/<span style="color:#f92672">span</span>&gt;}
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span>&gt;<span style="color:#a6e22e">Senha</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> {<span style="color:#a6e22e">...register</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#e6db74">&#39;password&#39;</span><span style="color:#960050;background-color:#1e0010">)</span>} /&gt;
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">password</span> <span style="color:#f92672">&amp;&amp;</span> &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-sm text-red-500&#34;</span>&gt;{<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">password</span>.<span style="color:#a6e22e">message</span>}&lt;/<span style="color:#f92672">span</span>&gt;}
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;confirm&#34;</span>&gt;<span style="color:#a6e22e">Confirme</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">senha</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;confirm&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> {<span style="color:#a6e22e">...register</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#e6db74">&#39;confirm&#39;</span><span style="color:#960050;background-color:#1e0010">)</span>} /&gt;
+</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">confirm</span> <span style="color:#f92672">&amp;&amp;</span> &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-sm text-red-500&#34;</span>&gt;{<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">confirm</span>.<span style="color:#a6e22e">message</span>}&lt;/<span style="color:#f92672">span</span>&gt;}
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">Button</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;w-full&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">disabled</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">isSubmitting</span>}&gt;
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">Criar</span> <span style="color:#a6e22e">conta</span>
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">Button</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="tutorial">Tutorial<a href="#tutorial" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="estruturando-o-formulário">Estruturando o Formulário<a href="#estruturando-o-formulário" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Primeiro, criei um formulário com quatro campos: nome, e-mail, senha e confirmação de senha. Para facilitar o desenvolvimento da interface, utilizei <code>shadcn</code>, <code>tailwind</code> e <code>lucide-react</code>. O uso de classes CSS pode parecer um pouco detalhado, mas elas ajudam a manter um design consistente.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-4 w-full &#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span>&gt;<span style="color:#a6e22e">Nome</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Digite o seu nome&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span>&gt;<span style="color:#a6e22e">Email</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Digite o seu e-mail&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span>&gt;<span style="color:#a6e22e">Senha</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Digite uma senha&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;confirm&#34;</span>&gt;<span style="color:#a6e22e">Confirme</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">senha</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;confirm&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Digite a senha novamente&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">Button</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;w-full&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Criar</span> <span style="color:#a6e22e">conta</span>
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">Button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span></code></pre></div><p>Criei 4 campos nesse form: nome, e-mail, password e confirm. Preciso validá-los de alguma forma. Como esse exemplo server para explicar o uso de zod, evitei utilizar as propriedades nativas do HTML (required, maxlength etc).</p>
+<h3 id="validação-de-dados-com-zod">Validação de Dados com Zod<a href="#validação-de-dados-com-zod" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Para garantir que os dados inseridos nos campos estão corretos, criei um schema de validação com o <code>zod</code>. O schema define as restrições para cada campo e personaliza as mensagens de erro:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">z</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;zod&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">signUpFormSchema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">object</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">z</span>
+</span></span><span style="display:flex;"><span>      .<span style="color:#66d9ef">string</span>()
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">2</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Nome deve ter ao menos 2 caracteres&#39;</span> })
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">max</span>(<span style="color:#ae81ff">50</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Nome deve ter no máximo 50 caracteres&#39;</span> }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">email</span>().<span style="color:#a6e22e">max</span>(<span style="color:#ae81ff">100</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;E-mail deve ter no máximo 100 caracteres&#39;</span> }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">max</span>(<span style="color:#ae81ff">100</span>, { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Senha deve ter no máximo 100 caracteres&#39;</span> }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">confirm</span>: <span style="color:#66d9ef">z.string</span>(),
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">refine</span>((<span style="color:#a6e22e">data</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">password</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">confirm</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Senhas não conferem!&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;confirm&#39;</span>],
+</span></span><span style="display:flex;"><span>  });
+</span></span></code></pre></div><p>Esse schema define os tipos e as validações necessárias para cada campo. O método <code>.refine()</code> foi utilizado para garantir que as senhas digitadas nos campos &ldquo;password&rdquo; e &ldquo;confirm&rdquo; são iguais.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span>.<span style="color:#a6e22e">refine</span>((<span style="color:#a6e22e">data</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">password</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">confirm</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Senhas não conferem!&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;confirm&#39;</span>],
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="integração-com-react-hook-form-e-zod-resolver">Integração com React Hook Form e Zod Resolver<a href="#integração-com-react-hook-form-e-zod-resolver" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>O <code>React Hook Form</code> é uma biblioteca de formulários que melhora o desempenho ao reduzir re-renderizações desnecessárias e simplificar a manipulação de dados. Usei o <code>useForm()</code> para configurar o formulário, passando o schema de validação por meio do <code>zodResolver</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">zodResolver</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@hookform/resolvers/zod&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useForm</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react-hook-form&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">SignUpForm</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">infer</span>&lt;<span style="color:#f92672">typeof</span> <span style="color:#a6e22e">signUpFormSchema</span>&gt;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">handleSubmit</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">register</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">reset</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">formState</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">isSubmitting</span>, <span style="color:#a6e22e">errors</span> },
+</span></span><span style="display:flex;"><span>  } <span style="color:#f92672">=</span> <span style="color:#a6e22e">useForm</span>&lt;<span style="color:#f92672">SignUpForm</span>&gt;({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resolver</span>: <span style="color:#66d9ef">zodResolver</span>(<span style="color:#a6e22e">signUpFormSchema</span>),
+</span></span><span style="display:flex;"><span>  });
+</span></span></code></pre></div><p>As funções e variáveis que utilizei de <code>useForm()</code> são:</p>
+<ul>
+<li><code>handleSubmit</code>: lida com o envio do formulário.</li>
+<li><code>register</code>: vincula campos do formulário ao gerenciamento de dados do React Hook Form.</li>
+<li><code>reset</code>: redefine o formulário.</li>
+<li><code>isSubmitting</code>: indica se o formulário está sendo enviado.</li>
+<li><code>errors</code>: armazena erros de validação de cada campo.</li>
+</ul>
+<h3 id="função-de-envio-do-formulário">Função de Envio do Formulário<a href="#função-de-envio-do-formulário" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Para simular o envio do formulário, criei a função <code>handleSignup</code>, que adiciona um tempo de espera para visualizar o estado <code>isSubmitting</code> e exibe uma mensagem de sucesso com o <code>toast</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleSignup</span>(<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">SignUpForm</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Promise</span>((<span style="color:#a6e22e">resolve</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">reset</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">toast</span>.<span style="color:#a6e22e">success</span>(<span style="color:#e6db74">&#39;Conta criada com sucesso!&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Depois adicionei a função ao form:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">onSubmit</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleSubmit</span>(<span style="color:#a6e22e">handleSignup</span>)} <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-4 w-full&#34;</span>&gt;
+</span></span></code></pre></div><p>E por fim, utilizei o register para denominar qual campo pertence a qual propriedade, e mostrei os erros (caso eles existam):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;space-y-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">Label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span>&gt;<span style="color:#a6e22e">Nome</span>&lt;/<span style="color:#f92672">Label</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">Input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> {<span style="color:#a6e22e">...register</span><span style="color:#960050;background-color:#1e0010">(&#39;</span><span style="color:#a6e22e">name</span><span style="color:#960050;background-color:#1e0010">&#39;)</span>} <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Digite o seu nome&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">&amp;&amp;</span> &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-sm text-red-500&#34;</span>&gt;{<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">message</span>}&lt;/<span style="color:#f92672">span</span>&gt;}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><p>O resultado ficou assim:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oipm2sov0dn33pnulzva.png" alt="Tela de criação de conta feita neste tutorial"></p>
+<h2 id="considerações-finais">Considerações Finais<a href="#considerações-finais" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Nesse texto, mostrei uma forma simples de integrar <code>React Hook Form</code> e <code>zod</code> para validação de formulários não controlados. A biblioteca também funciona com componentes controlados, então consulte a <a href="https://www.react-hook-form.com/get-started/">documentação</a> para explorar mais opções.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Postagens relacionadas</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="//localhost:1313/posts/cartesian-explosion/" class="button inline next">
+        EF Core - Explosão Cartesiana
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
