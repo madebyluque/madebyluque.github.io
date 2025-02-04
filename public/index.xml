@@ -6,7 +6,80 @@
     <description>Recent content on Words of Luke Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 07 Nov 2024 11:58:13 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Jan 2025 11:59:49 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ: conceitos fundamentais</title>
+      <link>//localhost:1313/posts/rabbitmq-concepts/</link>
+      <pubDate>Sun, 12 Jan 2025 11:59:49 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/rabbitmq-concepts/</guid>
+      <description>&lt;p&gt;O RabbitMQ é um dos message brokers mais populares, conhecido por sua flexibilidade e robustez no processamento de mensagens. Este artigo apresenta os principais conceitos do RabbitMQ, incluindo publishers, consumers, exchanges, filas e mecanismos de reconhecimento de mensagens.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k8nuljmbh6sgc3lot1ec.png&#34; alt=&#34;Fluxo básico de um sistema de mensageria&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;publisherproducer&#34;&gt;Publisher/Producer&lt;/h2&gt;
+&lt;p&gt;Uma aplicação &lt;strong&gt;publisher&lt;/strong&gt; é responsável por publicar ou produzir mensagens. Além disso, uma aplicação que publica mensagens também pode consumi-las.&lt;br&gt;
+No RabbitMQ, uma mensagem publicada precisa ser roteada para uma fila. Se houver consumidores online conectados à fila, a mensagem será enviada diretamente para eles.&lt;/p&gt;</description>
+      <content>&lt;p&gt;O RabbitMQ é um dos message brokers mais populares, conhecido por sua flexibilidade e robustez no processamento de mensagens. Este artigo apresenta os principais conceitos do RabbitMQ, incluindo publishers, consumers, exchanges, filas e mecanismos de reconhecimento de mensagens.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k8nuljmbh6sgc3lot1ec.png&#34; alt=&#34;Fluxo básico de um sistema de mensageria&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;publisherproducer&#34;&gt;Publisher/Producer&lt;/h2&gt;
+&lt;p&gt;Uma aplicação &lt;strong&gt;publisher&lt;/strong&gt; é responsável por publicar ou produzir mensagens. Além disso, uma aplicação que publica mensagens também pode consumi-las.&lt;br&gt;
+No RabbitMQ, uma mensagem publicada precisa ser roteada para uma fila. Se houver consumidores online conectados à fila, a mensagem será enviada diretamente para eles.&lt;/p&gt;
+&lt;h2 id=&#34;consumer&#34;&gt;Consumer&lt;/h2&gt;
+&lt;p&gt;Um &lt;strong&gt;consumer&lt;/strong&gt; é uma aplicação que consome mensagens de uma fila e realiza o reconhecimento (acknowledgement) dessas mensagens. Da mesma forma que um publisher pode consumir mensagens, um consumer também pode publicá-las.&lt;/p&gt;
+&lt;h2 id=&#34;exchanges&#34;&gt;Exchanges&lt;/h2&gt;
+&lt;p&gt;No RabbitMQ, as mensagens não são enviadas diretamente para as filas. Os publishers enviam mensagens para um &lt;strong&gt;exchange&lt;/strong&gt;, que é responsável por rotear as mensagens para filas específicas, com base nas ligações (&lt;em&gt;bindings&lt;/em&gt;) e chaves de roteamento (&lt;em&gt;routing keys&lt;/em&gt;).&lt;/p&gt;
+&lt;h3 id=&#34;tipos-de-exchanges&#34;&gt;Tipos de Exchanges&lt;/h3&gt;
+&lt;p&gt;Os exchanges são categorizados de acordo com a forma como realizam o roteamento de mensagens:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Direct&lt;/strong&gt;: As mensagens são roteadas para filas cuja ligação (&lt;em&gt;binding&lt;/em&gt;) coincida exatamente com a chave de roteamento (&lt;em&gt;routing key&lt;/em&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zf2ox2jyw1kl1tatvn7g.png&#34; alt=&#34;Exemplo de direct exchange&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fanout&lt;/strong&gt;: Roteia mensagens para todas as filas que estejam conectadas a ele.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/57caqfmlmb5rq06ppxol.png&#34; alt=&#34;Exemplo de exchange fanout&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Topic&lt;/strong&gt;: Faz um &lt;em&gt;match&lt;/em&gt; com base em padrões (&lt;em&gt;wildcards&lt;/em&gt;) entre a chave de roteamento da mensagem e a chave de ligação das filas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/iofrflnzwugjrhy3eksq.png&#34; alt=&#34;Exemplo de exchange baseada em tópicos&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Headers&lt;/strong&gt;: Roteia mensagens com base nos cabeçalhos especificados na mensagem.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vsjsi550nc2d9ybmugog.png&#34; alt=&#34;Exmplo de exchange baseada em headers&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;queues&#34;&gt;Queues&lt;/h2&gt;
+&lt;p&gt;As &lt;strong&gt;filas&lt;/strong&gt; no RabbitMQ são coleções ordenadas de mensagens, e elas seguem uma lógica de &lt;em&gt;First In, First Out&lt;/em&gt; (FIFO) para o enfileiramento e desenfileiramento. Cada mensagem é processada em ordem, garantindo consistência no consumo.&lt;/p&gt;
+&lt;h2 id=&#34;acknowledgement&#34;&gt;Acknowledgement&lt;/h2&gt;
+&lt;p&gt;O &lt;strong&gt;acknowledgement&lt;/strong&gt; é o mecanismo de confirmação de que uma mensagem foi entregue e/ou processada pelo consumidor. Ele permite que o RabbitMQ saiba quando pode marcar uma mensagem como concluída ou quando deve reenviar a mensagem.&lt;/p&gt;
+&lt;h3 id=&#34;delivery-acknowledgement&#34;&gt;Delivery Acknowledgement&lt;/h3&gt;
+&lt;p&gt;Existem diferentes formas de reconhecimento no RabbitMQ, que determinam quando uma mensagem é considerada processada com sucesso:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reconhecimento Automático&lt;/strong&gt;: O RabbitMQ considera a mensagem processada assim que ela é entregue.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reconhecimento Manual&lt;/strong&gt;: Requer que o consumidor informe explicitamente o status da mensagem. Isso pode ser feito de forma positiva ou negativa:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;basic.ack&lt;/code&gt;: Usado para indicar que a mensagem foi processada com sucesso.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;basic.nack&lt;/code&gt;: Usado para indicar que o processamento falhou.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;basic.reject&lt;/code&gt;: Similar ao &lt;code&gt;basic.nack&lt;/code&gt;, mas com limitações (não suporta múltiplas mensagens ao mesmo tempo).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Quando o reconhecimento negativo ocorre, a mensagem pode ser reenfileirada, roteada para um &lt;strong&gt;dead letter exchange&lt;/strong&gt;, ou descartada, dependendo da configuração do campo &lt;code&gt;requeue&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;dead-letter&#34;&gt;Dead Letter&lt;/h2&gt;
+&lt;p&gt;Mensagens podem ser marcadas como &lt;strong&gt;dead-letter&lt;/strong&gt; e republicadas caso algum dos seguintes eventos ocorra:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A mensagem é negativamente reconhecida por um consumidor.&lt;/li&gt;
+&lt;li&gt;A mensagem expira devido ao TTL (&lt;em&gt;Time To Live&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;A mensagem excede o limite de tamanho configurado.&lt;/li&gt;
+&lt;li&gt;A mensagem ultrapassa o limite de tentativas de entrega.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Dead letters permitem lidar com falhas de forma estruturada, garantindo maior resiliência no sistema.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Compreender esses conceitos é essencial para projetar sistemas de mensageria eficientes e confiáveis. O RabbitMQ oferece flexibilidade para adaptar-se a diversas arquiteturas, tornando-o uma ferramenta poderosa no ecossistema de aplicações distribuídas.&lt;/p&gt;
+&lt;h2 id=&#34;referências&#34;&gt;Referências&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.rabbitmq.com/docs&#34;&gt;Documentação do RabbitMQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
     <item>
       <title>Formulários com React Hook Form &#43; Zod</title>
       <link>//localhost:1313/posts/react-hook-form/</link>

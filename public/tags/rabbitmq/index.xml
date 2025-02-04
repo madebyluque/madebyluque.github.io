@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rabbitmq on Words of Luke Silva</title>
+    <link>//localhost:1313/tags/rabbitmq/</link>
+    <description>Recent content in Rabbitmq on Words of Luke Silva</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Sun, 12 Jan 2025 11:59:49 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ: conceitos fundamentais</title>
+      <link>//localhost:1313/posts/rabbitmq-concepts/</link>
+      <pubDate>Sun, 12 Jan 2025 11:59:49 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/rabbitmq-concepts/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>
