@@ -6,7 +6,40 @@
     <description>Recent content on Words of Luke Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 18 Mar 2022 11:45:29 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Apr 2022 11:47:35 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.Net - Scoped, transient e singleton</title>
+      <link>//localhost:1313/posts/lifecycles/</link>
+      <pubDate>Tue, 19 Apr 2022 11:47:35 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/lifecycles/</guid>
+      <description>&lt;p&gt;Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no &lt;a href=&#34;https://github.com/lukelima/LifecycleExample.&#34;&gt;GitHub&lt;/a&gt; e vou falar sobre ele.&lt;/p&gt;
+&lt;p&gt;Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png&#34; alt=&#34;Injeção dos serviços no arquivo Program.cs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
+Criei um controller e injetei os serviços por construtor.&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png&#34; alt=&#34;Injeção dos serviços no construtor&#34;&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no &lt;a href=&#34;https://github.com/lukelima/LifecycleExample.&#34;&gt;GitHub&lt;/a&gt; e vou falar sobre ele.&lt;/p&gt;
+&lt;p&gt;Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png&#34; alt=&#34;Injeção dos serviços no arquivo Program.cs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
+Criei um controller e injetei os serviços por construtor.&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png&#34; alt=&#34;Injeção dos serviços no construtor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Também injetei uma instância do serviço em cada método.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sbzeyh86fimx3xji9aeu.png&#34; alt=&#34;Injeção dos serviços em cada método&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;singleton&#34;&gt;Singleton&lt;/h2&gt;
+&lt;p&gt;O serviço é criado &lt;strong&gt;uma única vez&lt;/strong&gt; e a mesma instância é passada para todas as chamadas dele. Veja que o id, criado no momento da instanciação, foi o mesmo (e continua sendo o mesmo independente da requisição):
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/djf0pqcgxgmr0k59iem2.png&#34; alt=&#34;Imagem mostra que uma única instância foi criada&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;scoped&#34;&gt;Scoped&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Uma única instância é criada por requisição&lt;/strong&gt;. Então se o serviço for chamado em vários lugares em uma única requisição, a mesma instância será passada. Outras instâncias serão criadas para as próximas requisições.&lt;/p&gt;
+&lt;p&gt;Mesma requisição:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wxkot9z4wtnarvh9hvxt.png&#34; alt=&#34;Imagem mostra que uma única instância foi criada&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Requisição diferente:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tg603oilzwhz3luzoo6h.png&#34; alt=&#34;Imagem mostra que uma nova instância foi criada para uma segunda requisição&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;transient&#34;&gt;Transient&lt;/h2&gt;
+&lt;p&gt;Ele é o mais custoso, pois se o serviço for chamado em diversas classes, &lt;strong&gt;cada uma delas terá uma instância diferente&lt;/strong&gt;:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6ynbb4lr6b78cbg1zx5t.png&#34; alt=&#34;Imagem mostra que uma instância foi criada para cada chamada do serviço&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Testes de unidade com NUnit para aplicações C#</title>
       <link>//localhost:1313/posts/dotnet-unit-tests/</link>

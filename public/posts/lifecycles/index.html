@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-	<meta name="generator" content="Hugo 0.143.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
-    <title>Words of Luke Silva</title>
+    <title>.Net - Scoped, transient e singleton :: Words of Luke Silva</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tecnologia e pensamentos" />
-<meta name="keywords" content="tech" />
+<meta name="description" content="Entenda os ciclos de vida dos objetos em .NET" />
+<meta name="keywords" content=", " />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="//localhost:1313/" />
+<link rel="canonical" href="//localhost:1313/posts/lifecycles/" />
 
 
 
@@ -80,22 +79,24 @@
 
 
 <meta property="og:locale" content="pt-br" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Words of Luke Silva">
-<meta property="og:description" content="Tecnologia e pensamentos" />
-<meta property="og:url" content="//localhost:1313/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content=".Net - Scoped, transient e singleton">
+<meta property="og:description" content="Entenda os ciclos de vida dos objetos em .NET" />
+<meta property="og:url" content="//localhost:1313/posts/lifecycles/" />
 <meta property="og:site_name" content="Words of Luke Silva" />
 
-  <meta property="og:image" content="//localhost:1313/og-image.png">
+  
+  
+  <meta property="og:image" content="//localhost:1313/">
 
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 
 
+  <meta property="article:published_time" content="2022-04-19 11:47:35 -0300 -03" />
 
 
 
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Words of Luke Silva" />
 
 
 
@@ -192,159 +193,75 @@
 
   <div class="content">
     
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/posts/lifecycles/">.Net - Scoped, transient e singleton</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2022-04-19</time><span class="post-author">Lucas Silva</span></div>
+
   
-  <div class="posts">
-    
-    
-
-    
-    
+    <span class="post-tags">
       
+      #<a href="//localhost:1313/tags/dotnet/">dotnet</a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/tips/">tips</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no <a href="https://github.com/lukelima/LifecycleExample.">GitHub</a> e vou falar sobre ele.</p>
+<p>Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png" alt="Injeção dos serviços no arquivo Program.cs"></p>
+<p>Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
+Criei um controller e injetei os serviços por construtor.<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png" alt="Injeção dos serviços no construtor"></p>
+<p>Também injetei uma instância do serviço em cada método.
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sbzeyh86fimx3xji9aeu.png" alt="Injeção dos serviços em cada método"></p>
+<h2 id="singleton">Singleton<a href="#singleton" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>O serviço é criado <strong>uma única vez</strong> e a mesma instância é passada para todas as chamadas dele. Veja que o id, criado no momento da instanciação, foi o mesmo (e continua sendo o mesmo independente da requisição):
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/djf0pqcgxgmr0k59iem2.png" alt="Imagem mostra que uma única instância foi criada"></p>
+<h2 id="scoped">Scoped<a href="#scoped" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p><strong>Uma única instância é criada por requisição</strong>. Então se o serviço for chamado em vários lugares em uma única requisição, a mesma instância será passada. Outras instâncias serão criadas para as próximas requisições.</p>
+<p>Mesma requisição:
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wxkot9z4wtnarvh9hvxt.png" alt="Imagem mostra que uma única instância foi criada"></p>
+<p>Requisição diferente:
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tg603oilzwhz3luzoo6h.png" alt="Imagem mostra que uma nova instância foi criada para uma segunda requisição"></p>
+<h2 id="transient">Transient<a href="#transient" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Ele é o mais custoso, pois se o serviço for chamado em diversas classes, <strong>cada uma delas terá uma instância diferente</strong>:
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6ynbb4lr6b78cbg1zx5t.png" alt="Imagem mostra que uma instância foi criada para cada chamada do serviço"></p>
+
+      </div></div>
+
+  
     
-    
-
-    
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="//localhost:1313/posts/lifecycles/">.Net - Scoped, transient e singleton</a>
-        </h2>
-
-        <div class="post-meta"><time class="post-date">2022-04-19</time><span class="post-author">Lucas Silva</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="//localhost:1313/tags/dotnet/">dotnet</a>&nbsp;
-            
-            #<a href="//localhost:1313/tags/tips/">tips</a>&nbsp;
-            
-          </span>
-        
-
-        
-
-
-        <div class="post-content">
-          
-            <p>Entenda os ciclos de vida dos objetos em .NET</p>
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button inline" href="/posts/lifecycles/">Leia mais</a>
-          </div>
-        
-      </article>
-    
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="//localhost:1313/posts/dotnet-unit-tests/">Testes de unidade com NUnit para aplicações C#</a>
-        </h2>
-
-        <div class="post-meta"><time class="post-date">2022-03-18</time><span class="post-author">Lucas Silva</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="//localhost:1313/tags/dotnet/">dotnet</a>&nbsp;
-            
-            #<a href="//localhost:1313/tags/tests/">tests</a>&nbsp;
-            
-          </span>
-        
-
-        
-
-
-        <div class="post-content">
-          
-            <p>Crie testes de unidade para suas soluções .Net</p>
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button inline" href="/posts/dotnet-unit-tests/">Leia mais</a>
-          </div>
-        
-      </article>
-    
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="//localhost:1313/posts/dotnet-redis/">Como usar Redis em uma solução .Net</a>
-        </h2>
-
-        <div class="post-meta"><time class="post-date">2021-11-29</time><span class="post-author">Lucas Silva</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="//localhost:1313/tags/dotnet/">dotnet</a>&nbsp;
-            
-            #<a href="//localhost:1313/tags/redis/">redis</a>&nbsp;
-            
-          </span>
-        
-
-        
-
-
-        <div class="post-content">
-          
-            <p>Adicione cache distribuído com Redis de forma rápida</p>
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button inline" href="/posts/dotnet-redis/">Leia mais</a>
-          </div>
-        
-      </article>
-    
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="//localhost:1313/posts/introducao-programacao-com-dart/">Introducao à programacao com Dart</a>
-        </h2>
-
-        <div class="post-meta"><time class="post-date">2020-01-06</time><span class="post-author">Lucas Silva</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="//localhost:1313/tags/dart/">dart</a>&nbsp;
-            
-            #<a href="//localhost:1313/tags/flutter/">flutter</a>&nbsp;
-            
-          </span>
-        
-
-        
-
-
-        <div class="post-content">
-          
-            <p>Uma breve introdução à programação utilizando Dart</p>
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button inline" href="/posts/introducao-programacao-com-dart/">Leia mais</a>
-          </div>
-        
-      </article>
-    
-
-    <div class="pagination">
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Leia outras postagens</span>
+    <hr />
+  </div>
   <div class="pagination__buttons">
     
+    
+    
+      <a href="//localhost:1313/posts/dotnet-unit-tests/" class="button inline next">
+        Testes de unidade com NUnit para aplicações C#
+      </a>
     
   </div>
 </div>
 
-  </div>
+
+  
+
+  
+    
+
+  
+</article>
 
   </div>
 
