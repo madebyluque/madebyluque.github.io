@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Github action para jogos da Unity :: Words of Luke Silva</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Realize o build dos seus jogos com GitHub Actions" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="//localhost:1313/posts/unity-github-actions/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.a922c0c412d300a9e6c837e1415563197d2271ecec09a96249efe9927e6f9813.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="//localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="pt-br" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Github action para jogos da Unity">
+<meta property="og:description" content="Realize o build dos seus jogos com GitHub Actions" />
+<meta property="og:url" content="//localhost:1313/posts/unity-github-actions/" />
+<meta property="og:site_name" content="Words of Luke Silva" />
+
+  
+  
+  <meta property="og:image" content="//localhost:1313/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2023-07-16 12:01:55 -0300 -03" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Words of Lucas Silva
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/posts">Posts</a></li>
+        
+      
+        
+          <li><a href="/about">Sobre</a></li>
+        
+      
+      
+        <hr />
+        
+          <li>
+            <a href="//localhost:1313/">Português</a>
+          </li>
+        
+          <li>
+            <a href="//localhost:1313/en/">English</a>
+          </li>
+        
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+      <ul class="menu menu--desktop menu--language-selector">
+  <li class="menu__trigger">Português&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        <li><a href="//localhost:1313/">Português</a></li>
+      
+        <li><a href="//localhost:1313/en/">English</a></li>
+      
+    </ul>
+  </li>
+</ul>
+
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/posts" >Posts</a></li>
+        
+      
+        
+          <li><a href="/about" >Sobre</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/posts/unity-github-actions/">Github action para jogos da Unity</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2023-07-16</time><span class="post-author">Lucas Silva</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="//localhost:1313/tags/gamedev/">gamedev</a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/github/">github</a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/unity/">unity</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Após brincar com desenvolvimento de jogos por alguns anos, decidi levar a sério a carreira de game dev e abri um estúdio de jogos chamado Blue Flower Game Lab.
+Estou desenvolvendo meu primeiro projeto sozinho, então tenho tentado automatizar meus processos ao máximo. Foi assim que descobri a <a href="https://game.ci/">Game.ci</a>, uma maneira de automatizar builds de projetos da Unity através do GitHub Actions.</p>
+<h2 id="configuração">Configuração<a href="#configuração" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="ativação-e-secrets">Ativação e secrets<a href="#ativação-e-secrets" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Crie um arquivo chamado <strong>.github/workflows/activation.yml</strong> e cole o seguinte conteúdo nele:</p>
+<pre tabindex="0"><code>name: Acquire activation file
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: game-ci/unity-request-activation-file@v2
+      # Upload artifact (Unity_v20XX.X.XXXX.alf)
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+</code></pre><p>Execute essa ação. O resultado dela será um arquivo de ativação manual. Depois disso, pegue o arquivo e faça o upload dele em <a href="https://license.unity3d.com/manual">license.unity3d.com</a> para obter um arquivo de licença.
+Com o arquivo de licença em mãos, será necessário criar os seguintes segredos no repositório do seu jogo:</p>
+<ul>
+<li>UNITY_LICENSE: conteúdo obtido no arquivo de licença;</li>
+<li>UNITY_EMAIL: e-mail de login na Unity;</li>
+<li>UNITY_PASSWORD: senha para login na Unity.</li>
+</ul>
+<p><strong>Nota:</strong> a senha e o e-mail não são solicitados nem armazenados pela game.ci. São necessárias apenas para reativação da licença durante o processo de build.</p>
+<h3 id="build">Build<a href="#build" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Após obter a licença e configurar os secrets, crie um novo arquivo de pipeline com o seguinte conteúdo:</p>
+<pre tabindex="0"><code>name: Build
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          # - StandaloneWindows # Build a Windows standalone.
+          # - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          # - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          # - iOS # Build an iOS player.
+          # - Android # Build an Android .apk standalone app.
+          # - WebGL # WebGL.
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles(&#39;Assets/**&#39;, &#39;Packages/**&#39;, &#39;ProjectSettings/**&#39;) }}
+          restore-keys: |
+            Library-
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+
+      # Discord notification
+      - name: Discord Notifier
+        uses: madebyluque/action-discord-notifier@v1.1.1
+        with:
+          webhook: Webhook do canal do discord
+          message-title: Título da mensagem do discord
+          message-description: Descrição da mensagem
+</code></pre><p>Com o arquivo criado, você precisará apenas selecionar as plataformas alvo. Para isso, remova o símbolo &ldquo;#&rdquo; das plataformas desejadas na seção <strong>targetPlatform</strong>.</p>
+<p>O último passo da pipeline envia uma notificação a um canal do Discord. Como a execução dela pode passar de 10 minutos, optei por ser avisado da conclusão dela em vez de ficar esperando. Para isso, fiz o fork de uma ação no github e modifiquei algumas informações para poder personalizar o título e a descrição da mensagem. Esse passo é opcional, então fique à vontade para removê-lo.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Postagens relacionadas</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="//localhost:1313/posts/testcontainers/" class="button inline prev">
+        TestContainers para testes de integração com .Net
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="//localhost:1313/posts/gamedev/" class="button inline next">
+        Recursos e dicas para o desenvolvimento do seu primeiro game
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
