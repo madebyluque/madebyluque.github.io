@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dotnet on Words of Luke Silva</title>
+    <link>//localhost:1313/tags/dotnet/</link>
+    <description>Recent content in Dotnet on Words of Luke Silva</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Tue, 04 Feb 2025 11:41:55 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Como usar Redis em uma solução .Net</title>
+      <link>//localhost:1313/posts/dotnet-redis/</link>
+      <pubDate>Tue, 04 Feb 2025 11:41:55 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/dotnet-redis/</guid>
+      <description>&lt;p&gt;Olá!&lt;/p&gt;
+&lt;p&gt;Faz algum tempo que não escrevo por aqui mas senti saudades disso. Desde que escrevi meu último artigo grande (&lt;a href=&#34;https://dev.to/cephalopodluke/introducao-a-programacao-com-dart-aji&#34;&gt;uma introdução sobre flutter&lt;/a&gt;), comecei a trabalhar com .Net e C#. É possível ver algumas semelhanças em ambas linguagens e isso facilitou bastante meu aprendizado nela.&lt;/p&gt;
+&lt;p&gt;Bem, tenho desenvolvido algumas APIs e trabalhado com alguns problemas envolvendo implantações de aplicações, bem coisa de backend mesmo. Um dos primeiros problemas que precisei resolver foi implementar uma forma de uso de cache utilizando Redis em uma API.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Olá!&lt;/p&gt;
+&lt;p&gt;Faz algum tempo que não escrevo por aqui mas senti saudades disso. Desde que escrevi meu último artigo grande (&lt;a href=&#34;https://dev.to/cephalopodluke/introducao-a-programacao-com-dart-aji&#34;&gt;uma introdução sobre flutter&lt;/a&gt;), comecei a trabalhar com .Net e C#. É possível ver algumas semelhanças em ambas linguagens e isso facilitou bastante meu aprendizado nela.&lt;/p&gt;
+&lt;p&gt;Bem, tenho desenvolvido algumas APIs e trabalhado com alguns problemas envolvendo implantações de aplicações, bem coisa de backend mesmo. Um dos primeiros problemas que precisei resolver foi implementar uma forma de uso de cache utilizando Redis em uma API.&lt;/p&gt;
+&lt;p&gt;Apenas para esclarecimento, cache é um local de armazenamento de dados temporários que servirão para ajudar aplicações web, mobile etc. Implementar cache na sua solução pode trazer diversos benefícios como economizar banda, reduzir tempo de resposta, realizar menos chamadas ao banco em alguns casos específicos etc. Entretanto também pode causar inúmeros problemas. Um deles é o de os dados não estarem mais atualizados em soluções que esses dados mudam frequentemente.&lt;/p&gt;
+&lt;p&gt;Criei um código para esse artigo que pode ser encontrado &lt;a href=&#34;https://github.com/lukelima/ExemploRedis&#34;&gt;nesse repositório do GitHub&lt;/a&gt;. Nele, criei consumi a &lt;a href=&#34;https://pokeapi.co/&#34;&gt;PokéApi&lt;/a&gt;, uma API com dados de quase todos os pokémons lançados até hoje. Segui a política de fair use dela que diz &lt;em&gt;&amp;ldquo;Locally cache resources whenever you request them.&amp;rdquo;&lt;/em&gt; (armazene recursos em cache quando os consultar) e salvei todas as requisições em cache por um tempo limitado.&lt;/p&gt;
+&lt;p&gt;A estrutura de pastas do projeto ficou da seguinte forma:za&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ExemploRedis/
+├─ Controllers/
+│  ├─ PokemonController.cs
+├─ Extensions/
+│  ├─ DistributedCacheExtension.cs
+├─ Services/
+│  ├─ Interfaces/
+│  │  ├─ ICacheService.cs
+│  │  ├─ IPokemonService.cs
+│  ├─ PokemonCacheService.cs
+│  ├─ PokemonService.cs
+├─ Pokemon.cs
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O arquivo &lt;strong&gt;Pokemon.cs&lt;/strong&gt; contém as informações de Pokémons da API. Para a simplicidade do exemplo, adicionei apenas 3 propriedades:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class Pokemon
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Weight { get; set; }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Adicionei o pacote &lt;strong&gt;Microsoft.Extensions.Caching.Redis&lt;/strong&gt; NuGet para trabalhar com o Redis. Com ele, criei a extensão &lt;strong&gt;Extensions/DistributedCacheExtension.cs&lt;/strong&gt; para adicionar o serviço à API:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public static IServiceCollection AddDistributedCache(
+    this IServiceCollection services,
+    IConfiguration configuration)
+{
+    services.AddDistributedRedisCache(options =&amp;gt;
+    {
+        options.Configuration = 
+            configuration.GetConnectionString(&amp;#34;Redis&amp;#34;);
+        options.InstanceName = 
+            configuration[&amp;#34;Redis:InstanceName&amp;#34;];
+    });
+    return services;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As options da configuração são autoexplicativas: string de conexão ao serviço e nome da instância.
+Adicionei essa extensão no arquivo Startup.cs, no método &lt;strong&gt;ConfigureServices&lt;/strong&gt;, com a seguinte linha de código:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;services.AddDistributedCache(Configuration);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Com o Redis configurado, desenvolvi um serviço que me auxiliaria a buscar e adicionar dados a ele visando evitar repetição de código.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public interface ICacheService&amp;lt;T&amp;gt;
+{
+    Task&amp;lt;T&amp;gt; Get(int id);
+    Task Set(T content);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O código acima é da interface do serviço. Decidi usar um tipo genérico nela para que ela seja reaproveitada para qualquer objeto que eu precisar. O serviço que a implementa ficou assim:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class PokemonCacheService : ICacheService&amp;lt;Pokemon&amp;gt;
+{
+    private readonly IDistributedCache _distributedCache;
+    private readonly DistributedCacheEntryOptions _options;
+    private const string Prefix = &amp;#34;pokemon_&amp;#34;;
+
+    public PokemonCacheService(IDistributedCache distributedCache)
+    {
+        _distributedCache = distributedCache;
+        _options = new DistributedCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = 
+                TimeSpan.FromSeconds(120),
+            SlidingExpiration = TimeSpan.FromSeconds(60)
+        };
+    }
+
+    public async Task&amp;lt;Pokemon&amp;gt; Get(int id)
+    {
+        var key = Prefix + id;
+        var cache = await _distributedCache.GetStringAsync(key);
+        if (cache is null)
+        {
+            return null;
+        }
+        var pokemon = JsonConvert.DeserializeObject&amp;lt;Pokemon&amp;gt; 
+            (cache);
+        return pokemon;
+    }
+
+    public async Task Set(Pokemon content)
+    {
+        var key = Prefix + content.Id;
+        var pokemonString = JsonConvert.SerializeObject(content);
+        await _distributedCache.SetStringAsync(key, pokemonString, 
+            _options);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Passando por todos os pontos:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;private readonly IDistributedCache _distributedCache;
+private readonly DistributedCacheEntryOptions _options;
+private const string Prefix = &amp;#34;pokemon_&amp;#34;;
+
+public PokemonCacheService(IDistributedCache distributedCache)
+{
+    _distributedCache = distributedCache;
+    _options = new DistributedCacheEntryOptions
+    {
+        AbsoluteExpirationRelativeToNow =   
+            TimeSpan.FromSeconds(120),
+        SlidingExpiration = TimeSpan.FromSeconds(60)
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Os dois primeiros campos, &lt;strong&gt;_distributedCache&lt;/strong&gt; e &lt;strong&gt;_options&lt;/strong&gt; estão relacionados diretamente à configuração do Redis. &lt;strong&gt;IDistributedCache&lt;/strong&gt; é a interface que utilizei para acessar o Redis através de injeção de dependência. Já &lt;strong&gt;DistributedCacheEntryOptions&lt;/strong&gt; é a classe responsável por configurar opções como &lt;strong&gt;AbsoluteExpirationRelativeToNow&lt;/strong&gt; e &lt;strong&gt;SlidingExpiration&lt;/strong&gt;, que referem-se ao tempo total que um dado ficará armazenado e ao tempo que ele pode ficar armazenado sem ser consultado (nunca maior que o tempo absoluto), respectivamente. &lt;strong&gt;Prefix&lt;/strong&gt; refere-se ao prefixo que utilizo para armazenar os pokemons. Utilizo ele + o id do pokemon para armazenar os dados com chaves únicas &amp;ndash; o que facilita a consulta posterior.&lt;/p&gt;
+&lt;p&gt;Sobre o método Get:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public async Task&amp;lt;Pokemon&amp;gt; Get(int id)
+{
+    var key = Prefix + id;
+    var cache = await _distributedCache.GetStringAsync(key);
+    if (cache is null)
+    {
+        return null;
+    }
+    var pokemon = JsonConvert.DeserializeObject&amp;lt;Pokemon&amp;gt;(cache);
+    return pokemon;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nele, crio a chave como prefixo + id do pokemon e busco o dado no cache utilizando o método &lt;strong&gt;GetStringAsync(key)&lt;/strong&gt; da interface IDistributedCache. Se ele for nulo, retorno nulo (ou poderia notificar um erro ou lançar uma exceção). Caso o contrário, deserializo a string obtida em pokemon e retorno o valor.&lt;/p&gt;
+&lt;p&gt;Sobre o método Set:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public async Task Set(Pokemon content)
+{
+    var key = Prefix + content.Id;
+    var pokemonString = JsonConvert.SerializeObject(content);
+    await _distributedCache.SetStringAsync(key, pokemonString, 
+        _options);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nele, crio a chave da mesma forma, com o prefixo + o id do pokemon informado, então serializo o objeto em string e armazeno no Redis utilizando o método &lt;strong&gt;SetStringAsync()&lt;/strong&gt; da interface IDistributedCache. Esse método recebe a chave que será utilizada para armazenamento (a mesma a ser consultada depois), o dado que será armazenado e as opções de armazenamento (lembra que configurei a expiração dos dados no construtor ? Pois bem, é aqui que informo essa configuração).&lt;/p&gt;
+&lt;p&gt;Com o serviço de cache pronto, desenvolvi o serviço de consulta à PokéApi. Interface:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public interface IPokemonService
+{
+    Task&amp;lt;Pokemon&amp;gt; GetPokemon(int id);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E o serviço que a implementa:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class PokemonService : IPokemonService
+{
+    private readonly HttpClient _httpClient;
+
+    public PokemonService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new 
+            Uri(&amp;#34;https://pokeapi.co/api/v2/&amp;#34;);
+    }
+
+    public async Task&amp;lt;Pokemon&amp;gt; GetPokemon(int id)
+    {
+        var response = await 
+            _httpClient.GetAsync($&amp;#34;pokemon/{id}&amp;#34;);
+        var content = await response.Content.ReadAsStringAsync();
+        var pokemon = JsonConvert.DeserializeObject&amp;lt;Pokemon&amp;gt; 
+            (content);
+        return pokemon;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O serviço é bem simples: possui um campo HttpClient que foi injetado e o método GetPokemon(int id), que faz a chamada à API e retorna um pokémon. Adicionei o HttpClient ao startup utilizando a seguinte linha de código no arquivo &lt;strong&gt;Startup.cs&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    services.AddHttpClient&amp;lt;IPokemonService, PokemonService&amp;gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É importante notar que esse método adiciona tanto o client como o serviço a ser injetado por dependência.&lt;/p&gt;
+&lt;p&gt;Com tudo pronto, criei um controller para servir esses dados:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[ApiController]
+[Route(&amp;#34;api/[controller]&amp;#34;)]
+public class PokemonController : ControllerBase
+{
+    private readonly IPokemonService _pokemonService;
+    private readonly ICacheService&amp;lt;Pokemon&amp;gt; _pokemonCacheService;
+
+    public PokemonController(IPokemonService pokemonService, 
+        ICacheService&amp;lt;Pokemon&amp;gt; pokemonCacheService)
+    {
+        _pokemonService = pokemonService;
+        _pokemonCacheService = pokemonCacheService;
+    }
+
+    [HttpGet(&amp;#34;{id}&amp;#34;)]
+    public async Task&amp;lt;IActionResult&amp;gt; Get(int id)
+    {
+        Pokemon pokemon = await _pokemonCacheService.Get(id);
+        if (pokemon is null)
+        {
+            pokemon = await _pokemonService.GetPokemon(id);
+            await _pokemonCacheService.Set(pokemon);
+        }
+        return Ok(pokemon);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nele, injeto tanto o PokemonService quanto o CacheService pelo construtor. Como essa Api faz apenas a pesquisa de pokemons, o controller possui apenas 1 método: Get. Ele recebe um id na rota, então verifica se há no cache um pokemon com esse id. Se houver, ele retorna o pokémon. Caso não haja, ele chama o service que consultará a API e então devolve o pokémon.&lt;/p&gt;
+&lt;p&gt;E esse é o fim do tutorial. Lembre-se de baixar o repositório no &lt;a href=&#34;https://github.com/lukelima/ExemploRedis&#34;&gt;GitHub&lt;/a&gt; caso queira estudá-lo melhor. Caso queira, deixei um arquivo docker-compose.yml para facilitar o uso do Redis.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

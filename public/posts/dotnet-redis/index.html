@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Como usar Redis em uma solução .Net :: Words of Luke Silva</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Adicione cache distribuído com Redis de forma rápida" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="//localhost:1313/posts/dotnet-redis/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.a922c0c412d300a9e6c837e1415563197d2271ecec09a96249efe9927e6f9813.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="//localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="pt-br" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Como usar Redis em uma solução .Net">
+<meta property="og:description" content="Adicione cache distribuído com Redis de forma rápida" />
+<meta property="og:url" content="//localhost:1313/posts/dotnet-redis/" />
+<meta property="og:site_name" content="Words of Luke Silva" />
+
+  
+  
+  <meta property="og:image" content="//localhost:1313/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2021-11-29 11:41:55 -0300 -03" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Words of Lucas Silva
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/posts">Posts</a></li>
+        
+      
+        
+          <li><a href="/about">Sobre</a></li>
+        
+      
+      
+        <hr />
+        
+          <li>
+            <a href="//localhost:1313/">Português</a>
+          </li>
+        
+          <li>
+            <a href="//localhost:1313/en/">English</a>
+          </li>
+        
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+      <ul class="menu menu--desktop menu--language-selector">
+  <li class="menu__trigger">Português&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        <li><a href="//localhost:1313/">Português</a></li>
+      
+        <li><a href="//localhost:1313/en/">English</a></li>
+      
+    </ul>
+  </li>
+</ul>
+
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/posts" >Posts</a></li>
+        
+      
+        
+          <li><a href="/about" >Sobre</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/posts/dotnet-redis/">Como usar Redis em uma solução .Net</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2021-11-29</time><span class="post-author">Lucas Silva</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="//localhost:1313/tags/dotnet/">dotnet</a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/redis/">redis</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Olá!</p>
+<p>Faz algum tempo que não escrevo por aqui mas senti saudades disso. Desde que escrevi meu último artigo grande (<a href="https://dev.to/cephalopodluke/introducao-a-programacao-com-dart-aji">uma introdução sobre flutter</a>), comecei a trabalhar com .Net e C#. É possível ver algumas semelhanças em ambas linguagens e isso facilitou bastante meu aprendizado nela.</p>
+<p>Bem, tenho desenvolvido algumas APIs e trabalhado com alguns problemas envolvendo implantações de aplicações, bem coisa de backend mesmo. Um dos primeiros problemas que precisei resolver foi implementar uma forma de uso de cache utilizando Redis em uma API.</p>
+<p>Apenas para esclarecimento, cache é um local de armazenamento de dados temporários que servirão para ajudar aplicações web, mobile etc. Implementar cache na sua solução pode trazer diversos benefícios como economizar banda, reduzir tempo de resposta, realizar menos chamadas ao banco em alguns casos específicos etc. Entretanto também pode causar inúmeros problemas. Um deles é o de os dados não estarem mais atualizados em soluções que esses dados mudam frequentemente.</p>
+<p>Criei um código para esse artigo que pode ser encontrado <a href="https://github.com/lukelima/ExemploRedis">nesse repositório do GitHub</a>. Nele, criei consumi a <a href="https://pokeapi.co/">PokéApi</a>, uma API com dados de quase todos os pokémons lançados até hoje. Segui a política de fair use dela que diz <em>&ldquo;Locally cache resources whenever you request them.&rdquo;</em> (armazene recursos em cache quando os consultar) e salvei todas as requisições em cache por um tempo limitado.</p>
+<p>A estrutura de pastas do projeto ficou da seguinte forma:za</p>
+<pre tabindex="0"><code>ExemploRedis/
+├─ Controllers/
+│  ├─ PokemonController.cs
+├─ Extensions/
+│  ├─ DistributedCacheExtension.cs
+├─ Services/
+│  ├─ Interfaces/
+│  │  ├─ ICacheService.cs
+│  │  ├─ IPokemonService.cs
+│  ├─ PokemonCacheService.cs
+│  ├─ PokemonService.cs
+├─ Pokemon.cs
+</code></pre><p>O arquivo <strong>Pokemon.cs</strong> contém as informações de Pokémons da API. Para a simplicidade do exemplo, adicionei apenas 3 propriedades:</p>
+<pre tabindex="0"><code>public class Pokemon
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Weight { get; set; }
+}
+</code></pre><p>Adicionei o pacote <strong>Microsoft.Extensions.Caching.Redis</strong> NuGet para trabalhar com o Redis. Com ele, criei a extensão <strong>Extensions/DistributedCacheExtension.cs</strong> para adicionar o serviço à API:</p>
+<pre tabindex="0"><code>public static IServiceCollection AddDistributedCache(
+    this IServiceCollection services,
+    IConfiguration configuration)
+{
+    services.AddDistributedRedisCache(options =&gt;
+    {
+        options.Configuration = 
+            configuration.GetConnectionString(&#34;Redis&#34;);
+        options.InstanceName = 
+            configuration[&#34;Redis:InstanceName&#34;];
+    });
+    return services;
+}
+</code></pre><p>As options da configuração são autoexplicativas: string de conexão ao serviço e nome da instância.
+Adicionei essa extensão no arquivo Startup.cs, no método <strong>ConfigureServices</strong>, com a seguinte linha de código:</p>
+<pre tabindex="0"><code>services.AddDistributedCache(Configuration);
+</code></pre><p>Com o Redis configurado, desenvolvi um serviço que me auxiliaria a buscar e adicionar dados a ele visando evitar repetição de código.</p>
+<pre tabindex="0"><code>public interface ICacheService&lt;T&gt;
+{
+    Task&lt;T&gt; Get(int id);
+    Task Set(T content);
+}
+</code></pre><p>O código acima é da interface do serviço. Decidi usar um tipo genérico nela para que ela seja reaproveitada para qualquer objeto que eu precisar. O serviço que a implementa ficou assim:</p>
+<pre tabindex="0"><code>public class PokemonCacheService : ICacheService&lt;Pokemon&gt;
+{
+    private readonly IDistributedCache _distributedCache;
+    private readonly DistributedCacheEntryOptions _options;
+    private const string Prefix = &#34;pokemon_&#34;;
+
+    public PokemonCacheService(IDistributedCache distributedCache)
+    {
+        _distributedCache = distributedCache;
+        _options = new DistributedCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = 
+                TimeSpan.FromSeconds(120),
+            SlidingExpiration = TimeSpan.FromSeconds(60)
+        };
+    }
+
+    public async Task&lt;Pokemon&gt; Get(int id)
+    {
+        var key = Prefix + id;
+        var cache = await _distributedCache.GetStringAsync(key);
+        if (cache is null)
+        {
+            return null;
+        }
+        var pokemon = JsonConvert.DeserializeObject&lt;Pokemon&gt; 
+            (cache);
+        return pokemon;
+    }
+
+    public async Task Set(Pokemon content)
+    {
+        var key = Prefix + content.Id;
+        var pokemonString = JsonConvert.SerializeObject(content);
+        await _distributedCache.SetStringAsync(key, pokemonString, 
+            _options);
+    }
+}
+</code></pre><p>Passando por todos os pontos:</p>
+<pre tabindex="0"><code>private readonly IDistributedCache _distributedCache;
+private readonly DistributedCacheEntryOptions _options;
+private const string Prefix = &#34;pokemon_&#34;;
+
+public PokemonCacheService(IDistributedCache distributedCache)
+{
+    _distributedCache = distributedCache;
+    _options = new DistributedCacheEntryOptions
+    {
+        AbsoluteExpirationRelativeToNow =   
+            TimeSpan.FromSeconds(120),
+        SlidingExpiration = TimeSpan.FromSeconds(60)
+    };
+}
+</code></pre><p>Os dois primeiros campos, <strong>_distributedCache</strong> e <strong>_options</strong> estão relacionados diretamente à configuração do Redis. <strong>IDistributedCache</strong> é a interface que utilizei para acessar o Redis através de injeção de dependência. Já <strong>DistributedCacheEntryOptions</strong> é a classe responsável por configurar opções como <strong>AbsoluteExpirationRelativeToNow</strong> e <strong>SlidingExpiration</strong>, que referem-se ao tempo total que um dado ficará armazenado e ao tempo que ele pode ficar armazenado sem ser consultado (nunca maior que o tempo absoluto), respectivamente. <strong>Prefix</strong> refere-se ao prefixo que utilizo para armazenar os pokemons. Utilizo ele + o id do pokemon para armazenar os dados com chaves únicas &ndash; o que facilita a consulta posterior.</p>
+<p>Sobre o método Get:</p>
+<pre tabindex="0"><code>public async Task&lt;Pokemon&gt; Get(int id)
+{
+    var key = Prefix + id;
+    var cache = await _distributedCache.GetStringAsync(key);
+    if (cache is null)
+    {
+        return null;
+    }
+    var pokemon = JsonConvert.DeserializeObject&lt;Pokemon&gt;(cache);
+    return pokemon;
+}
+</code></pre><p>Nele, crio a chave como prefixo + id do pokemon e busco o dado no cache utilizando o método <strong>GetStringAsync(key)</strong> da interface IDistributedCache. Se ele for nulo, retorno nulo (ou poderia notificar um erro ou lançar uma exceção). Caso o contrário, deserializo a string obtida em pokemon e retorno o valor.</p>
+<p>Sobre o método Set:</p>
+<pre tabindex="0"><code>public async Task Set(Pokemon content)
+{
+    var key = Prefix + content.Id;
+    var pokemonString = JsonConvert.SerializeObject(content);
+    await _distributedCache.SetStringAsync(key, pokemonString, 
+        _options);
+}
+</code></pre><p>Nele, crio a chave da mesma forma, com o prefixo + o id do pokemon informado, então serializo o objeto em string e armazeno no Redis utilizando o método <strong>SetStringAsync()</strong> da interface IDistributedCache. Esse método recebe a chave que será utilizada para armazenamento (a mesma a ser consultada depois), o dado que será armazenado e as opções de armazenamento (lembra que configurei a expiração dos dados no construtor ? Pois bem, é aqui que informo essa configuração).</p>
+<p>Com o serviço de cache pronto, desenvolvi o serviço de consulta à PokéApi. Interface:</p>
+<pre tabindex="0"><code>public interface IPokemonService
+{
+    Task&lt;Pokemon&gt; GetPokemon(int id);
+}
+</code></pre><p>E o serviço que a implementa:</p>
+<pre tabindex="0"><code>public class PokemonService : IPokemonService
+{
+    private readonly HttpClient _httpClient;
+
+    public PokemonService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new 
+            Uri(&#34;https://pokeapi.co/api/v2/&#34;);
+    }
+
+    public async Task&lt;Pokemon&gt; GetPokemon(int id)
+    {
+        var response = await 
+            _httpClient.GetAsync($&#34;pokemon/{id}&#34;);
+        var content = await response.Content.ReadAsStringAsync();
+        var pokemon = JsonConvert.DeserializeObject&lt;Pokemon&gt; 
+            (content);
+        return pokemon;
+    }
+}
+</code></pre><p>O serviço é bem simples: possui um campo HttpClient que foi injetado e o método GetPokemon(int id), que faz a chamada à API e retorna um pokémon. Adicionei o HttpClient ao startup utilizando a seguinte linha de código no arquivo <strong>Startup.cs</strong>:</p>
+<pre tabindex="0"><code>    services.AddHttpClient&lt;IPokemonService, PokemonService&gt;();
+</code></pre><p>É importante notar que esse método adiciona tanto o client como o serviço a ser injetado por dependência.</p>
+<p>Com tudo pronto, criei um controller para servir esses dados:</p>
+<pre tabindex="0"><code>[ApiController]
+[Route(&#34;api/[controller]&#34;)]
+public class PokemonController : ControllerBase
+{
+    private readonly IPokemonService _pokemonService;
+    private readonly ICacheService&lt;Pokemon&gt; _pokemonCacheService;
+
+    public PokemonController(IPokemonService pokemonService, 
+        ICacheService&lt;Pokemon&gt; pokemonCacheService)
+    {
+        _pokemonService = pokemonService;
+        _pokemonCacheService = pokemonCacheService;
+    }
+
+    [HttpGet(&#34;{id}&#34;)]
+    public async Task&lt;IActionResult&gt; Get(int id)
+    {
+        Pokemon pokemon = await _pokemonCacheService.Get(id);
+        if (pokemon is null)
+        {
+            pokemon = await _pokemonService.GetPokemon(id);
+            await _pokemonCacheService.Set(pokemon);
+        }
+        return Ok(pokemon);
+    }
+}
+</code></pre><p>Nele, injeto tanto o PokemonService quanto o CacheService pelo construtor. Como essa Api faz apenas a pesquisa de pokemons, o controller possui apenas 1 método: Get. Ele recebe um id na rota, então verifica se há no cache um pokemon com esse id. Se houver, ele retorna o pokémon. Caso não haja, ele chama o service que consultará a API e então devolve o pokémon.</p>
+<p>E esse é o fim do tutorial. Lembre-se de baixar o repositório no <a href="https://github.com/lukelima/ExemploRedis">GitHub</a> caso queira estudá-lo melhor. Caso queira, deixei um arquivo docker-compose.yml para facilitar o uso do Redis.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Leia outras postagens</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="//localhost:1313/posts/introducao-programacao-com-dart/" class="button inline next">
+        Introducao à programacao com Dart
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
