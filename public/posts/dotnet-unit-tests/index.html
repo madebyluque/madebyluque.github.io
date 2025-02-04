@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Testes de unidade com NUnit para aplicações C# :: Words of Luke Silva</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Crie testes de unidade para suas soluções .Net" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="//localhost:1313/posts/dotnet-unit-tests/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.a922c0c412d300a9e6c837e1415563197d2271ecec09a96249efe9927e6f9813.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="//localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="pt-br" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Testes de unidade com NUnit para aplicações C#">
+<meta property="og:description" content="Crie testes de unidade para suas soluções .Net" />
+<meta property="og:url" content="//localhost:1313/posts/dotnet-unit-tests/" />
+<meta property="og:site_name" content="Words of Luke Silva" />
+
+  
+  
+  <meta property="og:image" content="//localhost:1313/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2022-03-18 11:45:29 -0300 -03" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Words of Lucas Silva
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/posts">Posts</a></li>
+        
+      
+        
+          <li><a href="/about">Sobre</a></li>
+        
+      
+      
+        <hr />
+        
+          <li>
+            <a href="//localhost:1313/">Português</a>
+          </li>
+        
+          <li>
+            <a href="//localhost:1313/en/">English</a>
+          </li>
+        
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+      <ul class="menu menu--desktop menu--language-selector">
+  <li class="menu__trigger">Português&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        <li><a href="//localhost:1313/">Português</a></li>
+      
+        <li><a href="//localhost:1313/en/">English</a></li>
+      
+    </ul>
+  </li>
+</ul>
+
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/posts" >Posts</a></li>
+        
+      
+        
+          <li><a href="/about" >Sobre</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/posts/dotnet-unit-tests/">Testes de unidade com NUnit para aplicações C#</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2022-03-18</time><span class="post-author">Lucas Silva</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="//localhost:1313/tags/"></a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/"></a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Basicamente, testes automatizados são uma forma de automatizar o processo de revisão e validação de um software através de uma ferramenta programável. Esse processo, que antes podia ser extremamente trabalhoso e demorado, pode ser feito em minutos &ndash; ou até mesmo segundos, dependendo dos tipos e da quantidade de testes existentes na sua aplicação.</p>
+<p>Mike Cohn criou o conceito de pirâmide de testes no livro &ldquo;Succeeding with Agile&rdquo;. É basicamente uma forma de te fazer pensar nas várias camadas de testes e em como elas devem estar presentes:
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u3ey9qc5peuj6d1jwuby.png" alt="Pirâmide de testes cunhada po Cohn. A base dela é composta por testes de unidade, seguida por testes de serviços e por fim testes de ui. Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é">
+Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é, além de mais numeroso.</p>
+<p>Há inúmeros tipos de teste &ndash; muitos dos quais eu mesmo desconheço a fundo &ndash; mas abordarei apenas os testes de unidade. Eles possuem esse nome pois tendem as menores unidades de classes e métodos de forma isolada do resto da aplicação: sem acoplamento, nem nada. Apenas verificações para garantir que eles funcionem conforme o esperado, que as variáveis tenham os valores esperados etc.</p>
+<p>Uma disciplina importante para criar testes é aquela chamada de TDD - Desenvolvimento orientado a testes. Nela, primeiro se escreve os testes, depois o código para que o teste funcione, depois o código é refatorado para que se torne a melhor versão que puder ser (esse último passo costuma ser bastante ignorado, gerando débitos técnicos).</p>
+<p>Ok, mas por que começar pelos testes e não pelo código ? Porque para criar uma solução, é necessário saber o que precisa ser criado. É necessário saber de antemão o que uma classe deve fazer, o que um método deve fazer, o valor que uma variável deve ter etc. Sem isso em mente, é muito fácil assumir que um resultado qualquer é o correto. E é assim que nascem os bugs 🐞!</p>
+<p>Sem mais delongas, bora pro código.</p>
+<p><img src="https://media.giphy.com/media/KGdKKipVBu9vO5hKkb/giphy.gif" alt="Killjoy do jogo Valorant, em frente a um computador, arrumando os óculos no próprio rosto"></p>
+<h2 id="mãos-à-obra">Mãos à obra<a href="#mãos-à-obra" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Criei uma aplicação console para exemplificar. Nela, criarei uma classe &ldquo;Conta&rdquo; com as seguintes especificações:</p>
+<ul>
+<li>Uma pessoa pode depositar qualquer valor maior que zero na conta;</li>
+<li>Uma pessoa pode sacar valores maiores que 0 e menores ou iguais ao saldo total;</li>
+</ul>
+<p>Adicionei um projeto NUnit com o Visual Studio. Nele, criei uma classe chamada <strong>ContaTests</strong>, conforme abaixo. O atributo <strong>[TestFixture]</strong> indica que uma classe possui testes.</p>
+<pre tabindex="0"><code>[TestFixture]
+public class ContaTests
+{
+}
+</code></pre><p>E então parti para o teste do primeiro método. Para que um método seja detectado como teste, é necessário adicionar o atributo <strong>[Test]</strong> acima dele. Quanto ao nome do método de teste, fiz baseando-me em algumas recomendações que podem ser encontradas <a href="https://docs.microsoft.com/pt-br/dotnet/core/testing/unit-testing-best-practices">neste link.</a>.</p>
+<pre tabindex="0"><code>[Test]
+public void Depositar_RetornaSaldoMaisValorDepositado()
+{
+    // Arrange 
+    
+    // Act
+    
+    // Assert
+}
+</code></pre><p>Gosto de deixar os 3 comentários em todos os testes que crio para separar bem as fases dele. Essas fases formam o padrão AAA, muito utilizado na indústria, e correspondem a:</p>
+<ul>
+<li>Arrange: fase na qual é necessário preparar teste preparando as variáveis, criando instâncias de objeto necessárias etc.;</li>
+<li>Act: fase na qual o método a ser testado é executado;</li>
+<li>Assert: fase na qual é feita a verificação de que o resultado obtido está de acordo com o esperado.</li>
+</ul>
+<p>Na primeira fase, criei apenas uma instância da classe <strong>Conta</strong>, que ainda não existe, e então criei uma variável com o valor que espero obter como resultado do teste.</p>
+<pre tabindex="0"><code>// Arrange 
+Conta conta = new Conta(&#34;Lucas&#34;, 100);
+decimal saldoEsperado = 200;
+</code></pre><p>Na fase de ação, executei o método e armazenei o resultado em uma variável:</p>
+<pre tabindex="0"><code>// Act
+var resultado = conta.Depositar(100);
+</code></pre><p>E por fim, fiz a verificação de que o resultado era igual ao saldoEsperado. Para isso, usei a classe Assert do NUnit. Ela contém vários métodos estáticos para testar inúmeras situações, como listas, igualdades, nulos etc.</p>
+<pre tabindex="0"><code>// Assert
+Assert.AreEqual(saldoEsperado, resultado);
+</code></pre><p>O teste final ficou da seguinte forma:</p>
+<pre tabindex="0"><code>[Test]
+public void Depositar_RetornaSaldoMaisValorDepositado()
+{
+    // Arrange 
+    Conta conta = new Conta(&#34;Lucas&#34;, 100);
+    decimal saldoEsperado = 200;
+
+    Act
+    var resultado = conta.Depositar(100);
+
+    Assert
+    Assert.AreEqual(saldoEsperado, resultado);
+}
+</code></pre><p>O teste não compilará no primeiro momento pois a classe <strong>Conta</strong> ainda não existe. Logo, decidi criá-la:</p>
+<pre tabindex="0"><code>public class Conta
+{
+    public Conta(string cliente, decimal saldo)
+    {
+        Cliente = cliente;
+        Saldo = saldo;
+    }
+
+    public string Cliente { get; private set; }
+    public decimal Saldo { get; private set; }
+
+    public decimal Depositar(decimal valor)
+    {
+        Saldo += valor;
+        return Saldo;
+    }
+}
+</code></pre><p>Aproveitei e também criei o método <strong>Depositar</strong>. Ele é simples: recebe um valor e então adiciona esse valor à propriedade <strong>Saldo</strong> da classe.</p>
+<p>Adicionei uma referência da classe no projeto de teste e então o executei. E então o teste passou !
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/h8esevtr3rklh3c27nqa.png" alt="A imagem mostra que o teste foi aprovado após a execução com os valores corretos"></p>
+<p>⚠️⚠️ Uma forma de garantir que o teste funciona é fazendo-o quebrar propositalmente. Uma forma de quebrar o teste acima seria alterando o valor esperado para 300. Se o teste e o código estiverem certos, o teste não passará. Isso é importante para evitar que o resultado seja um falso-positivo.⚠️⚠️</p>
+<p>Ok, o valor adicionado está correto, a soma está correta. Mas não é tudo a ser testado nesse método:</p>
+<ul>
+<li>Uma pessoa pode depositar qualquer valor <strong>maior que zero</strong> na conta;</li>
+</ul>
+<p>Logo, é necessário criar um teste para verificar se o meu programa barra o depósito de um valor negativo como -R$100.</p>
+<pre tabindex="0"><code>[Test]
+public void Deposito_QuandoExecutadoComValorNegativo_LancaLancaInvalidOperationException()
+{
+    //Arrange
+    Conta conta = new Conta(&#34;Lucas&#34;, 100);
+
+    //Act
+    Func&lt;decimal&gt; acao = () =&gt; conta.Depositar(-100);
+
+    //Assert
+    Assert.Throws&lt;InvalidOperationException&gt;(() =&gt; acao());
+}
+</code></pre><p>A grande diferença está nas fases <strong>Act</strong> e <strong>Assert</strong>. Assim que o valor -100 for detectado pelo método, é necessário que ele lance uma nova exceção: <strong>InvalidOperationException</strong>. Quando ela for lançada, o programa sairá daquele método antes de completá-lo, fazerndo com que o assert seja um pouco diferente. Para testar se ela realmente foi lançada, primeiro armazenei o método em um delegate (eu poderia explicar o significado mas tanto a <a href="https://docs.microsoft.com/pt-br/dotnet/api/system.delegate?view=net-6.0">Microsoft</a> quanto o <a href="http://www.macoratti.net/17/01/net_deleg1.htm">Macoratti</a> fizeram um excelente trabalho falando sobre) e então utilizei o método Throws da classe Assert. Ele recebe o tipo da exceção como generic (<a href="https://docs.microsoft.com/pt-br/dotnet/standard/generics/">artigo da Microsoft</a> e <a href="http://www.macoratti.net/11/07/net_gen1.htm">artigo do Macoratti</a>) e então consegue verificar se a exceção foi lançada.</p>
+<p>Ao rodar o teste na primeira vez, ele não passoupois o método ainda não lança a exceção. Adicionei apenas 1 if para lançar a exceção e então o teste passou !</p>
+<pre tabindex="0"><code>public decimal Depositar(decimal valor)
+{
+    if (valor &lt;= 0)
+    {
+        throw new InvalidOperationException(&#34;Não é possível depositar valores negativos&#34;);
+    }
+    Saldo += valor;
+    return Saldo
+}
+</code></pre><p>⚠️⚠️Para quebrar o teste e verificar se ele não dá um falso positivo, é possível simplesmente alterar o tipo da exceção esperada no Assert.⚠️⚠️</p>
+<p>Por se tratar de um exemplo, o método de saque terá testes bastante parecidos com o do depósito, então é possível verificá-lo, assim como todo o resto do código, nesse repositório do GitHub que criei!</p>
+<p>Bem, essa foi uma breve introdução sobre testes de unidade. Na próxima parte falarei sobre <strong>Mocks</strong> em um exemplo de uma API Rest e sobre o método <strong>SetUp</strong>.Se curtiu, não esqueça de compartilhar a postagem!</p>
+<p>Até a próxima !</p>
+<p><img src="https://media.giphy.com/media/2YgCmRh9Arduw8LshF/giphy.gif" alt="Snoopy Dogg acenando em despedida"></p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Leia outras postagens</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="//localhost:1313/posts/dotnet-redis/" class="button inline next">
+        Como usar Redis em uma solução .Net
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
