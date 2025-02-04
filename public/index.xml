@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Words of Luke Silva</title>
+    <link>//localhost:1313/</link>
+    <description>Recent content on Words of Luke Silva</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Mon, 06 Jan 2020 10:58:10 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introducao à programacao com Dart</title>
+      <link>//localhost:1313/posts/introducao-programacao-com-dart/</link>
+      <pubDate>Mon, 06 Jan 2020 10:58:10 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/introducao-programacao-com-dart/</guid>
+      <description>&lt;p&gt;Tenho trabalhado com Flutter há aproximadamente um ano e queria compartilhar tudo que aprendi de algum forma. Entretanto, não adianta falar sobre o framework se as pessoas não conhecem a linguagem por trás dele. Além disso, sinto falta de conteúdos voltados aos iniciantes. Assim sendo, decidi unir o útil ao agradável e criar essa pequena introdução 😊&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Não se preocupe caso não entenda algum termo no início: todos eles (ou a maioria) serão explicados ao longo do texto. Caso fique alguma dúvida, escreva um comentário ou me mande um tweet&lt;/strong&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;Tenho trabalhado com Flutter há aproximadamente um ano e queria compartilhar tudo que aprendi de algum forma. Entretanto, não adianta falar sobre o framework se as pessoas não conhecem a linguagem por trás dele. Além disso, sinto falta de conteúdos voltados aos iniciantes. Assim sendo, decidi unir o útil ao agradável e criar essa pequena introdução 😊&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Não se preocupe caso não entenda algum termo no início: todos eles (ou a maioria) serão explicados ao longo do texto. Caso fique alguma dúvida, escreva um comentário ou me mande um tweet&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Essa postagem está disponível no &lt;a href=&#34;https://github.com/lukelima/Flutter-tutoriais/blob/master/intoToDart.md&#34;&gt;meu GitHub&lt;/a&gt;. Caso haja algum erro, por favor, abra uma issue.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;dart---a-linguagem&#34;&gt;Dart - a linguagem&lt;/h2&gt;
+&lt;p&gt;Criada em 2011 com foco inicial em desenvolvimento web, Dart é uma linguagem puramente orientada a objetos, baseada em classes e de herança única. É opcionalmente tipada pois dart suporta inferência de tipos (o interpretador tenta reconhecê-los por si mesmo), e o tipo de cada objeto durante o tempo de execução é uma instância da classe Type. (&lt;a href=&#34;https://dart.dev/guides/language/specifications/DartLangSpec-v2.2.pdf&#34;&gt;Especificações da linguagem&lt;/a&gt;). Isso quer dizer que tudo em Dart é um objeto, que a linguagem é fortemente baseada nas classes, o conceito fundamental da &lt;strong&gt;programação orientada a objetos&lt;/strong&gt;, e que você pode ou não declarar o tipo da sua variável.&lt;/p&gt;
+&lt;h3 id=&#34;motivos-para-usar-dart&#34;&gt;Motivos para usar dart&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Compilação AoT - apps criados em dart são compilados antes de serem executados, fazendo com que rodem de forma suave;&lt;/li&gt;
+&lt;li&gt;sintaxe semelhante às linguagens baseadas em C. Se você desenvolve em java, não terá muita dificuldade em migrar;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://pub.dev/&#34;&gt;Pub&lt;/a&gt; - por mais que o gerenciados de pacotes ainda não seja tão grande quanto o NPM, há vários pacotes voltador às plataformas nas quais a roda;&lt;/li&gt;
+&lt;li&gt;open source - sim, você pode contribui com a linguagem. &lt;a href=&#34;https://github.com/dart-lang&#34;&gt;Clique aqui&lt;/a&gt; para ter acesso aos repositórios no GitHub;&lt;/li&gt;
+&lt;li&gt;animações a 60 FPS em flutter;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;instalação&#34;&gt;Instalação&lt;/h2&gt;
+&lt;p&gt;Não é necessário instalar as ferramentas de desenvolvimento para acompanhar esta postagem pois os mantenedores da linguagem criaram o &lt;a href=&#34;https://dartpad.dev/&#34;&gt;DartPad&lt;/a&gt;, que permite testar códigos Dart e criar aplicativos simples diretamente no seu navegador. Entretanto, caso deseje instalar, eis o passo-a-passo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clique em &lt;a href=&#34;https://dart.dev/get-dart&#34;&gt;get dart&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;escolha o seu sistema operacional e digite os comandos no terminal ou baixe o gerenciador de instalação;
+Após instalar as ferramentas para desenvolver em Dart você poderá rodar arquivos .dart através do terminal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ides&#34;&gt;IDEs&lt;/h2&gt;
+&lt;p&gt;IDEs, ou ambientes integrados de desenvolvimento, são como editores de texto, mas com ferramentas específicas para ajudar no desenvolvimento: autocomplete, verificador de sintaxe, debuggers etc. Há vários IDEs gratuitos. Os meus preferidos são &lt;a href=&#34;https://code.visualstudio.com/&#34;&gt;VSCode&lt;/a&gt;, &lt;a href=&#34;https://atom.io/&#34;&gt;Atom&lt;/a&gt; e &lt;a href=&#34;https://developer.android.com/studio&#34;&gt;Android Studio&lt;/a&gt;, por mais que o último seja um tanto pesado para computadores com poucos recursos de memória e processamento.&lt;/p&gt;
+&lt;h2 id=&#34;variáveis&#34;&gt;Variáveis&lt;/h2&gt;
+&lt;p&gt;Variáveis são como caixinhas que armazenam um valor na memória. Em vez de utilizar o código hexadecimal correspondente ao lugar dessas caixinhas na memória (o endereço delas), é possível nomeá-las, facilitando o uso dos dados que elas contém.
+Imagine que você precise somar o salário de todos os gastos de uma papelaria qualquer, e que para isso, apenas jogue os números em um papel (ou calculadora) a partir dos valores encontrados nos recibos&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;       1000
+       1500
+       2000
+       1000
+       1250
+       1000
+       1300
+       1500
+total: 10550
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Agora imagine que daqui a 1 ano os recibos tenham se apagado e você, por alguma razão, precise achar o valor que foi gasto com cadernos. Olhando a conta acima, conseguiria achá-lo? Não seria mais simples se houvesse uma &amp;ldquo;legenda&amp;rdquo; dizendo a quê se referem esses valores? Imagine a bagunça conforme os anos se passarem&amp;hellip;
+Declarar variáveis é uma das operações fundamentais na programação. Em algumas linguagens, é algo simples como&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pi = 3.14
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Em Dart, declará-las é feito de forma parecida, apenas colocando a palavra &amp;ldquo;var&amp;rdquo; atrás dos nomes, ou o tipo delas na mesma posição&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var pi = 3.14;
+// ou
+double pi = 3.14;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Tipá-las previnirá alguns erros futuros e facilitará seu trabalho com IDEs (ambientes de desenvolvimento integrados). Entretanto, as guidelines da linguagem indicam que para variáveis locais (como aquelas dentro de funções), é preferível o uso de &amp;ldquo;var&amp;rdquo;.
+Caso queira que suas variáveis não mudem, utilize a anotação &amp;ldquo;const&amp;rdquo; ou &amp;ldquo;final&amp;rdquo; antes do tipo&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;final name = &amp;#39;Bob&amp;#39;;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Em outras linguagens há uma forma de mudar o nível de acesso das variáveis, ou seja, mudar o quanto elas podem ser vistas de fora da classe. Essa forma se dá através da utilização das palavras &amp;ldquo;protected&amp;rdquo;, &amp;ldquo;public&amp;rdquo; e &amp;ldquo;private&amp;rdquo;. Em dart, basta escrever &amp;ldquo;_&amp;rdquo; antes do nome delas para torná-las privadas.
+Há dois escopos para elas: local e global. O primeiro se refere àquelas que são declaradas dentro de funções e não podem ser acessadas fora delas. O segundo, àquelas que são declaradas fora de funções e podem ser acessadas de qualquer lugar no código.&lt;/p&gt;
+&lt;h3 id=&#34;como-escolher-o-nome-de-uma-variável&#34;&gt;Como escolher o nome de uma variável&lt;/h3&gt;
+&lt;p&gt;Ok, é mais fácil trabalhar com o nome de uma variável do que com o endereço na memória (exemplo: 0x9cf10c). Porém não pense que nomeá-las de qualquer jeito facilitará seu trabalho.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int a = 10;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O que significa &amp;ldquo;a&amp;rdquo; ? A quê esse valor se refere ? Tudo bem, você pode saber o significado, mas e as pessoas que darão manutenção ao código? &lt;strong&gt;O computador entenderá o que significa com ou sem nome. Todo código escrito por você deve ser direcionado às pessoas que lerão ele, então facilite o trabalho delas 👍&lt;/strong&gt;.
+Recomendo que leia o livro &lt;a href=&#34;https://www.amazon.com.br/C%C3%B3digo-limpo-Robert-C-Martin/dp/8576082675&#34;&gt;Código limpo&lt;/a&gt; para uma abordagem mais completa sobre o assunto.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A linguagem não aceita que os nomes comecem por números, nem que contenham espaços em branco ou caracteres especiais(com exceção de &amp;ldquo;$&amp;rdquo; e &amp;ldquo;_&amp;rdquo;), e muito menos que seja uma das &lt;a href=&#34;https://dart.dev/guides/language/language-tour#keywords&#34;&gt;palavras reservadas&lt;/a&gt; dela.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// errado
+int 1Numero = 10;
+
+//correto  
+int umNumero = 10;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;algoritmos&#34;&gt;Algoritmos&lt;/h2&gt;
+&lt;p&gt;É um tanto clichê falar que algoritmos são como receitas culinárias, mas são mesmo: uma sequência de instruções para a execução de uma tarefa. Pense nos ingredientes como &amp;ldquo;variáveis&amp;rdquo;, e no modo de preparo como a execução do seu programa. Veja uma receita simples de brigadeiro (o máximo que consigo fazer em uma cozinha 🤣):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ingredientes:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1 caixa de leite condensado;
+3 colheres (sopa) de achocolatado;
+1 colher (sopa) de manteiga;
+1 xícara (chá) de chocolate granulado
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Podemos dizer que o nome de cada ingrediente é igual ao nome de uma variável, e que a quantidade dos ingredientes, o valor delas. Assim sendo:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int caixaDeLeiteCondensado = 1;
+int colheresDeAchocolatado = 3;
+int colherDeManteiga = 1;
+int xicaraDeChocolateGranulado = 1
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;Quanto ao modo de preparo:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1 - Adicione o leite condensado, o achocolatado e a manteiga em uma panela;
+2 - misture em fogo baixo por 10 minutos;
+3 - deixe esfriar em um prato untado;
+4 - enrole a mistura e adicione granulado;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Em código usando funções (última sessão do artigo):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var mistura = adicionarNaPanela(caixaDeLeiteCondensado, colheresDeAchocolatado, colherDeManteiga);
+misturarEmFogoBaixo(mistura);
+deixarEsfriar(mistura, pratoUntado);
+enrolarEGranular(mistura);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É claro, há vários níveis de complexidade para algoritmos de uma mesma tarefa: você pode dizer que começa o dia levantando da cama, ou pode ser mais profundo e dizer que começa abrindo os olhos, se espreguiçando, levantando o tronco, sentando na cama&amp;hellip;
+Algoritmos são a base da programação. E pasme: você aprenderá sobre algumas ferramentas durante sua vida profissional, mas a maioria dos seus problemas iniciais será resultante da falta de prática com algoritmos, não com as ferramentas em si!&lt;/p&gt;
+&lt;p&gt;**NUNCA SE ESQUEÇA DE UTILIZAR ; (PONTO E VÍRGULA) AO FINAL DE CADA INSTRUÇÃO&lt;/p&gt;
+&lt;h2 id=&#34;comentários&#34;&gt;Comentários&lt;/h2&gt;
+&lt;p&gt;Comentários servem para escrever uma mensagem no código que não será interpretada pelo computador. Essa mensagem costuma ser criada para documentar o código (explicá-lo), mas não se engane: a necessidade de diversos comentários pode ser indicativo de que a escolha dos nomes das variáveis e funções, ou o uso delas, não está claro o suficiente. Um código bem escrito deve falar por si só.
+Dart suporta 3 tipos de comentários:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;os de 1 única linha&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// esse é um comentário de linha única
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;os de múltiplas linhas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/*
+  Esse é um comentário em
+  múltiplas linhas
+*/
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;os de documentação&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/// comentários de documentação podem começar com 3 barras invertidas ou /**
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Boa parte dos resultados de instruções neste texto foram escritos em comentários na frente delas.&lt;/p&gt;
+&lt;h2 id=&#34;tipos-de-dados&#34;&gt;Tipos de dados&lt;/h2&gt;
+&lt;h3 id=&#34;strings&#34;&gt;Strings&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;String nome = &amp;#39;Lucas&amp;#39;;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Strings são as representações de frases, palavras, caracteres etc. Sempre que for necessário armazenar uma das opções citadas, declare uma string com as palavras dentro de aspas simples (&amp;rsquo;&amp;rsquo;) ou duplas(&amp;quot;&amp;quot;). Elas são as responsáveis por textos em interfaces de sites e aplicativos. Em &lt;strong&gt;flutter&lt;/strong&gt;, por exemplo, são o tipo de dado esperado pelo widget Text()&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Text(&amp;#34;Digite o seu nome: &amp;#34;);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Métodos são blocos de código na forma de funções (veja ao final da postagem) que facilitam o trabalho com dados de determinados tipos. Como exemplo para strings temos &amp;ldquo;toUpperCase()&amp;rdquo;, que transforma a string em letras maiúsculas, ou &amp;ldquo;split()&amp;rdquo;, que separa ela em uma lista de caracteres. Esse tipo também conta com algumas propriedades, como &amp;ldquo;length&amp;rdquo;, que conta o número de caracteres (espaços em branco também), que, como métodos, também são acessadas utilizando um &amp;ldquo;.&amp;rdquo; após o nome da variável e o nome da propriedade em seguida&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;String meuNome = &amp;#34;Lucas&amp;#34;;
+  
+print(meuNome.toLowerCase()); // lucas
+print(meuNome.toUpperCase()); // LUCAS
+print(meuNome.length);        // 5
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É possível concatenar duas ou mais strings, unindo-as uma única.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;String nome = &amp;#34;Lucas&amp;#34;;
+String sobrenome = &amp;#34;Silva&amp;#34;;
+
+print(nome + &amp;#39; &amp;#39; + sobrenome);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Repare no espaço em branco entre as variáveis. Dart possui suporte à interpolação, que é uma maneira de criar strings sem a necessidade do operador &amp;ldquo;+&amp;rdquo;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;$variavel&amp;rdquo; para expressões simples&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;String nome = &amp;#34;Lucas&amp;#34;;
+String sobrenome = &amp;#34;Silva&amp;#34;;
+print(&amp;#34;$nome $sobrenome&amp;#34;); // Lucas Silva
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;${variavel.metodo}&amp;rdquo; para expressões mais complexas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;String nome = &amp;#34;Lucas&amp;#34;;
+String sobrenome = &amp;#34;Silva&amp;#34;;
+print(&amp;#34;${nome.toUpperCase()} $sobrenome&amp;#34;); // LUCAS Silva
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;números&#34;&gt;Números&lt;/h3&gt;
+&lt;p&gt;Dizem que ciências da computação requerem muita matemática. &lt;em&gt;É e não é verdade&lt;/em&gt;. Não precisa ser doutor em matemática para saber programar, mas não deixará os números de lado.
+Você pode ter ouvido falar que os computadores entendem códigos binários e tal. Esse tipo de abordagem aos números (&amp;ldquo;binários&amp;rdquo;) se refere à base deles. Podemos utilizar binários, hexadecimais (muito utilizados em cores), octais, decimais etc.
+Os números possuem basicamente dois tipos: os inteiros e os decimais. O primeiro tipo é comumente chamado de &amp;ldquo;int&amp;rdquo;. O segundo, em algumas linguagens, é chamado de &amp;ldquo;float&amp;rdquo; enquanto em outras, como  dart, é chamado de &amp;ldquo;double&amp;rdquo;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int umNumero = 10;
+double pi = 3.14;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Várias operações matemáticas estão disponíveis para esse tipo de dados. Arredondamento, Máximo divisor comum, checar se um número é par ou ímpar etc.&lt;/p&gt;
+&lt;h3 id=&#34;boolean&#34;&gt;Boolean&lt;/h3&gt;
+&lt;p&gt;É um tipo de dados que representa 1 ou 0, sendo esses verdadeiro ou falso, respectivamente (embora essa correspondência não seja válida em Dart). Possui esse nome em homenagem a George Boole, que definiu um sistema de lógica algébrica. São muito utilizados em expressões, principalmente as condicionais.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bool verdade = true;
+bool mentira = false;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;listas&#34;&gt;Listas&lt;/h3&gt;
+&lt;p&gt;É difícil falar que algum tipo de dado é mais importante que o outro, mas sério, aprenda &lt;strong&gt;tudo&lt;/strong&gt; sobre listas. Saber manipular dados corretamente é o primeiro passo para conseguir um emprego na área.
+Por mais que o interpretador consiga entender o tipo, é sempre interessante tipar suas variáveis para evitar erros. Logo, listas se declarariam da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;int&amp;gt; listaDeNumeros = [1, 2, 3];
+List&amp;lt;String&amp;gt; vogais = [&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Listas são como coleções de valores. As notificações de um usuário no Instagram, por exemplo, são listas de objetos chamados Notificações (veremos sobre Programação orientada a objetos na próxima postagem). A famosa lista de tarefas (todo List) é uma lista de&amp;hellip; adivinha? Tarefas!
+Já utilizou Todoist ? Pense assim:
+O app é basicamente uma lista. Nessa lista, é possível adicionar e remover tarefas. Essas operações são feitas em Dart utilizando &amp;ldquo;add()&amp;rdquo;/&amp;ldquo;insert()&amp;rdquo; e remove(). O legal é que insert pode utilizar o index do novo elemento, e é possível procurar diretamente pelo elemento a ser removido no remove. Também é possível remover todas as tarefas da lista utilizando &amp;ldquo;clear()&amp;rdquo;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;String&amp;gt; vogais = [&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;];
+vogais.add(&amp;#39;r&amp;#39;); // [&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;, &amp;#39;r&amp;#39;]
+vogais.remove(&amp;#39;r&amp;#39;); // [&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;]
+vogais.remove(&amp;#39;e&amp;#39;); // [&amp;#39;a&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;]
+vogais.insert(1, &amp;#39;e&amp;#39;); //[&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;]
+vogais.clear(); // [] &amp;lt;- lista vazia
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Index, ou índices, são as posições dos elementos em uma lista. Na maioria das linguagens a contagem começa por 0. Nunca se esqueça disso!
+Adicionar uma lista à outra se tornou mais simples a partir da versão 2.3 da linguagem, na qual introduziu-se o &amp;ldquo;spread operator&amp;rdquo;. Caso o valor à direita possa ser null, utilize o null-aware spread operator (última linha do código) para evitar erros na execução do código.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;int&amp;gt; lista1 = [4, 5];
+List&amp;lt;int&amp;gt; lista2 = [1, 2, 3, ...lista1]; // spread operator -&amp;gt;...lista1 copia os elementos
+List&amp;lt;int&amp;gt; lista3 = [...?lista2]; // null-aware spread operator 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Outras novidades são &amp;ldquo;collection if&amp;rdquo; e &amp;ldquo;collection for&amp;rdquo;, onde as listas são criadas através de uma condição ou de um loop.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/// collection if
+List&amp;lt;String&amp;gt; listaDeCompras = [&amp;#39;chocolate&amp;#39;, &amp;#39;refrigerante&amp;#39;, if(estiveremEmPromocao)];
+
+// collection for
+List&amp;lt;int&amp;gt; primeiraListaDeNumeros = [3, 4, 5, 6];
+List&amp;lt;int&amp;gt; segundaListaDeNumeros = [1, 2, for(int numero in primeiraListaDeNumeros) numero];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Uma propriedade útil das listas é &amp;ldquo;length&amp;rdquo;, que retorna o número de elementos dentro delas.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;int&amp;gt; listaDeNumeros = [1, 2, 3];
+print(listaDeNumeros.length); // 3
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;conjuntos-sets&#34;&gt;Conjuntos (Sets)&lt;/h3&gt;
+&lt;p&gt;Conjuntos em Dart são como conjuntos matemáticos: a ordem e a quantidade de vezes que um elemento aparece não possuem importância. Para utilizá-los, é necessário colocar um tipo antes de {}. Caso contrário, o interpretador entenderá que se trata de um Map.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var conjuntoDeNumeros = &amp;lt;int&amp;gt;{};
+print(conjuntoDeNumeros is Set); // true
+
+var outroConjuntoDeNumeros = {};
+print(outroConjuntoDeNumeros is Set); // false
+
+var letras = &amp;lt;String&amp;gt;{&amp;#39;a&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;c&amp;#39;};
+print(letras); // {a, b, c}, pois elementos repetidos não importam para conjuntos
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;mapas&#34;&gt;Mapas&lt;/h3&gt;
+&lt;p&gt;Mapas são objetos que associam chaves, em strings, a valores que podem ser de qualquer tipo! Apesar dos valores poderem se repetir, as chaves devem ser únicas.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Map&amp;lt;String, dynamic&amp;gt; listaDeCompras = {
+    &amp;#39;chocolates&amp;#39;: 2,
+    &amp;#39;refrigerantes&amp;#39;: 4,
+    &amp;#39;carne&amp;#39;: 1.5 // quilos
+};
+
+// Ou através do construtor Map()
+var listaDeCompras = Map();
+listaDeCompras[&amp;#39;chocolates&amp;#39;] = 2;
+listaDeCompras[&amp;#39;refrigerantes&amp;#39;] = 4;
+listaDeCompras[&amp;#39;carne&amp;#39;] = 1.5;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Os valores de um mapa podem ser acessados da mesma forma que construímos a variável com o construtor Map():&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(listaDeCompras[&amp;#39;chocolates&amp;#39;]); // 2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;São utilizados na construção de objetos a partir de &lt;strong&gt;dados fornecidos por uma API ou query&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;runas&#34;&gt;Runas&lt;/h3&gt;
+&lt;p&gt;Strings em Dart são uma sequência de caracteres Unicode no formato UTF-16. Um caractere unicode é escrito da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;\u2665    // ♥
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As runas expõe o unicode de um string e podem ser usadas para formar caracteres especiais como símbolos e emojis.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Runes coracao = Runes(&amp;#39;\u2665&amp;#39;);
+print(String.fromCharCodes(coracao)); // ♥
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;símbolos&#34;&gt;Símbolos&lt;/h3&gt;
+&lt;p&gt;Símbolos são nomes (strings) utilizados para refletir metadados de uma biblioteca de códigos ou API. Essas informações costumam ser otimizadas para que o computador as interprete, e os símbolos servem para torná-las mais legível para nós, humanos. Nome de classes, métodos e libs podem ser símbolos.
+Confesso que não vejo a utilização deles com frequência e os exemplos em relação a eles são quase sempre iguais a esse aqui:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.w3adda.com/dart-tutorial/dart-symbol&#34;&gt;Dart Symbol&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dynamic&#34;&gt;Dynamic&lt;/h3&gt;
+&lt;p&gt;Essa é uma declaração responsável por permitir que qualquer valor seja atribuido a uma variável. É preferível declarar uma variável com dynamic do que deixar a inferência falhar. Entretanto é recomendado utilizar &amp;ldquo;Object&amp;rdquo; em vez dele, deixando-o para quando for necessário dinamismo em uma parte do programa ou quando os valores virão de uma interoperabilidade entre JS/Kotlin, por exemplo.&lt;/p&gt;
+&lt;h2 id=&#34;operadores&#34;&gt;Operadores&lt;/h2&gt;
+&lt;p&gt;Operadores são como os sinais matemáticos: pegam dois ou mais valores e transformam em um resultado diferente. Há diversos tipos de operadores, então o uso deles não se restringe a números. Vimos, por exemplo, a concatenação de strings utilizando o sinal &amp;ldquo;+&amp;rdquo;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(&amp;#34;Hello&amp;#34; + &amp;#34; World!&amp;#34;); // Hello World!
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;operadores-aritméticos&#34;&gt;Operadores aritméticos&lt;/h3&gt;
+&lt;p&gt;São os mesmos que utilizamos em contas. Considere:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;double umNumero = 10.0;
+double outroNumero = 4.0;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;então:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ndash; soma dois valores (podendo ser strings);&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero + outroNumero); // 14
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ndash; subtrai o segundo valor do primeiro;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero - outroNumero); // 6
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ndash; multiplica ambos os valores;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero * outroNumero); // 40
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;/ &amp;ndash; divide o primeiro valor pelo segundo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero / outroNumero); // 2.5
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;~/ &amp;ndash; divide o primeiro valor pelo segundo mas retorna um número inteiro, sem parte fracionada;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero ~/ outroNumero); // 2
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;% &amp;ndash; divide o primeiro valor pelo segundo e retorna o resto da divisão&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero % outroNumero); // 2, pois 10 / 4 = 8, com resto = 2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A ordem de precedência pode ser consultada &lt;a href=&#34;https://dart.dev/guides/language/language-tour#operators&#34;&gt;nessa tabela&lt;/a&gt;, mas pode ser alterada usando parênteses &amp;ldquo;()&amp;rdquo;, como em contas matemáticas.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1 + 2 * 3 
+
+é diferente de
+
+(1 + 2) * 3
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;operadores-de-incremento&#34;&gt;Operadores de incremento&lt;/h3&gt;
+&lt;p&gt;São aqueles que aumentam ou diminuem a variável em 1. São divididos em dois tipos: prefixo, que aumenta a variável e depois avalia a expressão, e &lt;em&gt;postfix&lt;/em&gt; (como um sufixo), que só aumenta a variável após avaliar a expressão&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Postfix:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;variavel++;
+variavel--;
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;Prefixo:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;++variavel;
+--variavel;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;operadores-de-igualdade-e-relacionais&#34;&gt;Operadores de igualdade e relacionais&lt;/h3&gt;
+&lt;p&gt;São aqueles usados para comparar valores. Considere:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;double umNumero = 10.0;
+double outroNumero = 4.0;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Então:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;== &amp;ndash; retorna true se os valores forem iguais e falso se forem diferentes;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero == outroNumero); // false
+print(umNumero == umNumero); // true
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;!= &amp;ndash; retorna true se os valores forem diferentes;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero != outroNumero); // true
+print(umNumero != umNumero); // false
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ndash; retorna true se o primeiro valor for maior que o segundo;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero &amp;gt; outroNumero); // true
+print(outroNumero &amp;gt; umNumero); // false
+print(umNumero &amp;gt; umNumero); // false
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&amp;lt;  &amp;ndash; retorna true se o primeiro valor for menor que o segundo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero &amp;lt; outroNumero); // false
+print(outroNumero &amp;lt; umNumero); // true
+print(umNumero &amp;lt; umNumero); // false
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;blockquote&gt;
+&lt;p&gt;= &amp;ndash; retorna true se o primeiro valor for maior ou igual ao segundo;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero &amp;gt;= outroNumero); // true
+print(outroNumero &amp;gt;= umNumero); // false
+print(umNumero &amp;gt;= umNumero); // true, pois os números são iguais
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&amp;lt;= &amp;ndash; retorna true se o primeiro valor for menor ou igual ao segundo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(umNumero &amp;lt;= outroNumero); // false
+print(outroNumero &amp;lt;= umNumero); // true
+print(umNumero &amp;lt;= umNumero); // true, pois os números são iguais
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;operadores-de-teste-de-tipos&#34;&gt;Operadores de teste de tipos&lt;/h3&gt;
+&lt;p&gt;São úteis para converter ou checar tipos de dados. Considere:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int num = 10;
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;as  &amp;mdash; converte o tipo de um objeto. Pode ser utilizado como uma versão enxuta do operador &amp;ldquo;is&amp;rdquo;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;if (emp is Person) {
+  // Type check
+  emp.firstName = &amp;#39;Bob&amp;#39;;
+}
+
+// com o operador &amp;#34;as&amp;#34;
+(emp as Person).firstName = &amp;#39;Bob&amp;#39;;
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;is  &amp;mdash; retorna true se o valor for de um determinado tipo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(num is int); // true
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;is! &amp;mdash; retorna true se o valor não for de um determinado tipo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(num is! String); // true
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;operadores-de-atribuição&#34;&gt;Operadores de atribuição&lt;/h3&gt;
+&lt;p&gt;São aqueles que atribuem valores às variáveis:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;=   &amp;mdash; utilizado para atribuir um valor a uma variável&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int umNumero = 2;
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;+=  &amp;mdash; utilizado para somar um valor ao valor já existente na variável&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int umNumero = 2;
+umNumero += 3;
+print(umNumero); // 5, pois é o mesmo que umNumero = umNumero + 3
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;-=  &amp;mdash; utilizado para subtrair um valor ao valor já existente na variável&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int umNumero = 2;
+umNumero += 1;
+print(umNumero); // 1
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;*=  &amp;mdash; utilizado para multiplicar um valor ao valor já existente na variável&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int umNumero = 2;
+umNumero *= 2;
+print(umNumero); // 4
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;/=  &amp;mdash; utilizado para dividir um valor ao valor já existente na variável&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;double umNumero = 2.0;
+umNumero /= 2;
+print(umNumero); // 1
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;~/= &amp;mdash; utilizado para dividir arredondando para baixo um valor ao valor já existente na variável&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int umNumero = 5;
+umNumero ~/= 2;
+print(umNumero); // 2
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;operadores-lógicos&#34;&gt;Operadores lógicos&lt;/h3&gt;
+&lt;p&gt;Servem para trabalhar com operações booleanas, que podem inverter ou não o fluxo de execução de um programa.
+Considere:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bool verdade = true;
+bool mentira = false;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Então:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;!expressão &amp;mdash; inverte o valor da expressão.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(!verdade); // false
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&amp;amp;&amp;amp; &amp;mdash; retorna true se ambas as expressões forem verdadeiras.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(verdade &amp;amp;&amp;amp; verdade); // true
+print(verdade &amp;amp;&amp;amp; mentira); // false
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;|| &amp;mdash; retorna true se uma das expressões for verdadeira.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(verdade || verdade); // true
+print(verdade || mentira); // true
+print(mentira || mentira); // false
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;notação-de-cascata&#34;&gt;Notação de cascata&lt;/h3&gt;
+&lt;p&gt;A ideia da notação de cascata é evitar que seja necessária a criação de variáveis temporárias, permitindo o acesso a um mesmo objeto linha após linha.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;querySelector(&amp;#39;#confirm&amp;#39;) // Pega um objeto
+  ..text = &amp;#39;Confirm&amp;#39; // Usa as propriedades dele
+  ..classes.add(&amp;#39;important&amp;#39;)
+  ..onClick.listen((e) =&amp;gt; window.alert(&amp;#39;Confirmed!&amp;#39;));
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;outros-operadores&#34;&gt;Outros operadores&lt;/h3&gt;
+&lt;p&gt;São os responsáveis por chamadas de função e acesso a listas e propriedades de objetos.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;() &amp;ndash; chamada de função&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// definir a função
+void helloWorld() {
+  print(&amp;#34;Hello World!&amp;#34;);
+}
+
+//chamar a função
+helloWorld();
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;[] &amp;ndash; acesso a elementos de lista&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;int&amp;gt; listaDeNumeros = [1, 2, 3, 4, 5];
+int segundoNumeroDaLista = listaDeNumeros[1]; // pois os índices começam por 0
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;.  &amp;ndash; acesso a alguma propriedade de uma expressão. Um exemplo é o acesso à propriedade &lt;em&gt;length&lt;/em&gt; de uma lista, que retorna o número de elementos nela&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;String&amp;gt; vogais = [&amp;#39;a&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;i&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;u&amp;#39;];
+print(vogais.length); // 5
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;sentenças-de-controle-de-fluxo&#34;&gt;Sentenças de controle de fluxo&lt;/h2&gt;
+&lt;h3 id=&#34;condicionais&#34;&gt;Condicionais&lt;/h3&gt;
+&lt;p&gt;É possível testar as condições no seu programa para que ele rode pedaços de código diferentes para cada uma delas. Pense na seguinte sentença:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1) &lt;strong&gt;Se&lt;/strong&gt; o usuário estiver logado, (2) &lt;strong&gt;então&lt;/strong&gt; poderá acessar a página inicial. (3) &lt;strong&gt;Caso contrário&lt;/strong&gt;, (4) será direcionado para a página de Login. Traduzindo para o código:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;if(usuarioEstiverLogado) { // 1
+  redirecionarParaPaginaInicial(); // 2
+} else { // 3
+  redirecionarParaPaginaDeLogin(); // 4
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Perceba os números na frase e no código. Eles traduzem a forma na qual as condicionais funcionam:
+1 - if &amp;ndash; se(condição a ser testada)
+2 - código a ser executado se a condição for verdadeira
+3 - else &amp;ndash; caso contrário
+4 - código executado caso a condição do número 1 seja falsa.
+Outro exemplo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se o aluno tiver média &lt;strong&gt;maior ou igual&lt;/strong&gt; a 7 &lt;strong&gt;e&lt;/strong&gt; frequência &lt;strong&gt;maior&lt;/strong&gt; que 75%, será aprovado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;if(media &amp;gt;= 7 &amp;amp;&amp;amp; frequencia &amp;gt; 75) {
+  print(&amp;#34;O aluno foi aprovado!&amp;#34;);
+} else {
+  print(&amp;#34;O aluno foi reprovado!&amp;#34;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As palavras em negrito correspondem aos operadores &amp;lsquo;&amp;gt;=&amp;rsquo;, &amp;amp;&amp;amp; e &amp;gt;. Agora, e se eu quiser testar a seguinte condição:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se o aluno tiver média &lt;strong&gt;maior ou igual&lt;/strong&gt; a 7, será aprovado. Caso a média seja maior ou igual a 5 e menor que 7, ficará em recuperação. Caso contrário, será reprovado.
+Há duas condições a serem testadas: se ele será aprovado, ou se ficará de recuperação (apenas duas, pois qualquer nota menor que 5 fará com que ele seja reprovado). Nesse tipo de situação, utilizamos as palavras reservadas &amp;ldquo;else if&amp;rdquo;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;if(media &amp;gt;= 7) { // primeira condição
+  print(&amp;#34;O aluno foi aprovado&amp;#34;);
+} else if (media &amp;gt;= 5 &amp;amp;&amp;amp; media &amp;lt; 7) { // segunda condição
+  print(&amp;#34;O aluno ficou em recuperação&amp;#34;);
+} else { // qualquer outra condição
+  print(&amp;#34;O aluno foi reprovado&amp;#34;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;ternário&#34;&gt;Ternário&lt;/h3&gt;
+&lt;p&gt;O operador ternário funciona como o &amp;ldquo;if&amp;rdquo;, mas a sintaxe dele é mais enxuta:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;media &amp;gt;= 7 ? print(&amp;#34;O aluno foi aprovado&amp;#34;) : print(&amp;#34;O aluno foi reprovado&amp;#34;);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A sintaxe funciona da mesma forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;condição a ser testada ? código caso seja verdadeira : código caso seja falsa. 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É possível encadear várias sentenças no ternário. O mesmo exercício do if-else ficaria assim:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;media &amp;gt;= 7 ? print(&amp;#34;O aluno foi aprovado&amp;#34;) : media &amp;gt;= 5 ? print(&amp;#34;O aluno ficou em recuperação&amp;#34;) : print(&amp;#34;O aluno foi reprovado&amp;#34;); 
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;switch---case&#34;&gt;Switch - case&lt;/h3&gt;
+&lt;p&gt;Em vez de usar vários &amp;ldquo;ifs&amp;rdquo; e &amp;ldquo;elses&amp;rdquo;, use switch-case (&lt;strong&gt;nem sempre é recomendado por questão de performance&lt;/strong&gt;). A sintaxe funciona assim:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;switch(variavel) {
+    case(&amp;#39;caso1&amp;#39;):
+        print(&amp;#39;caso1&amp;#39;);
+        break;
+    default:
+        print(&amp;#39;qualquer mensagem padrão&amp;#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Os possíveis valores da variável devem ser escritos dentro dos casos (case), e na linha seguinte, as instruções para aquela determinada condição. Ao final há a palavra-chave &amp;ldquo;break&amp;rdquo;, que indica que o programa pode executar as sentenças seguintes ao switch. Se essa palavra for esquecida, ocorrerá uma erro durante a execução.
+Se mais de um caso for executar as mesmas sequências, é possível utilizar &amp;ldquo;casos vazios&amp;rdquo;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;switch(variavel) {
+    case(&amp;#39;caso1&amp;#39;):
+    case(&amp;#39;caso2&amp;#39;):
+    case(&amp;#39;caso3&amp;#39;):
+        print(&amp;#39;Qualquer mensagem&amp;#39;);
+        break;
+    default:
+        print(&amp;#39;qualquer mensagem padrão&amp;#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;laços-de-repetição----while&#34;&gt;Laços de repetição &amp;ndash; While&lt;/h3&gt;
+&lt;p&gt;Partes de um código costumam ser repetidas durante a execução. Entretanto, não é necessário escrevê-las várias vezes! Para isso, utiliza-se os laços de repetição!
+O &lt;strong&gt;while&lt;/strong&gt; é um laço que executa um determinado bloco de código &lt;strong&gt;enquanto&lt;/strong&gt; uma condição for verdadeira. Com ele é possível realizar algoritmos simples, como contar números, e até aplicações mais práticas, como por exemplo o &lt;a href=&#34;https://developer.wordpress.org/themes/basics/the-loop/&#34;&gt;loop de postagens do WordPress&lt;/a&gt;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int contador = 0;
+while(contador &amp;lt; 10) {
+  print(contador);
+  contador++;
+}
+
+Resultado:
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Todo o código localizado entre &amp;ldquo;{}&amp;rdquo; será executado repetidas vezes até que a condição deixe de ser verdadeira. Preste muita atenção na última expressão.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;contador++;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O contador aumentará em 1 toda vez que o código se repetir até que a condição seja falsa. &lt;strong&gt;O que acontecerá nos esquecermos de incrementá-lo?&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;laços-de-repetição----do-while&#34;&gt;Laços de repetição &amp;ndash; Do While&lt;/h3&gt;
+&lt;p&gt;Esse laço é parecido com o anterior. A diferença é que o while checa a condição e depois executa o código. Já o do while executa o código e depois checa. Veja a diferença em um algoritmo com a mesma lógica:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int contador1 = 1;
+while(contador1 &amp;lt; 1) {
+  print(&amp;#34;contador1: $contador1&amp;#34;);
+  contador1++;
+}
+
+Resultado: nada é exibido no console.
+  
+int contador2 = 1;
+do {
+  print(&amp;#34;contador2: $contador2&amp;#34;);
+  contador2++;
+} while(contador2 &amp;lt; 1);
+
+Resultado:
+contador2: 1
+&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;laços-de-repetição----for&#34;&gt;Laços de repetição &amp;ndash; For&lt;/h3&gt;
+&lt;p&gt;Esse laço é comumente utilizado em conjunto com listas, pois pode usar o número de elementos delas como &amp;ldquo;contador&amp;rdquo; da repetição.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sintaxe tradicional:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;int&amp;gt; listaDeNumeros = [1, 2, 3, 4, 5];
+for(int i = 0; i &amp;lt; listaDeNumeros.length; i++) {
+  print(listaDeNumeros[i]);
+}
+//Resultado:
+1
+2
+3
+4
+5
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;for&amp;hellip;in:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;int&amp;gt; listaDeNumeros = [1, 2, 3, 4, 5];
+for(int i in listaDeNumeros) {
+  print(i);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;forEach() &amp;ndash; um método das listas que realiza uma ação programada para cada elemento em uma determinada lista:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;List&amp;lt;int&amp;gt; listaDeNumeros = [1, 2, 3, 4, 5];
+listaDeNumeros.forEach((numero) {
+  print(numero);
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Pense que &amp;ldquo;numero&amp;rdquo; é como o nome de uma variável que, durante cada repetição terá um valor na lista seguindo uma ordem sequencial.&lt;/p&gt;
+&lt;h2 id=&#34;funções&#34;&gt;Funções&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tipo nomeDaFuncao(parametros) {
+  declarações a serem executadas
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A parte mais interessante desse texto. As funções são blocos de código que executam alguma operação. Quando utilizadas sozinhas, são chamadas de &lt;strong&gt;funções&lt;/strong&gt;. Quando associadas a algum objeto, são chamadas de &lt;strong&gt;métodos&lt;/strong&gt;. Algumas delas foram demonstradas ao longo dessa postagem. &amp;ldquo;stringQualquer.toUppercase()&amp;rdquo; é uma delas.
+A mais importante em programas Dart é a função main(), pois é a responsável por executar todo o código. Sempre que abrir o DartPad, o editor virá com ela preenchida.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;void main() {
+  // digite o código aqui
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A palavra &amp;ldquo;void&amp;rdquo; significa que a função não possui um valor de retorno. As funções podem retornar algum valor, que é geralmente o resultado das instruções executadas dentro delas. No caso de uma função de soma, é comum que ela retorne o resultado da soma dos números passados como argumento.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int soma(int umNumero, int outroNumero) {
+  return umNumero + outroNumero; // o valor de retorno (return) será o resultado da expressão.
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Perceba que declarei duas variáveis dentro dos parênteses: int umNumero e int outroNumero, mas não atribui um valor a elas. Essas variáveis, chamadas de &lt;strong&gt;argumentos&lt;/strong&gt;, terão seus valores atribuídos durante a chamada da função e separados por uma vírgula:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;print(soma(1, 2)); // 3
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É possível utilizar o valor de retorno de uma função como argumento de outra função. Essa é uma abordagem de um outro &lt;strong&gt;paradigma de programação&lt;/strong&gt;, que trataremos em uma postagem próxima.&lt;/p&gt;
+&lt;h2 id=&#34;fontes&#34;&gt;Fontes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dart.dev/guides/language/language-tour&#34;&gt;Language tour | Dart&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://dart.dev/guides/language/effective-dart/design#prefer-annotating-with-dynamic-instead-of-letting-inference-fail&#34;&gt;Effective Dart: Design&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://dart.dev/platforms&#34;&gt;Platforms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/50012596/how-does-dart-aot-work&#34;&gt;How Does Dart AOT Work?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf&#34;&gt;Why Flutter Uses Dart&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
