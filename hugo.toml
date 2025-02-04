@@ -1,6 +1,6 @@
 languageCode = 'pt-br'
 defaultContentLanguage = 'pt-br'
-title = 'Words of Lucas Silva'
+title = 'Thoughts of Lucas Silva'
 theme = "terminal"
 
 [params]
@@ -39,7 +39,7 @@ theme = "terminal"
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Words of Lucas Silva"
+    title = "Thoughts of Lucas Silva"
 
     [languages.en.params]
       subtitle = "Tech and thoughts"
@@ -57,7 +57,7 @@ theme = "terminal"
       words = "words"
 
       [languages.en.params.logo]
-        logoText = "Words of Lucas Silva"
+        logoText = "Thoughts of Lucas Silva"
         logoHomeLink = "/en-us"
 
       [languages.en.menu]
@@ -72,7 +72,7 @@ theme = "terminal"
 
   [languages.pt-br]
     languageName = "Português"
-    title = "Words of Lucas Silva"
+    title = "Thoughts of of Lucas Silva"
 
     [languages.pt-br.params]
       subtitle = "Tecnologia e pensamentos"
@@ -90,7 +90,7 @@ theme = "terminal"
       words = "palavras"
 
       [languages.pt-br.params.logo]
-        logoText = "Words of Lucas Silva"
+        logoText = "Thoughts of Lucas Silva"
         logoHomeLink = "/"
 
       [languages.pt-br.menu]

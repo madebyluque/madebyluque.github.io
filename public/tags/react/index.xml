@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>React on Words of Lucas Silva</title>
+    <title>React on Thoughts of of Lucas Silva</title>
     <link>//localhost:1313/tags/react/</link>
-    <description>Recent content in React on Words of Lucas Silva</description>
+    <description>Recent content in React on Thoughts of of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Thu, 07 Nov 2024 11:58:13 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/react/index.xml" rel="self" type="application/rss+xml" />

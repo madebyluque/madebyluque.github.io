@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gamedev on Words of Lucas Silva</title>
+    <title>Gamedev on Thoughts of of Lucas Silva</title>
     <link>//localhost:1313/tags/gamedev/</link>
-    <description>Recent content in Gamedev on Words of Lucas Silva</description>
+    <description>Recent content in Gamedev on Thoughts of of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Sun, 16 Jul 2023 12:01:55 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
