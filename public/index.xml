@@ -6,7 +6,38 @@
     <description>Recent content on Words of Luke Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 19 Apr 2022 11:47:35 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 11:49:46 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatizando a criação de requisições no JMeter utilizando Postman</title>
+      <link>//localhost:1313/posts/jmeter/</link>
+      <pubDate>Mon, 18 Jul 2022 11:49:46 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/jmeter/</guid>
+      <description>&lt;p&gt;Faz um tempo que não escrevo por aqui, mas hoje, enquanto estudava para resolver um problema do trampo, me deparei com uma técnica que facilitou muito a forma de criar requisições no JMeter, então decidi compartilhá-la.&lt;/p&gt;
+&lt;p&gt;Antes de mais nada, quero agradecer aos meus amigos &lt;a href=&#34;https://twitter.com/ojuninrocha&#34;&gt;Jurno&lt;/a&gt; e &lt;a href=&#34;https://github.com/poferrari&#34;&gt;João&lt;/a&gt;, que me guiaram na busca pela solução.&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro problema.&lt;/p&gt;
+&lt;h2 id=&#34;o-problema&#34;&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Imagine que em um determinado momento, você e seu time precisarão realizar um teste de carga na aplicação que vocês desenvolvem. Entretanto, vocês possuem pouco ou nenhum conhecimento com a ferramenta JMeter, uma das mais utilizadas para esse tipo de tarefa.
+Uma das possíveis soluções é gastar um bom tempo lendo a documentação para aprender a criar as requisições uma a uma. Inclusive, essa teria sido a minha decisão, não fosse pelos conselhos dos amigos citados acima.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Faz um tempo que não escrevo por aqui, mas hoje, enquanto estudava para resolver um problema do trampo, me deparei com uma técnica que facilitou muito a forma de criar requisições no JMeter, então decidi compartilhá-la.&lt;/p&gt;
+&lt;p&gt;Antes de mais nada, quero agradecer aos meus amigos &lt;a href=&#34;https://twitter.com/ojuninrocha&#34;&gt;Jurno&lt;/a&gt; e &lt;a href=&#34;https://github.com/poferrari&#34;&gt;João&lt;/a&gt;, que me guiaram na busca pela solução.&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro problema.&lt;/p&gt;
+&lt;h2 id=&#34;o-problema&#34;&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Imagine que em um determinado momento, você e seu time precisarão realizar um teste de carga na aplicação que vocês desenvolvem. Entretanto, vocês possuem pouco ou nenhum conhecimento com a ferramenta JMeter, uma das mais utilizadas para esse tipo de tarefa.
+Uma das possíveis soluções é gastar um bom tempo lendo a documentação para aprender a criar as requisições uma a uma. Inclusive, essa teria sido a minha decisão, não fosse pelos conselhos dos amigos citados acima.&lt;/p&gt;
+&lt;h2 id=&#34;a-solução&#34;&gt;A solução&lt;/h2&gt;
+&lt;p&gt;É possível adicionar um elemento ao plano de teste do JMeter chamado &lt;a href=&#34;https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html&#34;&gt;&lt;strong&gt;HTTP(S) Test Script Recorder&lt;/strong&gt;&lt;/a&gt;. Ele é responsável por gravar requisições http e transformá-las em uma HTTP Request (sampler).
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6gkliswkgkqjfr4upy0i.png&#34; alt=&#34;Imagem da UI do JMeter mostrando o HTTPS Test Script Recorder&#34;&gt;
+Com esse elemento adicionado, basta ajustar as configurações de proxy do Postman (ou qualquer outro sistema que você utiliza) para o endereço do Test Script Recorder (localhost:8888 por default), rodar o elemento e então realizar uma requisição no sistema a ser testado.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rcnltqf07ag0br92nhlv.png&#34; alt=&#34;Configurações de proxy do postman&#34;&gt;
+Fiz uma requisição de exemplo na &lt;a href=&#34;https://pokeapi.co/api/v2/pokemon/ditto&#34;&gt;PokéAPI&lt;/a&gt;, e eis a requisição montada automaticamente no JMeter:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/29p2sjk2d7iewegegped.png&#34; alt=&#34;Interface do JMeter mostrando a requisição montada automaticamente&#34;&gt;&lt;/p&gt;
+&lt;p&gt;É possível que seja necessário realizar algumas alterações na requisição gerada, mas creio que o procedimento descrito acima seja um excelente ponto de entrada para requisições mais elaboradas.&lt;/p&gt;
+&lt;p&gt;Bem, caso haja alguma dúvida sobre o texto ou alguma sugestão de melhoria, peço que envie um comentário 😎.
+Até a próxima!&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>.Net - Scoped, transient e singleton</title>
       <link>//localhost:1313/posts/lifecycles/</link>

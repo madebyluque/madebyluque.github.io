@@ -2,16 +2,16 @@
 <html lang="pt-br">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
-    <title>.Net - Scoped, transient e singleton :: Words of Luke Silva</title>
+    <title>Automatizando a criação de requisições no JMeter utilizando Postman :: Words of Luke Silva</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Entenda os ciclos de vida dos objetos em .NET" />
+<meta name="description" content="Facilitando a criação de requisições no JMeter" />
 <meta name="keywords" content=", " />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="//localhost:1313/posts/lifecycles/" />
+<link rel="canonical" href="//localhost:1313/posts/jmeter/" />
 
 
 
@@ -80,9 +80,9 @@
 
 <meta property="og:locale" content="pt-br" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content=".Net - Scoped, transient e singleton">
-<meta property="og:description" content="Entenda os ciclos de vida dos objetos em .NET" />
-<meta property="og:url" content="//localhost:1313/posts/lifecycles/" />
+<meta property="og:title" content="Automatizando a criação de requisições no JMeter utilizando Postman">
+<meta property="og:description" content="Facilitando a criação de requisições no JMeter" />
+<meta property="og:url" content="//localhost:1313/posts/jmeter/" />
 <meta property="og:site_name" content="Words of Luke Silva" />
 
   
@@ -93,7 +93,7 @@
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="2022-04-19 11:47:35 -0300 -03" />
+  <meta property="article:published_time" content="2022-07-18 11:49:46 -0300 -03" />
 
 
 
@@ -195,16 +195,16 @@
     
 <article class="post">
   <h1 class="post-title">
-    <a href="//localhost:1313/posts/lifecycles/">.Net - Scoped, transient e singleton</a>
+    <a href="//localhost:1313/posts/jmeter/">Automatizando a criação de requisições no JMeter utilizando Postman</a>
   </h1>
-  <div class="post-meta"><time class="post-date">2022-04-19</time><span class="post-author">Lucas Silva</span></div>
+  <div class="post-meta"><time class="post-date">2022-07-18</time><span class="post-author">Lucas Silva</span></div>
 
   
     <span class="post-tags">
       
       #<a href="//localhost:1313/tags/dotnet/">dotnet</a>&nbsp;
       
-      #<a href="//localhost:1313/tags/tips/">tips</a>&nbsp;
+      #<a href="//localhost:1313/tags/tests/">tests</a>&nbsp;
       
     </span>
   
@@ -214,25 +214,22 @@
   
 
   <div class="post-content"><div>
-        <p>Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no <a href="https://github.com/lukelima/LifecycleExample.">GitHub</a> e vou falar sobre ele.</p>
-<p>Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png" alt="Injeção dos serviços no arquivo Program.cs"></p>
-<p>Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
-Criei um controller e injetei os serviços por construtor.<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png" alt="Injeção dos serviços no construtor"></p>
-<p>Também injetei uma instância do serviço em cada método.
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sbzeyh86fimx3xji9aeu.png" alt="Injeção dos serviços em cada método"></p>
-<h2 id="singleton">Singleton<a href="#singleton" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>O serviço é criado <strong>uma única vez</strong> e a mesma instância é passada para todas as chamadas dele. Veja que o id, criado no momento da instanciação, foi o mesmo (e continua sendo o mesmo independente da requisição):
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/djf0pqcgxgmr0k59iem2.png" alt="Imagem mostra que uma única instância foi criada"></p>
-<h2 id="scoped">Scoped<a href="#scoped" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p><strong>Uma única instância é criada por requisição</strong>. Então se o serviço for chamado em vários lugares em uma única requisição, a mesma instância será passada. Outras instâncias serão criadas para as próximas requisições.</p>
-<p>Mesma requisição:
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wxkot9z4wtnarvh9hvxt.png" alt="Imagem mostra que uma única instância foi criada"></p>
-<p>Requisição diferente:
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tg603oilzwhz3luzoo6h.png" alt="Imagem mostra que uma nova instância foi criada para uma segunda requisição"></p>
-<h2 id="transient">Transient<a href="#transient" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Ele é o mais custoso, pois se o serviço for chamado em diversas classes, <strong>cada uma delas terá uma instância diferente</strong>:
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6ynbb4lr6b78cbg1zx5t.png" alt="Imagem mostra que uma instância foi criada para cada chamada do serviço"></p>
+        <p>Faz um tempo que não escrevo por aqui, mas hoje, enquanto estudava para resolver um problema do trampo, me deparei com uma técnica que facilitou muito a forma de criar requisições no JMeter, então decidi compartilhá-la.</p>
+<p>Antes de mais nada, quero agradecer aos meus amigos <a href="https://twitter.com/ojuninrocha">Jurno</a> e <a href="https://github.com/poferrari">João</a>, que me guiaram na busca pela solução.</p>
+<p>Sem mais delongas, bora pro problema.</p>
+<h2 id="o-problema">O problema<a href="#o-problema" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Imagine que em um determinado momento, você e seu time precisarão realizar um teste de carga na aplicação que vocês desenvolvem. Entretanto, vocês possuem pouco ou nenhum conhecimento com a ferramenta JMeter, uma das mais utilizadas para esse tipo de tarefa.
+Uma das possíveis soluções é gastar um bom tempo lendo a documentação para aprender a criar as requisições uma a uma. Inclusive, essa teria sido a minha decisão, não fosse pelos conselhos dos amigos citados acima.</p>
+<h2 id="a-solução">A solução<a href="#a-solução" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>É possível adicionar um elemento ao plano de teste do JMeter chamado <a href="https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html"><strong>HTTP(S) Test Script Recorder</strong></a>. Ele é responsável por gravar requisições http e transformá-las em uma HTTP Request (sampler).
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6gkliswkgkqjfr4upy0i.png" alt="Imagem da UI do JMeter mostrando o HTTPS Test Script Recorder">
+Com esse elemento adicionado, basta ajustar as configurações de proxy do Postman (ou qualquer outro sistema que você utiliza) para o endereço do Test Script Recorder (localhost:8888 por default), rodar o elemento e então realizar uma requisição no sistema a ser testado.
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rcnltqf07ag0br92nhlv.png" alt="Configurações de proxy do postman">
+Fiz uma requisição de exemplo na <a href="https://pokeapi.co/api/v2/pokemon/ditto">PokéAPI</a>, e eis a requisição montada automaticamente no JMeter:
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/29p2sjk2d7iewegegped.png" alt="Interface do JMeter mostrando a requisição montada automaticamente"></p>
+<p>É possível que seja necessário realizar algumas alterações na requisição gerada, mas creio que o procedimento descrito acima seja um excelente ponto de entrada para requisições mais elaboradas.</p>
+<p>Bem, caso haja alguma dúvida sobre o texto ou alguma sugestão de melhoria, peço que envie um comentário 😎.
+Até a próxima!</p>
 
       </div></div>
 
@@ -245,16 +242,10 @@ Criei um controller e injetei os serviços por construtor.<img src="https://dev-
   </div>
   <div class="pagination__buttons">
     
-      <a href="//localhost:1313/posts/jmeter/" class="button inline prev">
-        Automatizando a criação de requisições no JMeter utilizando Postman
-      </a>
     
     
-      ::
-    
-    
-      <a href="//localhost:1313/posts/dotnet-unit-tests/" class="button inline next">
-        Testes de unidade com NUnit para aplicações C#
+      <a href="//localhost:1313/posts/lifecycles/" class="button inline next">
+        .Net - Scoped, transient e singleton
       </a>
     
   </div>
