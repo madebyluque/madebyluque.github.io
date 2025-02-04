@@ -6,11 +6,203 @@
     <description>Recent content in Dotnet on Words of Luke Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 04 Feb 2025 11:41:55 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 11:49:46 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatizando a criação de requisições no JMeter utilizando Postman</title>
+      <link>//localhost:1313/posts/jmeter/</link>
+      <pubDate>Mon, 18 Jul 2022 11:49:46 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/jmeter/</guid>
+      <description>&lt;p&gt;Faz um tempo que não escrevo por aqui, mas hoje, enquanto estudava para resolver um problema do trampo, me deparei com uma técnica que facilitou muito a forma de criar requisições no JMeter, então decidi compartilhá-la.&lt;/p&gt;
+&lt;p&gt;Antes de mais nada, quero agradecer aos meus amigos &lt;a href=&#34;https://twitter.com/ojuninrocha&#34;&gt;Jurno&lt;/a&gt; e &lt;a href=&#34;https://github.com/poferrari&#34;&gt;João&lt;/a&gt;, que me guiaram na busca pela solução.&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro problema.&lt;/p&gt;
+&lt;h2 id=&#34;o-problema&#34;&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Imagine que em um determinado momento, você e seu time precisarão realizar um teste de carga na aplicação que vocês desenvolvem. Entretanto, vocês possuem pouco ou nenhum conhecimento com a ferramenta JMeter, uma das mais utilizadas para esse tipo de tarefa.
+Uma das possíveis soluções é gastar um bom tempo lendo a documentação para aprender a criar as requisições uma a uma. Inclusive, essa teria sido a minha decisão, não fosse pelos conselhos dos amigos citados acima.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Faz um tempo que não escrevo por aqui, mas hoje, enquanto estudava para resolver um problema do trampo, me deparei com uma técnica que facilitou muito a forma de criar requisições no JMeter, então decidi compartilhá-la.&lt;/p&gt;
+&lt;p&gt;Antes de mais nada, quero agradecer aos meus amigos &lt;a href=&#34;https://twitter.com/ojuninrocha&#34;&gt;Jurno&lt;/a&gt; e &lt;a href=&#34;https://github.com/poferrari&#34;&gt;João&lt;/a&gt;, que me guiaram na busca pela solução.&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro problema.&lt;/p&gt;
+&lt;h2 id=&#34;o-problema&#34;&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Imagine que em um determinado momento, você e seu time precisarão realizar um teste de carga na aplicação que vocês desenvolvem. Entretanto, vocês possuem pouco ou nenhum conhecimento com a ferramenta JMeter, uma das mais utilizadas para esse tipo de tarefa.
+Uma das possíveis soluções é gastar um bom tempo lendo a documentação para aprender a criar as requisições uma a uma. Inclusive, essa teria sido a minha decisão, não fosse pelos conselhos dos amigos citados acima.&lt;/p&gt;
+&lt;h2 id=&#34;a-solução&#34;&gt;A solução&lt;/h2&gt;
+&lt;p&gt;É possível adicionar um elemento ao plano de teste do JMeter chamado &lt;a href=&#34;https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html&#34;&gt;&lt;strong&gt;HTTP(S) Test Script Recorder&lt;/strong&gt;&lt;/a&gt;. Ele é responsável por gravar requisições http e transformá-las em uma HTTP Request (sampler).
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6gkliswkgkqjfr4upy0i.png&#34; alt=&#34;Imagem da UI do JMeter mostrando o HTTPS Test Script Recorder&#34;&gt;
+Com esse elemento adicionado, basta ajustar as configurações de proxy do Postman (ou qualquer outro sistema que você utiliza) para o endereço do Test Script Recorder (localhost:8888 por default), rodar o elemento e então realizar uma requisição no sistema a ser testado.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rcnltqf07ag0br92nhlv.png&#34; alt=&#34;Configurações de proxy do postman&#34;&gt;
+Fiz uma requisição de exemplo na &lt;a href=&#34;https://pokeapi.co/api/v2/pokemon/ditto&#34;&gt;PokéAPI&lt;/a&gt;, e eis a requisição montada automaticamente no JMeter:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/29p2sjk2d7iewegegped.png&#34; alt=&#34;Interface do JMeter mostrando a requisição montada automaticamente&#34;&gt;&lt;/p&gt;
+&lt;p&gt;É possível que seja necessário realizar algumas alterações na requisição gerada, mas creio que o procedimento descrito acima seja um excelente ponto de entrada para requisições mais elaboradas.&lt;/p&gt;
+&lt;p&gt;Bem, caso haja alguma dúvida sobre o texto ou alguma sugestão de melhoria, peço que envie um comentário 😎.
+Até a próxima!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>.Net - Scoped, transient e singleton</title>
+      <link>//localhost:1313/posts/lifecycles/</link>
+      <pubDate>Tue, 19 Apr 2022 11:47:35 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/lifecycles/</guid>
+      <description>&lt;p&gt;Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no &lt;a href=&#34;https://github.com/lukelima/LifecycleExample.&#34;&gt;GitHub&lt;/a&gt; e vou falar sobre ele.&lt;/p&gt;
+&lt;p&gt;Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png&#34; alt=&#34;Injeção dos serviços no arquivo Program.cs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
+Criei um controller e injetei os serviços por construtor.&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png&#34; alt=&#34;Injeção dos serviços no construtor&#34;&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no &lt;a href=&#34;https://github.com/lukelima/LifecycleExample.&#34;&gt;GitHub&lt;/a&gt; e vou falar sobre ele.&lt;/p&gt;
+&lt;p&gt;Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png&#34; alt=&#34;Injeção dos serviços no arquivo Program.cs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
+Criei um controller e injetei os serviços por construtor.&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png&#34; alt=&#34;Injeção dos serviços no construtor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Também injetei uma instância do serviço em cada método.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sbzeyh86fimx3xji9aeu.png&#34; alt=&#34;Injeção dos serviços em cada método&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;singleton&#34;&gt;Singleton&lt;/h2&gt;
+&lt;p&gt;O serviço é criado &lt;strong&gt;uma única vez&lt;/strong&gt; e a mesma instância é passada para todas as chamadas dele. Veja que o id, criado no momento da instanciação, foi o mesmo (e continua sendo o mesmo independente da requisição):
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/djf0pqcgxgmr0k59iem2.png&#34; alt=&#34;Imagem mostra que uma única instância foi criada&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;scoped&#34;&gt;Scoped&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Uma única instância é criada por requisição&lt;/strong&gt;. Então se o serviço for chamado em vários lugares em uma única requisição, a mesma instância será passada. Outras instâncias serão criadas para as próximas requisições.&lt;/p&gt;
+&lt;p&gt;Mesma requisição:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wxkot9z4wtnarvh9hvxt.png&#34; alt=&#34;Imagem mostra que uma única instância foi criada&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Requisição diferente:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tg603oilzwhz3luzoo6h.png&#34; alt=&#34;Imagem mostra que uma nova instância foi criada para uma segunda requisição&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;transient&#34;&gt;Transient&lt;/h2&gt;
+&lt;p&gt;Ele é o mais custoso, pois se o serviço for chamado em diversas classes, &lt;strong&gt;cada uma delas terá uma instância diferente&lt;/strong&gt;:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6ynbb4lr6b78cbg1zx5t.png&#34; alt=&#34;Imagem mostra que uma instância foi criada para cada chamada do serviço&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Testes de unidade com NUnit para aplicações C#</title>
+      <link>//localhost:1313/posts/dotnet-unit-tests/</link>
+      <pubDate>Fri, 18 Mar 2022 11:45:29 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/dotnet-unit-tests/</guid>
+      <description>&lt;p&gt;Basicamente, testes automatizados são uma forma de automatizar o processo de revisão e validação de um software através de uma ferramenta programável. Esse processo, que antes podia ser extremamente trabalhoso e demorado, pode ser feito em minutos &amp;ndash; ou até mesmo segundos, dependendo dos tipos e da quantidade de testes existentes na sua aplicação.&lt;/p&gt;
+&lt;p&gt;Mike Cohn criou o conceito de pirâmide de testes no livro &amp;ldquo;Succeeding with Agile&amp;rdquo;. É basicamente uma forma de te fazer pensar nas várias camadas de testes e em como elas devem estar presentes:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u3ey9qc5peuj6d1jwuby.png&#34; alt=&#34;Pirâmide de testes cunhada po Cohn. A base dela é composta por testes de unidade, seguida por testes de serviços e por fim testes de ui. Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é&#34;&gt;
+Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é, além de mais numeroso.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Basicamente, testes automatizados são uma forma de automatizar o processo de revisão e validação de um software através de uma ferramenta programável. Esse processo, que antes podia ser extremamente trabalhoso e demorado, pode ser feito em minutos &amp;ndash; ou até mesmo segundos, dependendo dos tipos e da quantidade de testes existentes na sua aplicação.&lt;/p&gt;
+&lt;p&gt;Mike Cohn criou o conceito de pirâmide de testes no livro &amp;ldquo;Succeeding with Agile&amp;rdquo;. É basicamente uma forma de te fazer pensar nas várias camadas de testes e em como elas devem estar presentes:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u3ey9qc5peuj6d1jwuby.png&#34; alt=&#34;Pirâmide de testes cunhada po Cohn. A base dela é composta por testes de unidade, seguida por testes de serviços e por fim testes de ui. Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é&#34;&gt;
+Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é, além de mais numeroso.&lt;/p&gt;
+&lt;p&gt;Há inúmeros tipos de teste &amp;ndash; muitos dos quais eu mesmo desconheço a fundo &amp;ndash; mas abordarei apenas os testes de unidade. Eles possuem esse nome pois tendem as menores unidades de classes e métodos de forma isolada do resto da aplicação: sem acoplamento, nem nada. Apenas verificações para garantir que eles funcionem conforme o esperado, que as variáveis tenham os valores esperados etc.&lt;/p&gt;
+&lt;p&gt;Uma disciplina importante para criar testes é aquela chamada de TDD - Desenvolvimento orientado a testes. Nela, primeiro se escreve os testes, depois o código para que o teste funcione, depois o código é refatorado para que se torne a melhor versão que puder ser (esse último passo costuma ser bastante ignorado, gerando débitos técnicos).&lt;/p&gt;
+&lt;p&gt;Ok, mas por que começar pelos testes e não pelo código ? Porque para criar uma solução, é necessário saber o que precisa ser criado. É necessário saber de antemão o que uma classe deve fazer, o que um método deve fazer, o valor que uma variável deve ter etc. Sem isso em mente, é muito fácil assumir que um resultado qualquer é o correto. E é assim que nascem os bugs 🐞!&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro código.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/KGdKKipVBu9vO5hKkb/giphy.gif&#34; alt=&#34;Killjoy do jogo Valorant, em frente a um computador, arrumando os óculos no próprio rosto&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;mãos-à-obra&#34;&gt;Mãos à obra&lt;/h2&gt;
+&lt;p&gt;Criei uma aplicação console para exemplificar. Nela, criarei uma classe &amp;ldquo;Conta&amp;rdquo; com as seguintes especificações:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uma pessoa pode depositar qualquer valor maior que zero na conta;&lt;/li&gt;
+&lt;li&gt;Uma pessoa pode sacar valores maiores que 0 e menores ou iguais ao saldo total;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Adicionei um projeto NUnit com o Visual Studio. Nele, criei uma classe chamada &lt;strong&gt;ContaTests&lt;/strong&gt;, conforme abaixo. O atributo &lt;strong&gt;[TestFixture]&lt;/strong&gt; indica que uma classe possui testes.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[TestFixture]
+public class ContaTests
+{
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E então parti para o teste do primeiro método. Para que um método seja detectado como teste, é necessário adicionar o atributo &lt;strong&gt;[Test]&lt;/strong&gt; acima dele. Quanto ao nome do método de teste, fiz baseando-me em algumas recomendações que podem ser encontradas &lt;a href=&#34;https://docs.microsoft.com/pt-br/dotnet/core/testing/unit-testing-best-practices&#34;&gt;neste link.&lt;/a&gt;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Test]
+public void Depositar_RetornaSaldoMaisValorDepositado()
+{
+    // Arrange 
+    
+    // Act
+    
+    // Assert
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Gosto de deixar os 3 comentários em todos os testes que crio para separar bem as fases dele. Essas fases formam o padrão AAA, muito utilizado na indústria, e correspondem a:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Arrange: fase na qual é necessário preparar teste preparando as variáveis, criando instâncias de objeto necessárias etc.;&lt;/li&gt;
+&lt;li&gt;Act: fase na qual o método a ser testado é executado;&lt;/li&gt;
+&lt;li&gt;Assert: fase na qual é feita a verificação de que o resultado obtido está de acordo com o esperado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Na primeira fase, criei apenas uma instância da classe &lt;strong&gt;Conta&lt;/strong&gt;, que ainda não existe, e então criei uma variável com o valor que espero obter como resultado do teste.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Arrange 
+Conta conta = new Conta(&amp;#34;Lucas&amp;#34;, 100);
+decimal saldoEsperado = 200;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Na fase de ação, executei o método e armazenei o resultado em uma variável:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Act
+var resultado = conta.Depositar(100);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E por fim, fiz a verificação de que o resultado era igual ao saldoEsperado. Para isso, usei a classe Assert do NUnit. Ela contém vários métodos estáticos para testar inúmeras situações, como listas, igualdades, nulos etc.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Assert
+Assert.AreEqual(saldoEsperado, resultado);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O teste final ficou da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Test]
+public void Depositar_RetornaSaldoMaisValorDepositado()
+{
+    // Arrange 
+    Conta conta = new Conta(&amp;#34;Lucas&amp;#34;, 100);
+    decimal saldoEsperado = 200;
+
+    Act
+    var resultado = conta.Depositar(100);
+
+    Assert
+    Assert.AreEqual(saldoEsperado, resultado);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O teste não compilará no primeiro momento pois a classe &lt;strong&gt;Conta&lt;/strong&gt; ainda não existe. Logo, decidi criá-la:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class Conta
+{
+    public Conta(string cliente, decimal saldo)
+    {
+        Cliente = cliente;
+        Saldo = saldo;
+    }
+
+    public string Cliente { get; private set; }
+    public decimal Saldo { get; private set; }
+
+    public decimal Depositar(decimal valor)
+    {
+        Saldo += valor;
+        return Saldo;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Aproveitei e também criei o método &lt;strong&gt;Depositar&lt;/strong&gt;. Ele é simples: recebe um valor e então adiciona esse valor à propriedade &lt;strong&gt;Saldo&lt;/strong&gt; da classe.&lt;/p&gt;
+&lt;p&gt;Adicionei uma referência da classe no projeto de teste e então o executei. E então o teste passou !
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/h8esevtr3rklh3c27nqa.png&#34; alt=&#34;A imagem mostra que o teste foi aprovado após a execução com os valores corretos&#34;&gt;&lt;/p&gt;
+&lt;p&gt;⚠️⚠️ Uma forma de garantir que o teste funciona é fazendo-o quebrar propositalmente. Uma forma de quebrar o teste acima seria alterando o valor esperado para 300. Se o teste e o código estiverem certos, o teste não passará. Isso é importante para evitar que o resultado seja um falso-positivo.⚠️⚠️&lt;/p&gt;
+&lt;p&gt;Ok, o valor adicionado está correto, a soma está correta. Mas não é tudo a ser testado nesse método:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uma pessoa pode depositar qualquer valor &lt;strong&gt;maior que zero&lt;/strong&gt; na conta;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Logo, é necessário criar um teste para verificar se o meu programa barra o depósito de um valor negativo como -R$100.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Test]
+public void Deposito_QuandoExecutadoComValorNegativo_LancaLancaInvalidOperationException()
+{
+    //Arrange
+    Conta conta = new Conta(&amp;#34;Lucas&amp;#34;, 100);
+
+    //Act
+    Func&amp;lt;decimal&amp;gt; acao = () =&amp;gt; conta.Depositar(-100);
+
+    //Assert
+    Assert.Throws&amp;lt;InvalidOperationException&amp;gt;(() =&amp;gt; acao());
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A grande diferença está nas fases &lt;strong&gt;Act&lt;/strong&gt; e &lt;strong&gt;Assert&lt;/strong&gt;. Assim que o valor -100 for detectado pelo método, é necessário que ele lance uma nova exceção: &lt;strong&gt;InvalidOperationException&lt;/strong&gt;. Quando ela for lançada, o programa sairá daquele método antes de completá-lo, fazerndo com que o assert seja um pouco diferente. Para testar se ela realmente foi lançada, primeiro armazenei o método em um delegate (eu poderia explicar o significado mas tanto a &lt;a href=&#34;https://docs.microsoft.com/pt-br/dotnet/api/system.delegate?view=net-6.0&#34;&gt;Microsoft&lt;/a&gt; quanto o &lt;a href=&#34;http://www.macoratti.net/17/01/net_deleg1.htm&#34;&gt;Macoratti&lt;/a&gt; fizeram um excelente trabalho falando sobre) e então utilizei o método Throws da classe Assert. Ele recebe o tipo da exceção como generic (&lt;a href=&#34;https://docs.microsoft.com/pt-br/dotnet/standard/generics/&#34;&gt;artigo da Microsoft&lt;/a&gt; e &lt;a href=&#34;http://www.macoratti.net/11/07/net_gen1.htm&#34;&gt;artigo do Macoratti&lt;/a&gt;) e então consegue verificar se a exceção foi lançada.&lt;/p&gt;
+&lt;p&gt;Ao rodar o teste na primeira vez, ele não passoupois o método ainda não lança a exceção. Adicionei apenas 1 if para lançar a exceção e então o teste passou !&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public decimal Depositar(decimal valor)
+{
+    if (valor &amp;lt;= 0)
+    {
+        throw new InvalidOperationException(&amp;#34;Não é possível depositar valores negativos&amp;#34;);
+    }
+    Saldo += valor;
+    return Saldo
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;⚠️⚠️Para quebrar o teste e verificar se ele não dá um falso positivo, é possível simplesmente alterar o tipo da exceção esperada no Assert.⚠️⚠️&lt;/p&gt;
+&lt;p&gt;Por se tratar de um exemplo, o método de saque terá testes bastante parecidos com o do depósito, então é possível verificá-lo, assim como todo o resto do código, nesse repositório do GitHub que criei!&lt;/p&gt;
+&lt;p&gt;Bem, essa foi uma breve introdução sobre testes de unidade. Na próxima parte falarei sobre &lt;strong&gt;Mocks&lt;/strong&gt; em um exemplo de uma API Rest e sobre o método &lt;strong&gt;SetUp&lt;/strong&gt;.Se curtiu, não esqueça de compartilhar a postagem!&lt;/p&gt;
+&lt;p&gt;Até a próxima !&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/2YgCmRh9Arduw8LshF/giphy.gif&#34; alt=&#34;Snoopy Dogg acenando em despedida&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Como usar Redis em uma solução .Net</title>
       <link>//localhost:1313/posts/dotnet-redis/</link>
-      <pubDate>Tue, 04 Feb 2025 11:41:55 -0300</pubDate>
+      <pubDate>Mon, 29 Nov 2021 11:41:55 -0300</pubDate>
       
       <guid>//localhost:1313/posts/dotnet-redis/</guid>
       <description>&lt;p&gt;Olá!&lt;/p&gt;

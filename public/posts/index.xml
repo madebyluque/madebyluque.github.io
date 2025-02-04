@@ -6,7 +6,464 @@
     <description>Recent content in Posts on Words of Luke Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 06 Jan 2020 10:58:10 -0300</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 11:51:47 -0300</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Recursos e dicas para o desenvolvimento do seu primeiro game</title>
+      <link>//localhost:1313/posts/gamedev/</link>
+      <pubDate>Mon, 20 Feb 2023 11:51:47 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/gamedev/</guid>
+      <description>&lt;p&gt;Fotos de Foto de &lt;a href=&#34;https://unsplash.com/es/@sigmund?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Sigmund&lt;/a&gt; e &lt;a href=&#34;https://unsplash.com/@dylu?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Jacek Dylag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bem, é muito provável que você, assim como eu, sempre sonhou em desenvolver seus próprios jogos. Assim que mudei de carreira e comecei a programar, decidi que tiraria esse sonho do papel e o tornaria realidade. Ainda não consegui terminar meu game, mas as coisas estão caminhando bem. Trarei aqui algumas dicas para que você possa fazer o mesmo.&lt;/p&gt;
+&lt;h2 id=&#34;antes-de-mais-nada-é-um-processo-longo-e-trabalhoso&#34;&gt;Antes de mais nada: é um processo longo e trabalhoso&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/JWybLzXs7Hn0JKhSji/giphy.gif&#34; alt=&#34;Muito trabalhoso!&#34; title=&#34;Muito trabalhoso!&#34;&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;Fotos de Foto de &lt;a href=&#34;https://unsplash.com/es/@sigmund?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Sigmund&lt;/a&gt; e &lt;a href=&#34;https://unsplash.com/@dylu?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Jacek Dylag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bem, é muito provável que você, assim como eu, sempre sonhou em desenvolver seus próprios jogos. Assim que mudei de carreira e comecei a programar, decidi que tiraria esse sonho do papel e o tornaria realidade. Ainda não consegui terminar meu game, mas as coisas estão caminhando bem. Trarei aqui algumas dicas para que você possa fazer o mesmo.&lt;/p&gt;
+&lt;h2 id=&#34;antes-de-mais-nada-é-um-processo-longo-e-trabalhoso&#34;&gt;Antes de mais nada: é um processo longo e trabalhoso&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/JWybLzXs7Hn0JKhSji/giphy.gif&#34; alt=&#34;Muito trabalhoso!&#34; title=&#34;Muito trabalhoso!&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Se você está começando do zero, saiba que criar um jogo é um processo trabalhoso. Sério. Você pode agilizá-lo com algumas das dicas deste texto, mas no geral, você vai passar alguns meses/anos trabalhando na arte, no código, no design de níveis, no som&amp;hellip;
+Inclusive, saiba que todo projeto de vida tem um custo muito alto: seu tempo. Entretanto, mesmo que você não se torne o novo &lt;a href=&#34;https://pt.wikipedia.org/wiki/Eric_Barone&#34;&gt;Eric Barone&lt;/a&gt;, o conhecimento adquirido ao &lt;strong&gt;criar um projeto seu&lt;/strong&gt;, é extremamente valioso.&lt;/p&gt;
+&lt;h2 id=&#34;game-engine&#34;&gt;Game Engine&lt;/h2&gt;
+&lt;p&gt;Se você estiver pensando em realizar o seu primeiro projeto, não comece por criar uma game engine. Há milhares de engines gratuitas por aí, então &lt;strong&gt;não reinvente a roda&lt;/strong&gt;.
+&lt;img src=&#34;https://media.giphy.com/media/3o6gE9BYreSsQyOD9C/giphy.gif&#34; alt=&#34;Não reinvente a roda&#34; title=&#34;Não reinvente a roda&#34;&gt;
+Uma game engine é um software voltado ao desenvolvimento de jogos. Será nela que você criará seus níveis, scripts, mecânicas do jogo etc. A escolha de uma boa game engine basicamente ditará se o seu projeto será terminado ou não.
+Há alguns pontos a serem considerados, como facilidade para gerar as versões finais (builds) do projeto, facilidade para criação de scripts, facilidade para trabalhar os objetos etc.
+Pensando nisso, a minha escolha pessoal é a &lt;a href=&#34;https://unity.com/pt&#34;&gt;Unity&lt;/a&gt;. É possível criar jogos 2D, 3D, jogos para realidade virtual e outros. Além disso, ela simplifica o processo de &amp;ldquo;buildar&amp;rdquo; seu jogo para celulares, pcs, consoles etc.
+A linguagem de programação da Unity é o C#, uma linguagem vastamente consolidada no mercado. A documentação dela é completa e há tutoriais incríveis sobre ela na internet. Entretanto, &lt;strong&gt;há um ponto de atenção&lt;/strong&gt;: por mais que a documentação da linguagem seja incrível, a documentação da unity não é muito boa, e muitas vezes você precisará recorrer a canais do Youtube (veja nas referências).
+Eu tentei outras das engines que recomendam na internet mas não consegui avançar muito com elas. Caso queira saber mais, os links são:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gamemaker.io/pt-BR/download&#34;&gt;GameMaker&lt;/a&gt;: você não precisa saber programar para conseguir fazer um jogo usando ela;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://godotengine.org/&#34;&gt;Godot&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;arte-visual&#34;&gt;Arte visual&lt;/h2&gt;
+&lt;p&gt;Essa tem sido a parte mais difícil nos meus projetos. Eu até consigo desenhar, mas criar artes que encham as pessoas de sensações não é uma tarefa fácil. E não se engane: muitas pessoas abandonarão seu game se a arte não interessá-las.
+Isso não significa que seu game precisa ser extremamente realista. Ele só precisa ser agradável aos olhos, e isso é bastante subjetivo (logo, não tente agradar todo mundo).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jhqos981uvtyvbw997i6.png&#34; alt=&#34;Planet of Lana&#34; title=&#34;Planet of Lana&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rre2f17oof9013frf2bc.png&#34; alt=&#34;Child of light&#34; title=&#34;Child of light&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/evu1qasdw2z1raqgtzhx.png&#34; alt=&#34;Will it Snail&#34; title=&#34;Will it Snail&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/csnqjps8jbeunnhun0bf.png&#34; alt=&#34;Stardew Valley&#34; title=&#34;Stardew Valley&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Você pode usar uma ou várias ferramentas para criar sua arte. Aqui estão algumas das minhas favoritas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://krita.org/&#34;&gt;Krita&lt;/a&gt;: desenho e pintura digital;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.piskelapp.com/&#34;&gt;Piskel&lt;/a&gt;: pixel art;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.blender.org/&#34;&gt;Blender&lt;/a&gt;: arte e modelagem 3D;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.mapeditor.org/&#34;&gt;Tiled&lt;/a&gt;: criação de tilemaps e editor de níveis;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.pureref.com/&#34;&gt;PureRef&lt;/a&gt;: referência de imagens.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Entretanto, assim como com as Game Engines, você não precisa criar tudo do zero. Há sites que vendem assets ou até mesmo disponibilizam eles gratuitamente. O canal &lt;a href=&#34;https://www.youtube.com/@DavidWehleGames&#34;&gt;Game Dev Unlocked&lt;/a&gt; fala sobre como assets gratuitos foram importantes na criação do game &lt;a href=&#34;https://store.steampowered.com/app/555150/The_First_Tree/&#34;&gt;The First Tree&lt;/a&gt;. Você pode encontrar esses assets no &lt;a href=&#34;https://itch.io/game-assets&#34;&gt;itch&lt;/a&gt;, na &lt;a href=&#34;https://assetstore.unity.com/&#34;&gt;Unity Asset Store&lt;/a&gt; ou em outros sites.&lt;/p&gt;
+&lt;h2 id=&#34;som&#34;&gt;Som&lt;/h2&gt;
+&lt;p&gt;O som pode fazer seu jogo ser incrível ou extremamente chato
+&amp;ndash; inclusive, não consigo jogar Splatoon devido às músicas apresentadas nos trailers.
+Gosto bastante do &lt;a href=&#34;https://lmms.io/download#windows&#34;&gt;LMMS&lt;/a&gt; para criação de músicas. Entretanto, no meu projeto atual, decidi partir para algo mais manual, então comprei uma interface de áudio (&lt;a href=&#34;https://pt.aliexpress.com/item/1005003093878428.html&#34;&gt;Teyun Q-22&lt;/a&gt;) e estou utilizando o &lt;a href=&#34;https://www.audacityteam.org/download/&#34;&gt;Audacity&lt;/a&gt; e o Guitar Rig 5 para gravar músicas diretamente com a guitarra e o violão.
+Você precisará entender alguns conceitos antes de compor para seu game. Não basta apenas pegar um instrumento e sair tocando notas de forma desgovernada. A palestra do &lt;a href=&#34;https://www.youtube.com/watch?v=ELQoHDrv2hg&#34;&gt;Leo Borges no GDTK 2021&lt;/a&gt; me ajudou a entender as necessidades sonoras do meu game, e recomendo que você a assista.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4st7kmeh6q5ndjwpmwb1.png&#34; alt=&#34;Jacek Dylag&#34; title=&#34;Jacek Dylag&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Há outros tipos de áudio em jogos. Sons de passos, de portas abrindo (quem lembra das portas de Resident Evil do PS1 se abrindo?). Costumo usar o site &lt;a href=&#34;https://opengameart.org/&#34;&gt;OpenGameArt&lt;/a&gt; para buscar esse tipo de áudio.&lt;/p&gt;
+&lt;h2 id=&#34;fim&#34;&gt;Fim?&lt;/h2&gt;
+&lt;p&gt;Na verdade, &lt;strong&gt;espero que esse seja um início. Pelo menos para o seu projeto&lt;/strong&gt;. Senta na cadeira, escolhe a engine, baixa uns assets e começa o teu game. Sério. Não espere mais tempo para isso.
+Se, assim como eu, você tiver dúvidas se vale ou não a pena criar um jogo, minha resposta é: &lt;strong&gt;sempre vale&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Se precisar de uma ajuda, uma mentoria, ou apenas quiser falar sobre game dev, siga-me no &lt;a href=&#34;https://twitter.com/cephalopodluke&#34;&gt;twitter&lt;/a&gt; ou envie um e-mail para &lt;a href=&#34;mailto:lucas@blueflowergamelab.com&#34;&gt;lucas@blueflowergamelab.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Enfim, espero que este texto tenha te ajudado. Vou deixar uns links na sessão de &lt;strong&gt;recursos&lt;/strong&gt; para você conseguir seguir adiante com seu projeto.&lt;/p&gt;
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+&lt;h2 id=&#34;recursos&#34;&gt;Recursos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@Blackthornprod&#34;&gt;BlackThornProd - Youtube&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@Brackeys&#34;&gt;Brackeys - Youtube&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@CodeMonkeyUnity&#34;&gt;CodeMonkey - Youtube&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@gamedevtoolkit&#34;&gt;Gamedev Toolkit - Youtube&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://opengameart.org/&#34;&gt;OpenGameArt&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=jqWJsacaEi4&#34;&gt;Seu jogo é MUITO grande! Como criar com limitações&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Automatizando a criação de requisições no JMeter utilizando Postman</title>
+      <link>//localhost:1313/posts/jmeter/</link>
+      <pubDate>Mon, 18 Jul 2022 11:49:46 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/jmeter/</guid>
+      <description>&lt;p&gt;Faz um tempo que não escrevo por aqui, mas hoje, enquanto estudava para resolver um problema do trampo, me deparei com uma técnica que facilitou muito a forma de criar requisições no JMeter, então decidi compartilhá-la.&lt;/p&gt;
+&lt;p&gt;Antes de mais nada, quero agradecer aos meus amigos &lt;a href=&#34;https://twitter.com/ojuninrocha&#34;&gt;Jurno&lt;/a&gt; e &lt;a href=&#34;https://github.com/poferrari&#34;&gt;João&lt;/a&gt;, que me guiaram na busca pela solução.&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro problema.&lt;/p&gt;
+&lt;h2 id=&#34;o-problema&#34;&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Imagine que em um determinado momento, você e seu time precisarão realizar um teste de carga na aplicação que vocês desenvolvem. Entretanto, vocês possuem pouco ou nenhum conhecimento com a ferramenta JMeter, uma das mais utilizadas para esse tipo de tarefa.
+Uma das possíveis soluções é gastar um bom tempo lendo a documentação para aprender a criar as requisições uma a uma. Inclusive, essa teria sido a minha decisão, não fosse pelos conselhos dos amigos citados acima.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Faz um tempo que não escrevo por aqui, mas hoje, enquanto estudava para resolver um problema do trampo, me deparei com uma técnica que facilitou muito a forma de criar requisições no JMeter, então decidi compartilhá-la.&lt;/p&gt;
+&lt;p&gt;Antes de mais nada, quero agradecer aos meus amigos &lt;a href=&#34;https://twitter.com/ojuninrocha&#34;&gt;Jurno&lt;/a&gt; e &lt;a href=&#34;https://github.com/poferrari&#34;&gt;João&lt;/a&gt;, que me guiaram na busca pela solução.&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro problema.&lt;/p&gt;
+&lt;h2 id=&#34;o-problema&#34;&gt;O problema&lt;/h2&gt;
+&lt;p&gt;Imagine que em um determinado momento, você e seu time precisarão realizar um teste de carga na aplicação que vocês desenvolvem. Entretanto, vocês possuem pouco ou nenhum conhecimento com a ferramenta JMeter, uma das mais utilizadas para esse tipo de tarefa.
+Uma das possíveis soluções é gastar um bom tempo lendo a documentação para aprender a criar as requisições uma a uma. Inclusive, essa teria sido a minha decisão, não fosse pelos conselhos dos amigos citados acima.&lt;/p&gt;
+&lt;h2 id=&#34;a-solução&#34;&gt;A solução&lt;/h2&gt;
+&lt;p&gt;É possível adicionar um elemento ao plano de teste do JMeter chamado &lt;a href=&#34;https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html&#34;&gt;&lt;strong&gt;HTTP(S) Test Script Recorder&lt;/strong&gt;&lt;/a&gt;. Ele é responsável por gravar requisições http e transformá-las em uma HTTP Request (sampler).
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6gkliswkgkqjfr4upy0i.png&#34; alt=&#34;Imagem da UI do JMeter mostrando o HTTPS Test Script Recorder&#34;&gt;
+Com esse elemento adicionado, basta ajustar as configurações de proxy do Postman (ou qualquer outro sistema que você utiliza) para o endereço do Test Script Recorder (localhost:8888 por default), rodar o elemento e então realizar uma requisição no sistema a ser testado.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rcnltqf07ag0br92nhlv.png&#34; alt=&#34;Configurações de proxy do postman&#34;&gt;
+Fiz uma requisição de exemplo na &lt;a href=&#34;https://pokeapi.co/api/v2/pokemon/ditto&#34;&gt;PokéAPI&lt;/a&gt;, e eis a requisição montada automaticamente no JMeter:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/29p2sjk2d7iewegegped.png&#34; alt=&#34;Interface do JMeter mostrando a requisição montada automaticamente&#34;&gt;&lt;/p&gt;
+&lt;p&gt;É possível que seja necessário realizar algumas alterações na requisição gerada, mas creio que o procedimento descrito acima seja um excelente ponto de entrada para requisições mais elaboradas.&lt;/p&gt;
+&lt;p&gt;Bem, caso haja alguma dúvida sobre o texto ou alguma sugestão de melhoria, peço que envie um comentário 😎.
+Até a próxima!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>.Net - Scoped, transient e singleton</title>
+      <link>//localhost:1313/posts/lifecycles/</link>
+      <pubDate>Tue, 19 Apr 2022 11:47:35 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/lifecycles/</guid>
+      <description>&lt;p&gt;Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no &lt;a href=&#34;https://github.com/lukelima/LifecycleExample.&#34;&gt;GitHub&lt;/a&gt; e vou falar sobre ele.&lt;/p&gt;
+&lt;p&gt;Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png&#34; alt=&#34;Injeção dos serviços no arquivo Program.cs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
+Criei um controller e injetei os serviços por construtor.&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png&#34; alt=&#34;Injeção dos serviços no construtor&#34;&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;Vejo bastante gente com dificuldade em entender a diferença entre os principais tipos de lifecycle quando falamos sobre injeção de dependência em .net. Criei um exemplo no &lt;a href=&#34;https://github.com/lukelima/LifecycleExample.&#34;&gt;GitHub&lt;/a&gt; e vou falar sobre ele.&lt;/p&gt;
+&lt;p&gt;Basicamente criei 3 serviços bastante simples e parecidos (apenas para fins didáticos) e os injetei utilizando AddSingleton, AddScoped e AddTransient.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8noxoqf10ivwjukmajcf.png&#34; alt=&#34;Injeção dos serviços no arquivo Program.cs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Esses serviços só possuem uma propriedade, o Id, que é criada no momento da instanciação.
+Criei um controller e injetei os serviços por construtor.&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gtxlecy6yja6fdi733us.png&#34; alt=&#34;Injeção dos serviços no construtor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Também injetei uma instância do serviço em cada método.
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sbzeyh86fimx3xji9aeu.png&#34; alt=&#34;Injeção dos serviços em cada método&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;singleton&#34;&gt;Singleton&lt;/h2&gt;
+&lt;p&gt;O serviço é criado &lt;strong&gt;uma única vez&lt;/strong&gt; e a mesma instância é passada para todas as chamadas dele. Veja que o id, criado no momento da instanciação, foi o mesmo (e continua sendo o mesmo independente da requisição):
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/djf0pqcgxgmr0k59iem2.png&#34; alt=&#34;Imagem mostra que uma única instância foi criada&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;scoped&#34;&gt;Scoped&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Uma única instância é criada por requisição&lt;/strong&gt;. Então se o serviço for chamado em vários lugares em uma única requisição, a mesma instância será passada. Outras instâncias serão criadas para as próximas requisições.&lt;/p&gt;
+&lt;p&gt;Mesma requisição:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wxkot9z4wtnarvh9hvxt.png&#34; alt=&#34;Imagem mostra que uma única instância foi criada&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Requisição diferente:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tg603oilzwhz3luzoo6h.png&#34; alt=&#34;Imagem mostra que uma nova instância foi criada para uma segunda requisição&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;transient&#34;&gt;Transient&lt;/h2&gt;
+&lt;p&gt;Ele é o mais custoso, pois se o serviço for chamado em diversas classes, &lt;strong&gt;cada uma delas terá uma instância diferente&lt;/strong&gt;:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6ynbb4lr6b78cbg1zx5t.png&#34; alt=&#34;Imagem mostra que uma instância foi criada para cada chamada do serviço&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Testes de unidade com NUnit para aplicações C#</title>
+      <link>//localhost:1313/posts/dotnet-unit-tests/</link>
+      <pubDate>Fri, 18 Mar 2022 11:45:29 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/dotnet-unit-tests/</guid>
+      <description>&lt;p&gt;Basicamente, testes automatizados são uma forma de automatizar o processo de revisão e validação de um software através de uma ferramenta programável. Esse processo, que antes podia ser extremamente trabalhoso e demorado, pode ser feito em minutos &amp;ndash; ou até mesmo segundos, dependendo dos tipos e da quantidade de testes existentes na sua aplicação.&lt;/p&gt;
+&lt;p&gt;Mike Cohn criou o conceito de pirâmide de testes no livro &amp;ldquo;Succeeding with Agile&amp;rdquo;. É basicamente uma forma de te fazer pensar nas várias camadas de testes e em como elas devem estar presentes:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u3ey9qc5peuj6d1jwuby.png&#34; alt=&#34;Pirâmide de testes cunhada po Cohn. A base dela é composta por testes de unidade, seguida por testes de serviços e por fim testes de ui. Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é&#34;&gt;
+Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é, além de mais numeroso.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Basicamente, testes automatizados são uma forma de automatizar o processo de revisão e validação de um software através de uma ferramenta programável. Esse processo, que antes podia ser extremamente trabalhoso e demorado, pode ser feito em minutos &amp;ndash; ou até mesmo segundos, dependendo dos tipos e da quantidade de testes existentes na sua aplicação.&lt;/p&gt;
+&lt;p&gt;Mike Cohn criou o conceito de pirâmide de testes no livro &amp;ldquo;Succeeding with Agile&amp;rdquo;. É basicamente uma forma de te fazer pensar nas várias camadas de testes e em como elas devem estar presentes:
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u3ey9qc5peuj6d1jwuby.png&#34; alt=&#34;Pirâmide de testes cunhada po Cohn. A base dela é composta por testes de unidade, seguida por testes de serviços e por fim testes de ui. Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é&#34;&gt;
+Quanto mais baixo o nível do teste na pirâmide, mais desacoplado e mais rápido ele é, além de mais numeroso.&lt;/p&gt;
+&lt;p&gt;Há inúmeros tipos de teste &amp;ndash; muitos dos quais eu mesmo desconheço a fundo &amp;ndash; mas abordarei apenas os testes de unidade. Eles possuem esse nome pois tendem as menores unidades de classes e métodos de forma isolada do resto da aplicação: sem acoplamento, nem nada. Apenas verificações para garantir que eles funcionem conforme o esperado, que as variáveis tenham os valores esperados etc.&lt;/p&gt;
+&lt;p&gt;Uma disciplina importante para criar testes é aquela chamada de TDD - Desenvolvimento orientado a testes. Nela, primeiro se escreve os testes, depois o código para que o teste funcione, depois o código é refatorado para que se torne a melhor versão que puder ser (esse último passo costuma ser bastante ignorado, gerando débitos técnicos).&lt;/p&gt;
+&lt;p&gt;Ok, mas por que começar pelos testes e não pelo código ? Porque para criar uma solução, é necessário saber o que precisa ser criado. É necessário saber de antemão o que uma classe deve fazer, o que um método deve fazer, o valor que uma variável deve ter etc. Sem isso em mente, é muito fácil assumir que um resultado qualquer é o correto. E é assim que nascem os bugs 🐞!&lt;/p&gt;
+&lt;p&gt;Sem mais delongas, bora pro código.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/KGdKKipVBu9vO5hKkb/giphy.gif&#34; alt=&#34;Killjoy do jogo Valorant, em frente a um computador, arrumando os óculos no próprio rosto&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;mãos-à-obra&#34;&gt;Mãos à obra&lt;/h2&gt;
+&lt;p&gt;Criei uma aplicação console para exemplificar. Nela, criarei uma classe &amp;ldquo;Conta&amp;rdquo; com as seguintes especificações:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uma pessoa pode depositar qualquer valor maior que zero na conta;&lt;/li&gt;
+&lt;li&gt;Uma pessoa pode sacar valores maiores que 0 e menores ou iguais ao saldo total;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Adicionei um projeto NUnit com o Visual Studio. Nele, criei uma classe chamada &lt;strong&gt;ContaTests&lt;/strong&gt;, conforme abaixo. O atributo &lt;strong&gt;[TestFixture]&lt;/strong&gt; indica que uma classe possui testes.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[TestFixture]
+public class ContaTests
+{
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E então parti para o teste do primeiro método. Para que um método seja detectado como teste, é necessário adicionar o atributo &lt;strong&gt;[Test]&lt;/strong&gt; acima dele. Quanto ao nome do método de teste, fiz baseando-me em algumas recomendações que podem ser encontradas &lt;a href=&#34;https://docs.microsoft.com/pt-br/dotnet/core/testing/unit-testing-best-practices&#34;&gt;neste link.&lt;/a&gt;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Test]
+public void Depositar_RetornaSaldoMaisValorDepositado()
+{
+    // Arrange 
+    
+    // Act
+    
+    // Assert
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Gosto de deixar os 3 comentários em todos os testes que crio para separar bem as fases dele. Essas fases formam o padrão AAA, muito utilizado na indústria, e correspondem a:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Arrange: fase na qual é necessário preparar teste preparando as variáveis, criando instâncias de objeto necessárias etc.;&lt;/li&gt;
+&lt;li&gt;Act: fase na qual o método a ser testado é executado;&lt;/li&gt;
+&lt;li&gt;Assert: fase na qual é feita a verificação de que o resultado obtido está de acordo com o esperado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Na primeira fase, criei apenas uma instância da classe &lt;strong&gt;Conta&lt;/strong&gt;, que ainda não existe, e então criei uma variável com o valor que espero obter como resultado do teste.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Arrange 
+Conta conta = new Conta(&amp;#34;Lucas&amp;#34;, 100);
+decimal saldoEsperado = 200;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Na fase de ação, executei o método e armazenei o resultado em uma variável:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Act
+var resultado = conta.Depositar(100);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E por fim, fiz a verificação de que o resultado era igual ao saldoEsperado. Para isso, usei a classe Assert do NUnit. Ela contém vários métodos estáticos para testar inúmeras situações, como listas, igualdades, nulos etc.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Assert
+Assert.AreEqual(saldoEsperado, resultado);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O teste final ficou da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Test]
+public void Depositar_RetornaSaldoMaisValorDepositado()
+{
+    // Arrange 
+    Conta conta = new Conta(&amp;#34;Lucas&amp;#34;, 100);
+    decimal saldoEsperado = 200;
+
+    Act
+    var resultado = conta.Depositar(100);
+
+    Assert
+    Assert.AreEqual(saldoEsperado, resultado);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O teste não compilará no primeiro momento pois a classe &lt;strong&gt;Conta&lt;/strong&gt; ainda não existe. Logo, decidi criá-la:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class Conta
+{
+    public Conta(string cliente, decimal saldo)
+    {
+        Cliente = cliente;
+        Saldo = saldo;
+    }
+
+    public string Cliente { get; private set; }
+    public decimal Saldo { get; private set; }
+
+    public decimal Depositar(decimal valor)
+    {
+        Saldo += valor;
+        return Saldo;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Aproveitei e também criei o método &lt;strong&gt;Depositar&lt;/strong&gt;. Ele é simples: recebe um valor e então adiciona esse valor à propriedade &lt;strong&gt;Saldo&lt;/strong&gt; da classe.&lt;/p&gt;
+&lt;p&gt;Adicionei uma referência da classe no projeto de teste e então o executei. E então o teste passou !
+&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/h8esevtr3rklh3c27nqa.png&#34; alt=&#34;A imagem mostra que o teste foi aprovado após a execução com os valores corretos&#34;&gt;&lt;/p&gt;
+&lt;p&gt;⚠️⚠️ Uma forma de garantir que o teste funciona é fazendo-o quebrar propositalmente. Uma forma de quebrar o teste acima seria alterando o valor esperado para 300. Se o teste e o código estiverem certos, o teste não passará. Isso é importante para evitar que o resultado seja um falso-positivo.⚠️⚠️&lt;/p&gt;
+&lt;p&gt;Ok, o valor adicionado está correto, a soma está correta. Mas não é tudo a ser testado nesse método:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uma pessoa pode depositar qualquer valor &lt;strong&gt;maior que zero&lt;/strong&gt; na conta;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Logo, é necessário criar um teste para verificar se o meu programa barra o depósito de um valor negativo como -R$100.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Test]
+public void Deposito_QuandoExecutadoComValorNegativo_LancaLancaInvalidOperationException()
+{
+    //Arrange
+    Conta conta = new Conta(&amp;#34;Lucas&amp;#34;, 100);
+
+    //Act
+    Func&amp;lt;decimal&amp;gt; acao = () =&amp;gt; conta.Depositar(-100);
+
+    //Assert
+    Assert.Throws&amp;lt;InvalidOperationException&amp;gt;(() =&amp;gt; acao());
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A grande diferença está nas fases &lt;strong&gt;Act&lt;/strong&gt; e &lt;strong&gt;Assert&lt;/strong&gt;. Assim que o valor -100 for detectado pelo método, é necessário que ele lance uma nova exceção: &lt;strong&gt;InvalidOperationException&lt;/strong&gt;. Quando ela for lançada, o programa sairá daquele método antes de completá-lo, fazerndo com que o assert seja um pouco diferente. Para testar se ela realmente foi lançada, primeiro armazenei o método em um delegate (eu poderia explicar o significado mas tanto a &lt;a href=&#34;https://docs.microsoft.com/pt-br/dotnet/api/system.delegate?view=net-6.0&#34;&gt;Microsoft&lt;/a&gt; quanto o &lt;a href=&#34;http://www.macoratti.net/17/01/net_deleg1.htm&#34;&gt;Macoratti&lt;/a&gt; fizeram um excelente trabalho falando sobre) e então utilizei o método Throws da classe Assert. Ele recebe o tipo da exceção como generic (&lt;a href=&#34;https://docs.microsoft.com/pt-br/dotnet/standard/generics/&#34;&gt;artigo da Microsoft&lt;/a&gt; e &lt;a href=&#34;http://www.macoratti.net/11/07/net_gen1.htm&#34;&gt;artigo do Macoratti&lt;/a&gt;) e então consegue verificar se a exceção foi lançada.&lt;/p&gt;
+&lt;p&gt;Ao rodar o teste na primeira vez, ele não passoupois o método ainda não lança a exceção. Adicionei apenas 1 if para lançar a exceção e então o teste passou !&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public decimal Depositar(decimal valor)
+{
+    if (valor &amp;lt;= 0)
+    {
+        throw new InvalidOperationException(&amp;#34;Não é possível depositar valores negativos&amp;#34;);
+    }
+    Saldo += valor;
+    return Saldo
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;⚠️⚠️Para quebrar o teste e verificar se ele não dá um falso positivo, é possível simplesmente alterar o tipo da exceção esperada no Assert.⚠️⚠️&lt;/p&gt;
+&lt;p&gt;Por se tratar de um exemplo, o método de saque terá testes bastante parecidos com o do depósito, então é possível verificá-lo, assim como todo o resto do código, nesse repositório do GitHub que criei!&lt;/p&gt;
+&lt;p&gt;Bem, essa foi uma breve introdução sobre testes de unidade. Na próxima parte falarei sobre &lt;strong&gt;Mocks&lt;/strong&gt; em um exemplo de uma API Rest e sobre o método &lt;strong&gt;SetUp&lt;/strong&gt;.Se curtiu, não esqueça de compartilhar a postagem!&lt;/p&gt;
+&lt;p&gt;Até a próxima !&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/2YgCmRh9Arduw8LshF/giphy.gif&#34; alt=&#34;Snoopy Dogg acenando em despedida&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Como usar Redis em uma solução .Net</title>
+      <link>//localhost:1313/posts/dotnet-redis/</link>
+      <pubDate>Mon, 29 Nov 2021 11:41:55 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/dotnet-redis/</guid>
+      <description>&lt;p&gt;Olá!&lt;/p&gt;
+&lt;p&gt;Faz algum tempo que não escrevo por aqui mas senti saudades disso. Desde que escrevi meu último artigo grande (&lt;a href=&#34;https://dev.to/cephalopodluke/introducao-a-programacao-com-dart-aji&#34;&gt;uma introdução sobre flutter&lt;/a&gt;), comecei a trabalhar com .Net e C#. É possível ver algumas semelhanças em ambas linguagens e isso facilitou bastante meu aprendizado nela.&lt;/p&gt;
+&lt;p&gt;Bem, tenho desenvolvido algumas APIs e trabalhado com alguns problemas envolvendo implantações de aplicações, bem coisa de backend mesmo. Um dos primeiros problemas que precisei resolver foi implementar uma forma de uso de cache utilizando Redis em uma API.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Olá!&lt;/p&gt;
+&lt;p&gt;Faz algum tempo que não escrevo por aqui mas senti saudades disso. Desde que escrevi meu último artigo grande (&lt;a href=&#34;https://dev.to/cephalopodluke/introducao-a-programacao-com-dart-aji&#34;&gt;uma introdução sobre flutter&lt;/a&gt;), comecei a trabalhar com .Net e C#. É possível ver algumas semelhanças em ambas linguagens e isso facilitou bastante meu aprendizado nela.&lt;/p&gt;
+&lt;p&gt;Bem, tenho desenvolvido algumas APIs e trabalhado com alguns problemas envolvendo implantações de aplicações, bem coisa de backend mesmo. Um dos primeiros problemas que precisei resolver foi implementar uma forma de uso de cache utilizando Redis em uma API.&lt;/p&gt;
+&lt;p&gt;Apenas para esclarecimento, cache é um local de armazenamento de dados temporários que servirão para ajudar aplicações web, mobile etc. Implementar cache na sua solução pode trazer diversos benefícios como economizar banda, reduzir tempo de resposta, realizar menos chamadas ao banco em alguns casos específicos etc. Entretanto também pode causar inúmeros problemas. Um deles é o de os dados não estarem mais atualizados em soluções que esses dados mudam frequentemente.&lt;/p&gt;
+&lt;p&gt;Criei um código para esse artigo que pode ser encontrado &lt;a href=&#34;https://github.com/lukelima/ExemploRedis&#34;&gt;nesse repositório do GitHub&lt;/a&gt;. Nele, criei consumi a &lt;a href=&#34;https://pokeapi.co/&#34;&gt;PokéApi&lt;/a&gt;, uma API com dados de quase todos os pokémons lançados até hoje. Segui a política de fair use dela que diz &lt;em&gt;&amp;ldquo;Locally cache resources whenever you request them.&amp;rdquo;&lt;/em&gt; (armazene recursos em cache quando os consultar) e salvei todas as requisições em cache por um tempo limitado.&lt;/p&gt;
+&lt;p&gt;A estrutura de pastas do projeto ficou da seguinte forma:za&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ExemploRedis/
+├─ Controllers/
+│  ├─ PokemonController.cs
+├─ Extensions/
+│  ├─ DistributedCacheExtension.cs
+├─ Services/
+│  ├─ Interfaces/
+│  │  ├─ ICacheService.cs
+│  │  ├─ IPokemonService.cs
+│  ├─ PokemonCacheService.cs
+│  ├─ PokemonService.cs
+├─ Pokemon.cs
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O arquivo &lt;strong&gt;Pokemon.cs&lt;/strong&gt; contém as informações de Pokémons da API. Para a simplicidade do exemplo, adicionei apenas 3 propriedades:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class Pokemon
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Weight { get; set; }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Adicionei o pacote &lt;strong&gt;Microsoft.Extensions.Caching.Redis&lt;/strong&gt; NuGet para trabalhar com o Redis. Com ele, criei a extensão &lt;strong&gt;Extensions/DistributedCacheExtension.cs&lt;/strong&gt; para adicionar o serviço à API:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public static IServiceCollection AddDistributedCache(
+    this IServiceCollection services,
+    IConfiguration configuration)
+{
+    services.AddDistributedRedisCache(options =&amp;gt;
+    {
+        options.Configuration = 
+            configuration.GetConnectionString(&amp;#34;Redis&amp;#34;);
+        options.InstanceName = 
+            configuration[&amp;#34;Redis:InstanceName&amp;#34;];
+    });
+    return services;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As options da configuração são autoexplicativas: string de conexão ao serviço e nome da instância.
+Adicionei essa extensão no arquivo Startup.cs, no método &lt;strong&gt;ConfigureServices&lt;/strong&gt;, com a seguinte linha de código:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;services.AddDistributedCache(Configuration);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Com o Redis configurado, desenvolvi um serviço que me auxiliaria a buscar e adicionar dados a ele visando evitar repetição de código.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public interface ICacheService&amp;lt;T&amp;gt;
+{
+    Task&amp;lt;T&amp;gt; Get(int id);
+    Task Set(T content);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O código acima é da interface do serviço. Decidi usar um tipo genérico nela para que ela seja reaproveitada para qualquer objeto que eu precisar. O serviço que a implementa ficou assim:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class PokemonCacheService : ICacheService&amp;lt;Pokemon&amp;gt;
+{
+    private readonly IDistributedCache _distributedCache;
+    private readonly DistributedCacheEntryOptions _options;
+    private const string Prefix = &amp;#34;pokemon_&amp;#34;;
+
+    public PokemonCacheService(IDistributedCache distributedCache)
+    {
+        _distributedCache = distributedCache;
+        _options = new DistributedCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = 
+                TimeSpan.FromSeconds(120),
+            SlidingExpiration = TimeSpan.FromSeconds(60)
+        };
+    }
+
+    public async Task&amp;lt;Pokemon&amp;gt; Get(int id)
+    {
+        var key = Prefix + id;
+        var cache = await _distributedCache.GetStringAsync(key);
+        if (cache is null)
+        {
+            return null;
+        }
+        var pokemon = JsonConvert.DeserializeObject&amp;lt;Pokemon&amp;gt; 
+            (cache);
+        return pokemon;
+    }
+
+    public async Task Set(Pokemon content)
+    {
+        var key = Prefix + content.Id;
+        var pokemonString = JsonConvert.SerializeObject(content);
+        await _distributedCache.SetStringAsync(key, pokemonString, 
+            _options);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Passando por todos os pontos:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;private readonly IDistributedCache _distributedCache;
+private readonly DistributedCacheEntryOptions _options;
+private const string Prefix = &amp;#34;pokemon_&amp;#34;;
+
+public PokemonCacheService(IDistributedCache distributedCache)
+{
+    _distributedCache = distributedCache;
+    _options = new DistributedCacheEntryOptions
+    {
+        AbsoluteExpirationRelativeToNow =   
+            TimeSpan.FromSeconds(120),
+        SlidingExpiration = TimeSpan.FromSeconds(60)
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Os dois primeiros campos, &lt;strong&gt;_distributedCache&lt;/strong&gt; e &lt;strong&gt;_options&lt;/strong&gt; estão relacionados diretamente à configuração do Redis. &lt;strong&gt;IDistributedCache&lt;/strong&gt; é a interface que utilizei para acessar o Redis através de injeção de dependência. Já &lt;strong&gt;DistributedCacheEntryOptions&lt;/strong&gt; é a classe responsável por configurar opções como &lt;strong&gt;AbsoluteExpirationRelativeToNow&lt;/strong&gt; e &lt;strong&gt;SlidingExpiration&lt;/strong&gt;, que referem-se ao tempo total que um dado ficará armazenado e ao tempo que ele pode ficar armazenado sem ser consultado (nunca maior que o tempo absoluto), respectivamente. &lt;strong&gt;Prefix&lt;/strong&gt; refere-se ao prefixo que utilizo para armazenar os pokemons. Utilizo ele + o id do pokemon para armazenar os dados com chaves únicas &amp;ndash; o que facilita a consulta posterior.&lt;/p&gt;
+&lt;p&gt;Sobre o método Get:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public async Task&amp;lt;Pokemon&amp;gt; Get(int id)
+{
+    var key = Prefix + id;
+    var cache = await _distributedCache.GetStringAsync(key);
+    if (cache is null)
+    {
+        return null;
+    }
+    var pokemon = JsonConvert.DeserializeObject&amp;lt;Pokemon&amp;gt;(cache);
+    return pokemon;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nele, crio a chave como prefixo + id do pokemon e busco o dado no cache utilizando o método &lt;strong&gt;GetStringAsync(key)&lt;/strong&gt; da interface IDistributedCache. Se ele for nulo, retorno nulo (ou poderia notificar um erro ou lançar uma exceção). Caso o contrário, deserializo a string obtida em pokemon e retorno o valor.&lt;/p&gt;
+&lt;p&gt;Sobre o método Set:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public async Task Set(Pokemon content)
+{
+    var key = Prefix + content.Id;
+    var pokemonString = JsonConvert.SerializeObject(content);
+    await _distributedCache.SetStringAsync(key, pokemonString, 
+        _options);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nele, crio a chave da mesma forma, com o prefixo + o id do pokemon informado, então serializo o objeto em string e armazeno no Redis utilizando o método &lt;strong&gt;SetStringAsync()&lt;/strong&gt; da interface IDistributedCache. Esse método recebe a chave que será utilizada para armazenamento (a mesma a ser consultada depois), o dado que será armazenado e as opções de armazenamento (lembra que configurei a expiração dos dados no construtor ? Pois bem, é aqui que informo essa configuração).&lt;/p&gt;
+&lt;p&gt;Com o serviço de cache pronto, desenvolvi o serviço de consulta à PokéApi. Interface:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public interface IPokemonService
+{
+    Task&amp;lt;Pokemon&amp;gt; GetPokemon(int id);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E o serviço que a implementa:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class PokemonService : IPokemonService
+{
+    private readonly HttpClient _httpClient;
+
+    public PokemonService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new 
+            Uri(&amp;#34;https://pokeapi.co/api/v2/&amp;#34;);
+    }
+
+    public async Task&amp;lt;Pokemon&amp;gt; GetPokemon(int id)
+    {
+        var response = await 
+            _httpClient.GetAsync($&amp;#34;pokemon/{id}&amp;#34;);
+        var content = await response.Content.ReadAsStringAsync();
+        var pokemon = JsonConvert.DeserializeObject&amp;lt;Pokemon&amp;gt; 
+            (content);
+        return pokemon;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O serviço é bem simples: possui um campo HttpClient que foi injetado e o método GetPokemon(int id), que faz a chamada à API e retorna um pokémon. Adicionei o HttpClient ao startup utilizando a seguinte linha de código no arquivo &lt;strong&gt;Startup.cs&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    services.AddHttpClient&amp;lt;IPokemonService, PokemonService&amp;gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É importante notar que esse método adiciona tanto o client como o serviço a ser injetado por dependência.&lt;/p&gt;
+&lt;p&gt;Com tudo pronto, criei um controller para servir esses dados:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[ApiController]
+[Route(&amp;#34;api/[controller]&amp;#34;)]
+public class PokemonController : ControllerBase
+{
+    private readonly IPokemonService _pokemonService;
+    private readonly ICacheService&amp;lt;Pokemon&amp;gt; _pokemonCacheService;
+
+    public PokemonController(IPokemonService pokemonService, 
+        ICacheService&amp;lt;Pokemon&amp;gt; pokemonCacheService)
+    {
+        _pokemonService = pokemonService;
+        _pokemonCacheService = pokemonCacheService;
+    }
+
+    [HttpGet(&amp;#34;{id}&amp;#34;)]
+    public async Task&amp;lt;IActionResult&amp;gt; Get(int id)
+    {
+        Pokemon pokemon = await _pokemonCacheService.Get(id);
+        if (pokemon is null)
+        {
+            pokemon = await _pokemonService.GetPokemon(id);
+            await _pokemonCacheService.Set(pokemon);
+        }
+        return Ok(pokemon);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nele, injeto tanto o PokemonService quanto o CacheService pelo construtor. Como essa Api faz apenas a pesquisa de pokemons, o controller possui apenas 1 método: Get. Ele recebe um id na rota, então verifica se há no cache um pokemon com esse id. Se houver, ele retorna o pokémon. Caso não haja, ele chama o service que consultará a API e então devolve o pokémon.&lt;/p&gt;
+&lt;p&gt;E esse é o fim do tutorial. Lembre-se de baixar o repositório no &lt;a href=&#34;https://github.com/lukelima/ExemploRedis&#34;&gt;GitHub&lt;/a&gt; caso queira estudá-lo melhor. Caso queira, deixei um arquivo docker-compose.yml para facilitar o uso do Redis.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Introducao à programacao com Dart</title>
       <link>//localhost:1313/posts/introducao-programacao-com-dart/</link>
