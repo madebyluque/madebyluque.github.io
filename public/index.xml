@@ -6,7 +6,97 @@
     <description>Recent content on Words of Luke Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 06 Feb 2024 11:54:32 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Mar 2024 11:56:22 -0300</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EF Core - Explosão Cartesiana</title>
+      <link>//localhost:1313/posts/cartesian-explosion/</link>
+      <pubDate>Sun, 10 Mar 2024 11:56:22 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/cartesian-explosion/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Atuei em vários projetos que utilizavam EF Core, e em uma determinada ocasião, encontrei, junto ao meu time, um problema que não fazia muito sentido: uma query simples, com poucos Includes, em tabelas que não possuíam tanto registros (quando comparada a outras tabelas do mesmo banco), estourava timeout. Após análise, o time entendeu que o problema ocorria devido a um fenômeno chamado &lt;strong&gt;Explosão cartesiana&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;o-que-é&#34;&gt;O que é?&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;explosão cartesiana&lt;/strong&gt; ocorre quando, ao realizar queries com joins em propriedades de navegação de entidades no mesmo nível hierárquico em bancos relacionais, o banco de dados retorna um produto vetorial (cross product). Ou seja, cada linha de uma propriedade de navegação é combinada com cada linha da outra propriedade.&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Atuei em vários projetos que utilizavam EF Core, e em uma determinada ocasião, encontrei, junto ao meu time, um problema que não fazia muito sentido: uma query simples, com poucos Includes, em tabelas que não possuíam tanto registros (quando comparada a outras tabelas do mesmo banco), estourava timeout. Após análise, o time entendeu que o problema ocorria devido a um fenômeno chamado &lt;strong&gt;Explosão cartesiana&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;o-que-é&#34;&gt;O que é?&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;explosão cartesiana&lt;/strong&gt; ocorre quando, ao realizar queries com joins em propriedades de navegação de entidades no mesmo nível hierárquico em bancos relacionais, o banco de dados retorna um produto vetorial (cross product). Ou seja, cada linha de uma propriedade de navegação é combinada com cada linha da outra propriedade.&lt;/p&gt;
+&lt;p&gt;Esse comportamento pode gerar um número inesperado de combinações entre os dados, aumentando drasticamente o volume de informações trafegadas entre o banco de dados e a aplicação. &lt;strong&gt;Consequentemente, isso pode afetar o desempenho da aplicação, aumentar os custos de infraestrutura e consumo de recursos, além de tornar a depuração e otimização mais complexa.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;como-resolver&#34;&gt;Como resolver?&lt;/h2&gt;
+&lt;p&gt;Uma das melhores formas de lidar com isso é utilizando queries separadas para carregar os dados envolvidos. O EF Core oferece uma solução simples para isso através do método &lt;code&gt;AsSplitQuery()&lt;/code&gt;, que carregará as coleções utilizando múltiplas queries, em vez de uma única query.&lt;/p&gt;
+&lt;p&gt;Os exemplos abaixo foram feitos com uma coleção de 100000 blogs armazenados em uma instância de SQL Server 2022, rodando através de um contêiner Docker.&lt;/p&gt;
+&lt;h3 id=&#34;exemplo-sem-assplitquery&#34;&gt;Exemplo sem AsSplitQuery&lt;/h3&gt;
+&lt;p&gt;Código:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var withoutSplitQuery = context.Blogs
+	.Include(b =&amp;gt; b.Posts)
+	.Include(b =&amp;gt; b.BlogContributors)
+		.ThenInclude(bc =&amp;gt; bc.Contributor)
+	.ToList();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nesse exemplo, cada Blog possui uma coleção de Posts e uma de BlogContributors. Como ambas estão no mesmo nível, cada post será combinado com cada contribuinte, o que resulta em um número de linhas maior do que o necessário.&lt;/p&gt;
+&lt;p&gt;Query gerada:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SELECT [b].[BlogId], [b].[Name], [p].[PostId], [p].[BlogId], [p].[Content], [p].[Title], [t].[BlogId], [t].[ContributorId], [t].[ContributorId0], [t].[Name]
+      FROM [Blogs] AS [b]
+      LEFT JOIN [Posts] AS [p] ON [b].[BlogId] = [p].[BlogId]
+      LEFT JOIN (
+          SELECT [b0].[BlogId], [b0].[ContributorId], [c].[ContributorId] AS [ContributorId0], [c].[Name]
+          FROM [BlogContributors] AS [b0]
+          INNER JOIN [Contributors] AS [c] ON [b0].[ContributorId] = [c].[ContributorId]
+      ) AS [t] ON [b].[BlogId] = [t].[BlogId]
+      ORDER BY [b].[BlogId], [p].[PostId], [t].[BlogId], [t].[ContributorId]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Resultado na busca de 100000 registros:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;*************************************************************************
+Tempo de execução sem splitquery: 4526ms
+Número de blogs retornados: 100000
+*************************************************************************
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;exemplo-com-assplitquery&#34;&gt;Exemplo com AsSplitQuery&lt;/h3&gt;
+&lt;p&gt;Código:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var withSplitQuery = context.Blogs
+	.Include(b =&amp;gt; b.Posts)
+	.Include(b =&amp;gt; b.BlogContributors)
+		.ThenInclude(bc =&amp;gt; bc.Contributor)
+	.AsSplitQuery()
+	.ToList();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Queries geradas:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SELECT [b].[BlogId], [b].[Name]
+      FROM [Blogs] AS [b]
+      ORDER BY [b].[BlogId]
+
+SELECT [p].[PostId], [p].[BlogId], [p].[Content], [p].[Title], [b].[BlogId]
+      FROM [Blogs] AS [b]
+      INNER JOIN [Posts] AS [p] ON [b].[BlogId] = [p].[BlogId]
+      ORDER BY [b].[BlogId]
+
+SELECT [t].[BlogId], [t].[ContributorId], [t].[ContributorId0], [t].[Name], [b].[BlogId]
+      FROM [Blogs] AS [b]
+      INNER JOIN (
+          SELECT [b0].[BlogId], [b0].[ContributorId], [c].[ContributorId] AS [ContributorId0], [c].[Name]
+          FROM [BlogContributors] AS [b0]
+          INNER JOIN [Contributors] AS [c] ON [b0].[ContributorId] = [c].[ContributorId]
+      ) AS [t] ON [b].[BlogId] = [t].[BlogId]
+      ORDER BY [b].[BlogId]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Resultado na busca de 100000 registros:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;*************************************************************************
+Tempo de execução com splitquery: 3664ms
+Número de blogs retornados: 100000
+*************************************************************************
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Por mais que os exemplos acima tenham utilizado um número relativamente pequeno de dados, os resultados de 10 execuções do teste com dados diferentes foram consistentes: as buscas com queries separadas foram mais rápidas que as buscas com queries únicas. Inclusive, o próprio EF lança um erro ao executar uma query que possa causar uma explosão cartesiana:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Compiling a query which loads related collections for more than onecollection navigation, either via &amp;#39;Include&amp;#39; or through projection, but no &amp;#39;QuerySplittingBehavior&amp;#39; has been configured. By default, Entity Framework will use &amp;#39;QuerySplittingBehavior.SingleQuery&amp;#39;, which can potentially result in slow query performance.
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Importante!&lt;/strong&gt;
+Há inúmeras variáveis que podem impactar na performance de uma query. Esse texto e os testes acima tratam exclusivamente sobre o problema de &lt;strong&gt;explosão cartesiana.&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;configuração-via-dbcontext&#34;&gt;Configuração via DbContext&lt;/h3&gt;
+&lt;p&gt;O EF permite a configuração do comportamento como padrão. Para isso, basta configurar o DbContext:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;optionsBuilder
+    .UseSqlServer(&amp;#34;ConnectionString&amp;#34;, o =&amp;gt;
+    .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;fontes-e-recursos&#34;&gt;Fontes e recursos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.milanjovanovic.tech/blog/how-to-improve-performance-with-ef-core-query-splitting&#34;&gt;How To Improve Performance With EF Core Query Splitting&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://learn.microsoft.com/pt-br/ef/core/querying/single-split-queries&#34;&gt;Consultas únicas vs. consultas divididas&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
     <item>
       <title>TestContainers para testes de integração com .Net</title>
       <link>//localhost:1313/posts/testcontainers/</link>
