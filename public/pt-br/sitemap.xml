@@ -2,17 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/tags/gamedev/</loc>
-    <lastmod>2023-02-20T11:51:47-03:00</lastmod>
-  </url><url>
     <loc>//localhost:1313/posts/</loc>
-    <lastmod>2023-02-20T11:51:47-03:00</lastmod>
+    <lastmod>2025-01-12T11:59:49-03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/gamedev/</loc>
-    <lastmod>2023-02-20T11:51:47-03:00</lastmod>
+    <loc>//localhost:1313/tags/rabbitmq/</loc>
+    <lastmod>2025-01-12T11:59:49-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/rabbitmq-concepts/</loc>
+    <lastmod>2025-01-12T11:59:49-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/system-design/</loc>
+    <lastmod>2025-01-12T11:59:49-03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/</loc>
-    <lastmod>2023-02-20T11:51:47-03:00</lastmod>
+    <lastmod>2025-01-12T11:59:49-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -25,7 +28,7 @@
                 />
   </url><url>
     <loc>//localhost:1313/</loc>
-    <lastmod>2023-02-20T11:51:47-03:00</lastmod>
+    <lastmod>2025-01-12T11:59:49-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -37,13 +40,55 @@
                 href="//localhost:1313/"
                 />
   </url><url>
-    <loc>//localhost:1313/posts/jmeter/</loc>
-    <lastmod>2022-07-18T11:49:46-03:00</lastmod>
+    <loc>//localhost:1313/posts/react-hook-form/</loc>
+    <lastmod>2024-11-07T11:58:13-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/react/</loc>
+    <lastmod>2024-11-07T11:58:13-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/web/</loc>
+    <lastmod>2024-11-07T11:58:13-03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/dotnet/</loc>
-    <lastmod>2022-07-18T11:49:46-03:00</lastmod>
+    <lastmod>2024-03-10T11:56:22-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/ef/</loc>
+    <lastmod>2024-03-10T11:56:22-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/cartesian-explosion/</loc>
+    <lastmod>2024-03-10T11:56:22-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/containers/</loc>
+    <lastmod>2024-02-06T11:54:32-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/testcontainers/</loc>
+    <lastmod>2024-02-06T11:54:32-03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/tests/</loc>
+    <lastmod>2024-02-06T11:54:32-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/dotnet-soft-delete/</loc>
+    <lastmod>2024-01-19T12:03:34-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/gamedev/</loc>
+    <lastmod>2023-07-16T12:01:55-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/github/</loc>
+    <lastmod>2023-07-16T12:01:55-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/unity-github-actions/</loc>
+    <lastmod>2023-07-16T12:01:55-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/unity/</loc>
+    <lastmod>2023-07-16T12:01:55-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/game-dev/</loc>
+    <lastmod>2023-02-20T11:51:47-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/gamedev/</loc>
+    <lastmod>2023-02-20T11:51:47-03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/jmeter/</loc>
     <lastmod>2022-07-18T11:49:46-03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/posts/lifecycles/</loc>

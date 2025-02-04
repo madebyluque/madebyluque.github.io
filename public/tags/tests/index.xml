@@ -1,12 +1,189 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tests on Words of Luke Silva</title>
+    <title>Tests on Words of Lucas Silva</title>
     <link>//localhost:1313/tags/tests/</link>
-    <description>Recent content in Tests on Words of Luke Silva</description>
+    <description>Recent content in Tests on Words of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 18 Jul 2022 11:49:46 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/tests/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Feb 2024 11:54:32 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/tests/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TestContainers para testes de integração com .Net</title>
+      <link>//localhost:1313/posts/testcontainers/</link>
+      <pubDate>Tue, 06 Feb 2024 11:54:32 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/testcontainers/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Diferente de testes de unidade, os testes de integração permitem validar o comportamento de uma aplicação quando todos os componentes dela são utilizados em conjunto. Isso inclui bancos de dados, serviços de cache, serviços de mensageria etc.&lt;/p&gt;
+&lt;p&gt;Na teoria, tudo parece interessante e simples. Mas esses testes podem gerar e alterar um grande volume de dados, então é necessário tomar cuidado com os recursos utilizados. Até porque acidentes acontecem, e talvez, em um descuido, você pode acabar executando um DELETE sem WHERE, levando à exclusão total de uma tabela. 😅&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Diferente de testes de unidade, os testes de integração permitem validar o comportamento de uma aplicação quando todos os componentes dela são utilizados em conjunto. Isso inclui bancos de dados, serviços de cache, serviços de mensageria etc.&lt;/p&gt;
+&lt;p&gt;Na teoria, tudo parece interessante e simples. Mas esses testes podem gerar e alterar um grande volume de dados, então é necessário tomar cuidado com os recursos utilizados. Até porque acidentes acontecem, e talvez, em um descuido, você pode acabar executando um DELETE sem WHERE, levando à exclusão total de uma tabela. 😅&lt;/p&gt;
+&lt;p&gt;Para evitar esse tipo de problemas, é possível criar esses recursos a partir de containers Docker por meio da lib &lt;a href=&#34;https://testcontainers.com/&#34;&gt;TestContainers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Neste tutorial, explicarei os passos para a utilização desses containers em uma API .Net.&lt;/p&gt;
+&lt;h2 id=&#34;api&#34;&gt;API&lt;/h2&gt;
+&lt;p&gt;O projeto completo pode ser encontrado &lt;a href=&#34;https://github.com/madebyluque/TutorialIntegrationTests&#34;&gt;neste link&lt;/a&gt;. Trata-se de uma API de gerenciamento de tarefas (a famosa &amp;ldquo;To-Do list&amp;rdquo;). Ela consiste de basicamente 3 partes:&lt;/p&gt;
+&lt;p&gt;Uma entidade:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;namespace IntegrationTestingDemo.API;
+
+public class Todo
+{
+    public Todo()
+    {
+    }
+
+    public Todo(string title, string description)
+    {
+        Title = title;
+        Description = description;
+        Id = Guid.NewGuid().ToString().Replace(&amp;#34;-&amp;#34;, &amp;#34;&amp;#34;);
+        CreatedAt = DateTime.UtcNow;
+        Done = false;
+    }
+
+    public string Id { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public bool Done { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? CompletedAt { get; set; }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Um service com a lógica da aplicação (visando a simplicidade, algumas operações não foram criadas):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class TodoService(TodoContext context) : ITodoService
+{
+    private readonly TodoContext _context = context;
+
+    public async Task&amp;lt;string&amp;gt; Create(string title, string description)
+    {
+        var todo = new Todo(title, description);
+        await _context.AddAsync(todo);
+        await _context.SaveChangesAsync();
+        return todo.Id;
+    }
+
+    public async Task&amp;lt;List&amp;lt;Todo&amp;gt;&amp;gt; GetAll()
+    {
+        return await _context.Todos.OrderBy(x =&amp;gt; x.CreatedAt).ToListAsync();
+    }
+
+    public async Task&amp;lt;Todo&amp;gt; GetById(string id)
+    {
+        return await _context.Todos.FirstOrDefaultAsync(x =&amp;gt; x.Id == id);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E um controller:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[ApiController]
+[Route(&amp;#34;[controller]&amp;#34;)]
+public class TodoController(ITodoService todoService) : ControllerBase
+{
+    private readonly ITodoService _todoService = todoService;
+
+    [HttpPost]
+    public async Task&amp;lt;IActionResult&amp;gt; Create([FromBody] CreateTodoModel model)
+    {
+        var result = await _todoService.Create(model.Title, model.Description);
+        return CreatedAtRoute(nameof(GetById), routeValues: new { Id = result }, result);
+    }
+
+    [HttpGet]
+    public async Task&amp;lt;IActionResult&amp;gt; GetAll()
+    {
+        var todos = await _todoService.GetAll();
+        return Ok(todos);
+    }
+
+    [HttpGet(&amp;#34;{id}&amp;#34;, Name = &amp;#34;GetById&amp;#34;)]
+    public async Task&amp;lt;IActionResult&amp;gt; GetById(string id)
+    {
+        var todo = await _todoService.GetById(id);
+        return Ok(todo);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;testes&#34;&gt;Testes&lt;/h2&gt;
+&lt;p&gt;A configuração de &lt;strong&gt;TestContainer&lt;/strong&gt; é feita na criação da &lt;strong&gt;WebApplicationFactory&lt;/strong&gt; para os testes de integração. Neste tutorial, decidi utilizar PostgreSQL. A criação de um container desse banco de dados pode ser feita da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder().WithUsername(&amp;#34;postgres&amp;#34;).WithPassword(&amp;#34;postgres&amp;#34;).Build();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É possível alterar o usuário e a senha da forma que desejar. Há, inclusive, a opção de alterar outras configurações no builder, como o nome do db, o host etc.&lt;/p&gt;
+&lt;p&gt;Com o container criado, é possível obter a connection string dele da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;_postgres.GetConnectionString()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Pode ser necessário remover o dbContext da aplicação para adicionar um novo com a connection string do container de teste. Nesse caso, é possível fazê-lo da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var context = services.FirstOrDefault(descriptor =&amp;gt; descriptor.ServiceType == typeof(TodoContext));
+if (context != null)
+{
+    services.Remove(context);
+    var options = services.Where(r =&amp;gt; (r.ServiceType == typeof(DbContextOptions))
+      || (r.ServiceType.IsGenericType &amp;amp;&amp;amp; r.ServiceType.GetGenericTypeDefinition() == typeof(DbContextOptions&amp;lt;&amp;gt;))).ToArray();
+    foreach (var option in options)
+    {
+        services.Remove(option);
+    }
+}
+
+services.AddDbContext&amp;lt;TodoContext&amp;gt;(options =&amp;gt;
+{
+    options.UseNpgsql(_postgres.GetConnectionString());
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Por fim, é interessante que sua classe de &lt;strong&gt;WebApplicationFactory&lt;/strong&gt; implemente a interface IAsyncLifetime para que o container criado seja inicializado / parado.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public Task InitializeAsync()
+{
+    return _postgres.StartAsync();
+}
+
+public new Task DisposeAsync()
+{
+    return _postgres.StopAsync();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Com a configuração feita, já é possível criar testes de integração. No teste abaixo, utilizei o TodoService para criar uma tarefa, e então verifiquei se os dados no banco de dados estavam de acordo com o que deveriam:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Fact]
+public async Task Create_ShouldCreateTodoAndReturnItsId()
+{
+    // Act
+    var result = await _todoService.Create(TestTitle, TestDescription);
+
+    // Assert
+    var todo = await _dbContext.Todos.FirstOrDefaultAsync(x =&amp;gt; x.Id == result);
+    Assert.NotNull(todo);
+    Assert.False(todo.Done);
+    Assert.Equal(TestTitle, todo.Title);
+    Assert.Equal(TestDescription, todo.Description);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;(Acesse o &lt;a href=&#34;https://github.com/madebyluque/TutorialIntegrationTests&#34;&gt;repositório&lt;/a&gt; para verificar os demais testes.)&lt;/p&gt;
+&lt;p&gt;O exemplo acima testa uma classe simples. Entretanto, poderia testar uma classe mais complexa, como um Handler, que manipula os dados através de diversos objetos. Além disso, o service foi criado para não testar as chamadas diretas ao controller.&lt;/p&gt;
+&lt;h2 id=&#34;github-actions&#34;&gt;GitHub actions&lt;/h2&gt;
+&lt;p&gt;É possível integrar os testes à pipeline. &lt;a href=&#34;https://www.milanjovanovic.tech/blog/testcontainers-integration-testing-using-docker-in-dotnet&#34;&gt;Essa postagem do Milan Jovanović&lt;/a&gt; mostra como integrá-los a uma Github Action:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name: Run Tests 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: &amp;#39;8.0.x&amp;#39;
+
+      - name: Restore
+        run: dotnet restore ./IntegrationTestingDemo.sln
+
+      - name: Build
+        run: dotnet build ./IntegrationTestingDemo.sln --no-restore
+
+      - name: Test
+        run: dotnet test ./IntegrationTestingDemo.sln --no-build
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;p&gt;Este é o fim do tutorial. Espero que esse texto tenha sido o suficiente para te ajudar a implementar testes de integração com TestContainers na sua aplicação.&lt;/p&gt;
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Automatizando a criação de requisições no JMeter utilizando Postman</title>
       <link>//localhost:1313/posts/jmeter/</link>

@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Words of Luke Silva</title>
+    <title>Tags on Words of Lucas Silva</title>
     <link>//localhost:1313/tags/</link>
-    <description>Recent content in Tags on Words of Luke Silva</description>
+    <description>Recent content in Tags on Words of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 20 Feb 2023 11:51:47 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Jan 2025 11:59:49 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Gamedev</title>
-      <link>//localhost:1313/tags/gamedev/</link>
-      <pubDate>Mon, 20 Feb 2023 11:51:47 -0300</pubDate>
+      <title>Rabbitmq</title>
+      <link>//localhost:1313/tags/rabbitmq/</link>
+      <pubDate>Sun, 12 Jan 2025 11:59:49 -0300</pubDate>
       
-      <guid>//localhost:1313/tags/gamedev/</guid>
+      <guid>//localhost:1313/tags/rabbitmq/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>System-Design</title>
+      <link>//localhost:1313/tags/system-design/</link>
+      <pubDate>Sun, 12 Jan 2025 11:59:49 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/system-design/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>//localhost:1313/tags/react/</link>
+      <pubDate>Thu, 07 Nov 2024 11:58:13 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/react/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Web</title>
+      <link>//localhost:1313/tags/web/</link>
+      <pubDate>Thu, 07 Nov 2024 11:58:13 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/web/</guid>
       <description></description>
       <content></content>
     </item>
@@ -20,7 +50,7 @@
     <item>
       <title>Dotnet</title>
       <link>//localhost:1313/tags/dotnet/</link>
-      <pubDate>Mon, 18 Jul 2022 11:49:46 -0300</pubDate>
+      <pubDate>Sun, 10 Mar 2024 11:56:22 -0300</pubDate>
       
       <guid>//localhost:1313/tags/dotnet/</guid>
       <description></description>
@@ -28,11 +58,71 @@
     </item>
     
     <item>
+      <title>Ef</title>
+      <link>//localhost:1313/tags/ef/</link>
+      <pubDate>Sun, 10 Mar 2024 11:56:22 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/ef/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Containers</title>
+      <link>//localhost:1313/tags/containers/</link>
+      <pubDate>Tue, 06 Feb 2024 11:54:32 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/containers/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
       <title>Tests</title>
       <link>//localhost:1313/tags/tests/</link>
-      <pubDate>Mon, 18 Jul 2022 11:49:46 -0300</pubDate>
+      <pubDate>Tue, 06 Feb 2024 11:54:32 -0300</pubDate>
       
       <guid>//localhost:1313/tags/tests/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Gamedev</title>
+      <link>//localhost:1313/tags/gamedev/</link>
+      <pubDate>Sun, 16 Jul 2023 12:01:55 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/gamedev/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>//localhost:1313/tags/github/</link>
+      <pubDate>Sun, 16 Jul 2023 12:01:55 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/github/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Unity</title>
+      <link>//localhost:1313/tags/unity/</link>
+      <pubDate>Sun, 16 Jul 2023 12:01:55 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/unity/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Game-Dev</title>
+      <link>//localhost:1313/tags/game-dev/</link>
+      <pubDate>Mon, 20 Feb 2023 11:51:47 -0300</pubDate>
+      
+      <guid>//localhost:1313/tags/game-dev/</guid>
       <description></description>
       <content></content>
     </item>

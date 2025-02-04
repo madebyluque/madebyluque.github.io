@@ -1,6 +1,6 @@
 languageCode = 'pt-br'
 defaultContentLanguage = 'pt-br'
-title = 'Words of Luke Silva'
+title = 'Words of Lucas Silva'
 theme = "terminal"
 
 [params]
@@ -39,7 +39,7 @@ theme = "terminal"
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Words of Luke Silva"
+    title = "Words of Lucas Silva"
 
     [languages.en.params]
       subtitle = "Tech and thoughts"
@@ -72,7 +72,7 @@ theme = "terminal"
 
   [languages.pt-br]
     languageName = "Português"
-    title = "Words of Luke Silva"
+    title = "Words of Lucas Silva"
 
     [languages.pt-br.params]
       subtitle = "Tecnologia e pensamentos"

@@ -1,78 +1,118 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gamedev on Words of Luke Silva</title>
+    <title>Gamedev on Words of Lucas Silva</title>
     <link>//localhost:1313/tags/gamedev/</link>
-    <description>Recent content in Gamedev on Words of Luke Silva</description>
+    <description>Recent content in Gamedev on Words of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 20 Feb 2023 11:51:47 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jul 2023 12:01:55 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Recursos e dicas para o desenvolvimento do seu primeiro game</title>
-      <link>//localhost:1313/posts/gamedev/</link>
-      <pubDate>Mon, 20 Feb 2023 11:51:47 -0300</pubDate>
+      <title>Github action para jogos da Unity</title>
+      <link>//localhost:1313/posts/unity-github-actions/</link>
+      <pubDate>Sun, 16 Jul 2023 12:01:55 -0300</pubDate>
       
-      <guid>//localhost:1313/posts/gamedev/</guid>
-      <description>&lt;p&gt;Fotos de Foto de &lt;a href=&#34;https://unsplash.com/es/@sigmund?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Sigmund&lt;/a&gt; e &lt;a href=&#34;https://unsplash.com/@dylu?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Jacek Dylag&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Bem, é muito provável que você, assim como eu, sempre sonhou em desenvolver seus próprios jogos. Assim que mudei de carreira e comecei a programar, decidi que tiraria esse sonho do papel e o tornaria realidade. Ainda não consegui terminar meu game, mas as coisas estão caminhando bem. Trarei aqui algumas dicas para que você possa fazer o mesmo.&lt;/p&gt;
-&lt;h2 id=&#34;antes-de-mais-nada-é-um-processo-longo-e-trabalhoso&#34;&gt;Antes de mais nada: é um processo longo e trabalhoso&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/JWybLzXs7Hn0JKhSji/giphy.gif&#34; alt=&#34;Muito trabalhoso!&#34; title=&#34;Muito trabalhoso!&#34;&gt;&lt;/p&gt;</description>
-      <content>&lt;p&gt;Fotos de Foto de &lt;a href=&#34;https://unsplash.com/es/@sigmund?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Sigmund&lt;/a&gt; e &lt;a href=&#34;https://unsplash.com/@dylu?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34;&gt;Jacek Dylag&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Bem, é muito provável que você, assim como eu, sempre sonhou em desenvolver seus próprios jogos. Assim que mudei de carreira e comecei a programar, decidi que tiraria esse sonho do papel e o tornaria realidade. Ainda não consegui terminar meu game, mas as coisas estão caminhando bem. Trarei aqui algumas dicas para que você possa fazer o mesmo.&lt;/p&gt;
-&lt;h2 id=&#34;antes-de-mais-nada-é-um-processo-longo-e-trabalhoso&#34;&gt;Antes de mais nada: é um processo longo e trabalhoso&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/JWybLzXs7Hn0JKhSji/giphy.gif&#34; alt=&#34;Muito trabalhoso!&#34; title=&#34;Muito trabalhoso!&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Se você está começando do zero, saiba que criar um jogo é um processo trabalhoso. Sério. Você pode agilizá-lo com algumas das dicas deste texto, mas no geral, você vai passar alguns meses/anos trabalhando na arte, no código, no design de níveis, no som&amp;hellip;
-Inclusive, saiba que todo projeto de vida tem um custo muito alto: seu tempo. Entretanto, mesmo que você não se torne o novo &lt;a href=&#34;https://pt.wikipedia.org/wiki/Eric_Barone&#34;&gt;Eric Barone&lt;/a&gt;, o conhecimento adquirido ao &lt;strong&gt;criar um projeto seu&lt;/strong&gt;, é extremamente valioso.&lt;/p&gt;
-&lt;h2 id=&#34;game-engine&#34;&gt;Game Engine&lt;/h2&gt;
-&lt;p&gt;Se você estiver pensando em realizar o seu primeiro projeto, não comece por criar uma game engine. Há milhares de engines gratuitas por aí, então &lt;strong&gt;não reinvente a roda&lt;/strong&gt;.
-&lt;img src=&#34;https://media.giphy.com/media/3o6gE9BYreSsQyOD9C/giphy.gif&#34; alt=&#34;Não reinvente a roda&#34; title=&#34;Não reinvente a roda&#34;&gt;
-Uma game engine é um software voltado ao desenvolvimento de jogos. Será nela que você criará seus níveis, scripts, mecânicas do jogo etc. A escolha de uma boa game engine basicamente ditará se o seu projeto será terminado ou não.
-Há alguns pontos a serem considerados, como facilidade para gerar as versões finais (builds) do projeto, facilidade para criação de scripts, facilidade para trabalhar os objetos etc.
-Pensando nisso, a minha escolha pessoal é a &lt;a href=&#34;https://unity.com/pt&#34;&gt;Unity&lt;/a&gt;. É possível criar jogos 2D, 3D, jogos para realidade virtual e outros. Além disso, ela simplifica o processo de &amp;ldquo;buildar&amp;rdquo; seu jogo para celulares, pcs, consoles etc.
-A linguagem de programação da Unity é o C#, uma linguagem vastamente consolidada no mercado. A documentação dela é completa e há tutoriais incríveis sobre ela na internet. Entretanto, &lt;strong&gt;há um ponto de atenção&lt;/strong&gt;: por mais que a documentação da linguagem seja incrível, a documentação da unity não é muito boa, e muitas vezes você precisará recorrer a canais do Youtube (veja nas referências).
-Eu tentei outras das engines que recomendam na internet mas não consegui avançar muito com elas. Caso queira saber mais, os links são:&lt;/p&gt;
+      <guid>//localhost:1313/posts/unity-github-actions/</guid>
+      <description>&lt;p&gt;Após brincar com desenvolvimento de jogos por alguns anos, decidi levar a sério a carreira de game dev e abri um estúdio de jogos chamado Blue Flower Game Lab.
+Estou desenvolvendo meu primeiro projeto sozinho, então tenho tentado automatizar meus processos ao máximo. Foi assim que descobri a &lt;a href=&#34;https://game.ci/&#34;&gt;Game.ci&lt;/a&gt;, uma maneira de automatizar builds de projetos da Unity através do GitHub Actions.&lt;/p&gt;
+&lt;h2 id=&#34;configuração&#34;&gt;Configuração&lt;/h2&gt;
+&lt;h3 id=&#34;ativação-e-secrets&#34;&gt;Ativação e secrets&lt;/h3&gt;
+&lt;p&gt;Crie um arquivo chamado &lt;strong&gt;.github/workflows/activation.yml&lt;/strong&gt; e cole o seguinte conteúdo nele:&lt;/p&gt;</description>
+      <content>&lt;p&gt;Após brincar com desenvolvimento de jogos por alguns anos, decidi levar a sério a carreira de game dev e abri um estúdio de jogos chamado Blue Flower Game Lab.
+Estou desenvolvendo meu primeiro projeto sozinho, então tenho tentado automatizar meus processos ao máximo. Foi assim que descobri a &lt;a href=&#34;https://game.ci/&#34;&gt;Game.ci&lt;/a&gt;, uma maneira de automatizar builds de projetos da Unity através do GitHub Actions.&lt;/p&gt;
+&lt;h2 id=&#34;configuração&#34;&gt;Configuração&lt;/h2&gt;
+&lt;h3 id=&#34;ativação-e-secrets&#34;&gt;Ativação e secrets&lt;/h3&gt;
+&lt;p&gt;Crie um arquivo chamado &lt;strong&gt;.github/workflows/activation.yml&lt;/strong&gt; e cole o seguinte conteúdo nele:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name: Acquire activation file
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: game-ci/unity-request-activation-file@v2
+      # Upload artifact (Unity_v20XX.X.XXXX.alf)
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Execute essa ação. O resultado dela será um arquivo de ativação manual. Depois disso, pegue o arquivo e faça o upload dele em &lt;a href=&#34;https://license.unity3d.com/manual&#34;&gt;license.unity3d.com&lt;/a&gt; para obter um arquivo de licença.
+Com o arquivo de licença em mãos, será necessário criar os seguintes segredos no repositório do seu jogo:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://gamemaker.io/pt-BR/download&#34;&gt;GameMaker&lt;/a&gt;: você não precisa saber programar para conseguir fazer um jogo usando ela;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://godotengine.org/&#34;&gt;Godot&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;UNITY_LICENSE: conteúdo obtido no arquivo de licença;&lt;/li&gt;
+&lt;li&gt;UNITY_EMAIL: e-mail de login na Unity;&lt;/li&gt;
+&lt;li&gt;UNITY_PASSWORD: senha para login na Unity.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;arte-visual&#34;&gt;Arte visual&lt;/h2&gt;
-&lt;p&gt;Essa tem sido a parte mais difícil nos meus projetos. Eu até consigo desenhar, mas criar artes que encham as pessoas de sensações não é uma tarefa fácil. E não se engane: muitas pessoas abandonarão seu game se a arte não interessá-las.
-Isso não significa que seu game precisa ser extremamente realista. Ele só precisa ser agradável aos olhos, e isso é bastante subjetivo (logo, não tente agradar todo mundo).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jhqos981uvtyvbw997i6.png&#34; alt=&#34;Planet of Lana&#34; title=&#34;Planet of Lana&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rre2f17oof9013frf2bc.png&#34; alt=&#34;Child of light&#34; title=&#34;Child of light&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/evu1qasdw2z1raqgtzhx.png&#34; alt=&#34;Will it Snail&#34; title=&#34;Will it Snail&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/csnqjps8jbeunnhun0bf.png&#34; alt=&#34;Stardew Valley&#34; title=&#34;Stardew Valley&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Você pode usar uma ou várias ferramentas para criar sua arte. Aqui estão algumas das minhas favoritas:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://krita.org/&#34;&gt;Krita&lt;/a&gt;: desenho e pintura digital;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.piskelapp.com/&#34;&gt;Piskel&lt;/a&gt;: pixel art;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.blender.org/&#34;&gt;Blender&lt;/a&gt;: arte e modelagem 3D;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.mapeditor.org/&#34;&gt;Tiled&lt;/a&gt;: criação de tilemaps e editor de níveis;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.pureref.com/&#34;&gt;PureRef&lt;/a&gt;: referência de imagens.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Entretanto, assim como com as Game Engines, você não precisa criar tudo do zero. Há sites que vendem assets ou até mesmo disponibilizam eles gratuitamente. O canal &lt;a href=&#34;https://www.youtube.com/@DavidWehleGames&#34;&gt;Game Dev Unlocked&lt;/a&gt; fala sobre como assets gratuitos foram importantes na criação do game &lt;a href=&#34;https://store.steampowered.com/app/555150/The_First_Tree/&#34;&gt;The First Tree&lt;/a&gt;. Você pode encontrar esses assets no &lt;a href=&#34;https://itch.io/game-assets&#34;&gt;itch&lt;/a&gt;, na &lt;a href=&#34;https://assetstore.unity.com/&#34;&gt;Unity Asset Store&lt;/a&gt; ou em outros sites.&lt;/p&gt;
-&lt;h2 id=&#34;som&#34;&gt;Som&lt;/h2&gt;
-&lt;p&gt;O som pode fazer seu jogo ser incrível ou extremamente chato
-&amp;ndash; inclusive, não consigo jogar Splatoon devido às músicas apresentadas nos trailers.
-Gosto bastante do &lt;a href=&#34;https://lmms.io/download#windows&#34;&gt;LMMS&lt;/a&gt; para criação de músicas. Entretanto, no meu projeto atual, decidi partir para algo mais manual, então comprei uma interface de áudio (&lt;a href=&#34;https://pt.aliexpress.com/item/1005003093878428.html&#34;&gt;Teyun Q-22&lt;/a&gt;) e estou utilizando o &lt;a href=&#34;https://www.audacityteam.org/download/&#34;&gt;Audacity&lt;/a&gt; e o Guitar Rig 5 para gravar músicas diretamente com a guitarra e o violão.
-Você precisará entender alguns conceitos antes de compor para seu game. Não basta apenas pegar um instrumento e sair tocando notas de forma desgovernada. A palestra do &lt;a href=&#34;https://www.youtube.com/watch?v=ELQoHDrv2hg&#34;&gt;Leo Borges no GDTK 2021&lt;/a&gt; me ajudou a entender as necessidades sonoras do meu game, e recomendo que você a assista.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4st7kmeh6q5ndjwpmwb1.png&#34; alt=&#34;Jacek Dylag&#34; title=&#34;Jacek Dylag&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Há outros tipos de áudio em jogos. Sons de passos, de portas abrindo (quem lembra das portas de Resident Evil do PS1 se abrindo?). Costumo usar o site &lt;a href=&#34;https://opengameart.org/&#34;&gt;OpenGameArt&lt;/a&gt; para buscar esse tipo de áudio.&lt;/p&gt;
-&lt;h2 id=&#34;fim&#34;&gt;Fim?&lt;/h2&gt;
-&lt;p&gt;Na verdade, &lt;strong&gt;espero que esse seja um início. Pelo menos para o seu projeto&lt;/strong&gt;. Senta na cadeira, escolhe a engine, baixa uns assets e começa o teu game. Sério. Não espere mais tempo para isso.
-Se, assim como eu, você tiver dúvidas se vale ou não a pena criar um jogo, minha resposta é: &lt;strong&gt;sempre vale&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Se precisar de uma ajuda, uma mentoria, ou apenas quiser falar sobre game dev, siga-me no &lt;a href=&#34;https://twitter.com/cephalopodluke&#34;&gt;twitter&lt;/a&gt; ou envie um e-mail para &lt;a href=&#34;mailto:lucas@blueflowergamelab.com&#34;&gt;lucas@blueflowergamelab.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Enfim, espero que este texto tenha te ajudado. Vou deixar uns links na sessão de &lt;strong&gt;recursos&lt;/strong&gt; para você conseguir seguir adiante com seu projeto.&lt;/p&gt;
-&lt;p&gt;Até a próxima!&lt;/p&gt;
-&lt;h2 id=&#34;recursos&#34;&gt;Recursos&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@Blackthornprod&#34;&gt;BlackThornProd - Youtube&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@Brackeys&#34;&gt;Brackeys - Youtube&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@CodeMonkeyUnity&#34;&gt;CodeMonkey - Youtube&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/@gamedevtoolkit&#34;&gt;Gamedev Toolkit - Youtube&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://opengameart.org/&#34;&gt;OpenGameArt&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=jqWJsacaEi4&#34;&gt;Seu jogo é MUITO grande! Como criar com limitações&lt;/a&gt;;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; a senha e o e-mail não são solicitados nem armazenados pela game.ci. São necessárias apenas para reativação da licença durante o processo de build.&lt;/p&gt;
+&lt;h3 id=&#34;build&#34;&gt;Build&lt;/h3&gt;
+&lt;p&gt;Após obter a licença e configurar os secrets, crie um novo arquivo de pipeline com o seguinte conteúdo:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name: Build
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          # - StandaloneWindows # Build a Windows standalone.
+          # - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          # - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          # - iOS # Build an iOS player.
+          # - Android # Build an Android .apk standalone app.
+          # - WebGL # WebGL.
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles(&amp;#39;Assets/**&amp;#39;, &amp;#39;Packages/**&amp;#39;, &amp;#39;ProjectSettings/**&amp;#39;) }}
+          restore-keys: |
+            Library-
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+
+      # Discord notification
+      - name: Discord Notifier
+        uses: madebyluque/action-discord-notifier@v1.1.1
+        with:
+          webhook: Webhook do canal do discord
+          message-title: Título da mensagem do discord
+          message-description: Descrição da mensagem
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Com o arquivo criado, você precisará apenas selecionar as plataformas alvo. Para isso, remova o símbolo &amp;ldquo;#&amp;rdquo; das plataformas desejadas na seção &lt;strong&gt;targetPlatform&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;O último passo da pipeline envia uma notificação a um canal do Discord. Como a execução dela pode passar de 10 minutos, optei por ser avisado da conclusão dela em vez de ficar esperando. Para isso, fiz o fork de uma ação no github e modifiquei algumas informações para poder personalizar o título e a descrição da mensagem. Esse passo é opcional, então fique à vontade para removê-lo.&lt;/p&gt;
 </content>
     </item>
     

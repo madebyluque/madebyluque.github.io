@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ef on Words of Luke Silva</title>
+    <title>Ef on Words of Lucas Silva</title>
     <link>//localhost:1313/tags/ef/</link>
-    <description>Recent content in Ef on Words of Luke Silva</description>
+    <description>Recent content in Ef on Words of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Sun, 10 Mar 2024 11:56:22 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/ef/index.xml" rel="self" type="application/rss+xml" />
@@ -94,6 +94,56 @@ Há inúmeras variáveis que podem impactar na performance de uma query. Esse te
 &lt;li&gt;&lt;a href=&#34;https://www.milanjovanovic.tech/blog/how-to-improve-performance-with-ef-core-query-splitting&#34;&gt;How To Improve Performance With EF Core Query Splitting&lt;/a&gt;;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://learn.microsoft.com/pt-br/ef/core/querying/single-split-queries&#34;&gt;Consultas únicas vs. consultas divididas&lt;/a&gt;;&lt;/li&gt;
 &lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Uma forma simples de realizar soft delete em .Net utilizando Entity Framework Core</title>
+      <link>//localhost:1313/posts/dotnet-soft-delete/</link>
+      <pubDate>Fri, 19 Jan 2024 12:03:34 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/dotnet-soft-delete/</guid>
+      <description>&lt;p&gt;Ao desenvolver APIs, é comum ter de alterar o comportamento de DELETE para que, em vez de excluir o registro, simplesmente alterar uma propriedade booleana e considerar que aquele recurso não existe caso o valor da propriedade seja &lt;em&gt;false&lt;/em&gt;. Essa técnica é conhecida como &lt;strong&gt;&amp;ldquo;Soft Delete&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Há várias formas de implementar esse comportamento. A forma apresentada neste texto pode ser resumida aos seguintes passos:
+1- Adicionar uma propriedade booleana à classe desejada;
+2- Sobrescrever o método &lt;strong&gt;SaveChangesAsync&lt;/strong&gt; da classe que estende &lt;strong&gt;DbContext&lt;/strong&gt;;
+3- Adicionar um filtro na configuração da entidade para que as entidades &amp;ldquo;inativas&amp;rdquo; não sejam retornadas em queries.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Ao desenvolver APIs, é comum ter de alterar o comportamento de DELETE para que, em vez de excluir o registro, simplesmente alterar uma propriedade booleana e considerar que aquele recurso não existe caso o valor da propriedade seja &lt;em&gt;false&lt;/em&gt;. Essa técnica é conhecida como &lt;strong&gt;&amp;ldquo;Soft Delete&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Há várias formas de implementar esse comportamento. A forma apresentada neste texto pode ser resumida aos seguintes passos:
+1- Adicionar uma propriedade booleana à classe desejada;
+2- Sobrescrever o método &lt;strong&gt;SaveChangesAsync&lt;/strong&gt; da classe que estende &lt;strong&gt;DbContext&lt;/strong&gt;;
+3- Adicionar um filtro na configuração da entidade para que as entidades &amp;ldquo;inativas&amp;rdquo; não sejam retornadas em queries.&lt;/p&gt;
+&lt;h2 id=&#34;adicionar-propriedade-booleana&#34;&gt;Adicionar propriedade booleana&lt;/h2&gt;
+&lt;p&gt;O primeiro passo é autoexplicativo. Crie uma entidade e adicione a propriedade booleana a ela. Caso várias entidades precisem desse comportamento, considere criar uma classe base ou interface que a contenha.&lt;/p&gt;
+&lt;h2 id=&#34;sobrescrever-o-método-savechangesasync&#34;&gt;Sobrescrever o método SaveChangesAsync&lt;/h2&gt;
+&lt;p&gt;Se você utiliza o EF, é provável que tenha estendido a classe &lt;strong&gt;DbContext&lt;/strong&gt; para criar um contexto próprio. A classe base possui um método chamado &lt;strong&gt;SaveChangesAsync&lt;/strong&gt;, o qual salva as alterações feitas no banco de dados.&lt;br&gt;
+A alteração que será realizada no método visa detectar o estado das  entidades rastreadas pelo &lt;a href=&#34;https://learn.microsoft.com/en-us/ef/core/change-tracking/&#34;&gt;ChangeTracker&lt;/a&gt;. Caso alguma tenha sido deletada, será necessário mudar o estado dela para &lt;strong&gt;Unchanged&lt;/strong&gt; (em vez de &lt;strong&gt;Deleted&lt;/strong&gt;), e então alterar a propriedade booleana adicionada no passo anterior.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public override Task&amp;lt;int&amp;gt; SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+{
+    foreach (var entry in ChangeTracker.Entries&amp;lt;T&amp;gt;()) // Onde &amp;#34;T&amp;#34; é o tipo da entidade
+    {
+        switch (entry.State)
+        {
+            case EntityState.Deleted:
+                entry.State = EntityState.Unchanged;
+                entry.Entity.PropriedadeBooleana = false; // Prefira utilizar um método para isso.
+                break;
+        }
+    }
+    return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;adicionar-filtro&#34;&gt;Adicionar filtro&lt;/h2&gt;
+&lt;p&gt;Com a alteração feita, já é possível alterar todas as queries para que elas deconsiderem entidades às quais o valor da propriedade booleana seja &lt;strong&gt;false&lt;/strong&gt;. Entretanto, dependendo do tamanho da sua aplicação, essa tarefa poderá ser bastante trabalhosa.&lt;/p&gt;
+&lt;p&gt;Para evitar a situação descrita acima, o EF fornece uma forma de realizar isso de forma automática através da configuração da entidade. Exemplo:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class SuaEntidadeConfiguration: IEntityTypeConfiguration&amp;lt;SuaEntidade&amp;gt;
+{
+    public void Configure(EntityTypeBuilder&amp;lt;SuaEntidade&amp;gt; builder)
+    {
+        builder.HasQueryFilter(x =&amp;gt; x.Active);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O código acima faz com que somente as entidades que possuam a propriedade &lt;strong&gt;Active&lt;/strong&gt; como &lt;strong&gt;true&lt;/strong&gt; sejam retornadas em caso de queries.&lt;/p&gt;
+&lt;p&gt;Chegamos ao fim do tutorial. Espero que este texto tenha sido o suficiente para a implementação de um comportamento básico de &lt;strong&gt;Soft delete&lt;/strong&gt; na sua aplicação.&lt;/p&gt;
 </content>
     </item>
     

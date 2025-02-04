@@ -1,12 +1,329 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dotnet on Words of Luke Silva</title>
+    <title>Dotnet on Words of Lucas Silva</title>
     <link>//localhost:1313/tags/dotnet/</link>
-    <description>Recent content in Dotnet on Words of Luke Silva</description>
+    <description>Recent content in Dotnet on Words of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 18 Jul 2022 11:49:46 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Mar 2024 11:56:22 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EF Core - Explosão Cartesiana</title>
+      <link>//localhost:1313/posts/cartesian-explosion/</link>
+      <pubDate>Sun, 10 Mar 2024 11:56:22 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/cartesian-explosion/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Atuei em vários projetos que utilizavam EF Core, e em uma determinada ocasião, encontrei, junto ao meu time, um problema que não fazia muito sentido: uma query simples, com poucos Includes, em tabelas que não possuíam tanto registros (quando comparada a outras tabelas do mesmo banco), estourava timeout. Após análise, o time entendeu que o problema ocorria devido a um fenômeno chamado &lt;strong&gt;Explosão cartesiana&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;o-que-é&#34;&gt;O que é?&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;explosão cartesiana&lt;/strong&gt; ocorre quando, ao realizar queries com joins em propriedades de navegação de entidades no mesmo nível hierárquico em bancos relacionais, o banco de dados retorna um produto vetorial (cross product). Ou seja, cada linha de uma propriedade de navegação é combinada com cada linha da outra propriedade.&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Atuei em vários projetos que utilizavam EF Core, e em uma determinada ocasião, encontrei, junto ao meu time, um problema que não fazia muito sentido: uma query simples, com poucos Includes, em tabelas que não possuíam tanto registros (quando comparada a outras tabelas do mesmo banco), estourava timeout. Após análise, o time entendeu que o problema ocorria devido a um fenômeno chamado &lt;strong&gt;Explosão cartesiana&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;o-que-é&#34;&gt;O que é?&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;explosão cartesiana&lt;/strong&gt; ocorre quando, ao realizar queries com joins em propriedades de navegação de entidades no mesmo nível hierárquico em bancos relacionais, o banco de dados retorna um produto vetorial (cross product). Ou seja, cada linha de uma propriedade de navegação é combinada com cada linha da outra propriedade.&lt;/p&gt;
+&lt;p&gt;Esse comportamento pode gerar um número inesperado de combinações entre os dados, aumentando drasticamente o volume de informações trafegadas entre o banco de dados e a aplicação. &lt;strong&gt;Consequentemente, isso pode afetar o desempenho da aplicação, aumentar os custos de infraestrutura e consumo de recursos, além de tornar a depuração e otimização mais complexa.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;como-resolver&#34;&gt;Como resolver?&lt;/h2&gt;
+&lt;p&gt;Uma das melhores formas de lidar com isso é utilizando queries separadas para carregar os dados envolvidos. O EF Core oferece uma solução simples para isso através do método &lt;code&gt;AsSplitQuery()&lt;/code&gt;, que carregará as coleções utilizando múltiplas queries, em vez de uma única query.&lt;/p&gt;
+&lt;p&gt;Os exemplos abaixo foram feitos com uma coleção de 100000 blogs armazenados em uma instância de SQL Server 2022, rodando através de um contêiner Docker.&lt;/p&gt;
+&lt;h3 id=&#34;exemplo-sem-assplitquery&#34;&gt;Exemplo sem AsSplitQuery&lt;/h3&gt;
+&lt;p&gt;Código:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var withoutSplitQuery = context.Blogs
+	.Include(b =&amp;gt; b.Posts)
+	.Include(b =&amp;gt; b.BlogContributors)
+		.ThenInclude(bc =&amp;gt; bc.Contributor)
+	.ToList();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nesse exemplo, cada Blog possui uma coleção de Posts e uma de BlogContributors. Como ambas estão no mesmo nível, cada post será combinado com cada contribuinte, o que resulta em um número de linhas maior do que o necessário.&lt;/p&gt;
+&lt;p&gt;Query gerada:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SELECT [b].[BlogId], [b].[Name], [p].[PostId], [p].[BlogId], [p].[Content], [p].[Title], [t].[BlogId], [t].[ContributorId], [t].[ContributorId0], [t].[Name]
+      FROM [Blogs] AS [b]
+      LEFT JOIN [Posts] AS [p] ON [b].[BlogId] = [p].[BlogId]
+      LEFT JOIN (
+          SELECT [b0].[BlogId], [b0].[ContributorId], [c].[ContributorId] AS [ContributorId0], [c].[Name]
+          FROM [BlogContributors] AS [b0]
+          INNER JOIN [Contributors] AS [c] ON [b0].[ContributorId] = [c].[ContributorId]
+      ) AS [t] ON [b].[BlogId] = [t].[BlogId]
+      ORDER BY [b].[BlogId], [p].[PostId], [t].[BlogId], [t].[ContributorId]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Resultado na busca de 100000 registros:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;*************************************************************************
+Tempo de execução sem splitquery: 4526ms
+Número de blogs retornados: 100000
+*************************************************************************
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;exemplo-com-assplitquery&#34;&gt;Exemplo com AsSplitQuery&lt;/h3&gt;
+&lt;p&gt;Código:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var withSplitQuery = context.Blogs
+	.Include(b =&amp;gt; b.Posts)
+	.Include(b =&amp;gt; b.BlogContributors)
+		.ThenInclude(bc =&amp;gt; bc.Contributor)
+	.AsSplitQuery()
+	.ToList();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Queries geradas:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SELECT [b].[BlogId], [b].[Name]
+      FROM [Blogs] AS [b]
+      ORDER BY [b].[BlogId]
+
+SELECT [p].[PostId], [p].[BlogId], [p].[Content], [p].[Title], [b].[BlogId]
+      FROM [Blogs] AS [b]
+      INNER JOIN [Posts] AS [p] ON [b].[BlogId] = [p].[BlogId]
+      ORDER BY [b].[BlogId]
+
+SELECT [t].[BlogId], [t].[ContributorId], [t].[ContributorId0], [t].[Name], [b].[BlogId]
+      FROM [Blogs] AS [b]
+      INNER JOIN (
+          SELECT [b0].[BlogId], [b0].[ContributorId], [c].[ContributorId] AS [ContributorId0], [c].[Name]
+          FROM [BlogContributors] AS [b0]
+          INNER JOIN [Contributors] AS [c] ON [b0].[ContributorId] = [c].[ContributorId]
+      ) AS [t] ON [b].[BlogId] = [t].[BlogId]
+      ORDER BY [b].[BlogId]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Resultado na busca de 100000 registros:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;*************************************************************************
+Tempo de execução com splitquery: 3664ms
+Número de blogs retornados: 100000
+*************************************************************************
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Por mais que os exemplos acima tenham utilizado um número relativamente pequeno de dados, os resultados de 10 execuções do teste com dados diferentes foram consistentes: as buscas com queries separadas foram mais rápidas que as buscas com queries únicas. Inclusive, o próprio EF lança um erro ao executar uma query que possa causar uma explosão cartesiana:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Compiling a query which loads related collections for more than onecollection navigation, either via &amp;#39;Include&amp;#39; or through projection, but no &amp;#39;QuerySplittingBehavior&amp;#39; has been configured. By default, Entity Framework will use &amp;#39;QuerySplittingBehavior.SingleQuery&amp;#39;, which can potentially result in slow query performance.
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Importante!&lt;/strong&gt;
+Há inúmeras variáveis que podem impactar na performance de uma query. Esse texto e os testes acima tratam exclusivamente sobre o problema de &lt;strong&gt;explosão cartesiana.&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;configuração-via-dbcontext&#34;&gt;Configuração via DbContext&lt;/h3&gt;
+&lt;p&gt;O EF permite a configuração do comportamento como padrão. Para isso, basta configurar o DbContext:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;optionsBuilder
+    .UseSqlServer(&amp;#34;ConnectionString&amp;#34;, o =&amp;gt;
+    .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;fontes-e-recursos&#34;&gt;Fontes e recursos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.milanjovanovic.tech/blog/how-to-improve-performance-with-ef-core-query-splitting&#34;&gt;How To Improve Performance With EF Core Query Splitting&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://learn.microsoft.com/pt-br/ef/core/querying/single-split-queries&#34;&gt;Consultas únicas vs. consultas divididas&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>TestContainers para testes de integração com .Net</title>
+      <link>//localhost:1313/posts/testcontainers/</link>
+      <pubDate>Tue, 06 Feb 2024 11:54:32 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/testcontainers/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Diferente de testes de unidade, os testes de integração permitem validar o comportamento de uma aplicação quando todos os componentes dela são utilizados em conjunto. Isso inclui bancos de dados, serviços de cache, serviços de mensageria etc.&lt;/p&gt;
+&lt;p&gt;Na teoria, tudo parece interessante e simples. Mas esses testes podem gerar e alterar um grande volume de dados, então é necessário tomar cuidado com os recursos utilizados. Até porque acidentes acontecem, e talvez, em um descuido, você pode acabar executando um DELETE sem WHERE, levando à exclusão total de uma tabela. 😅&lt;/p&gt;</description>
+      <content>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Diferente de testes de unidade, os testes de integração permitem validar o comportamento de uma aplicação quando todos os componentes dela são utilizados em conjunto. Isso inclui bancos de dados, serviços de cache, serviços de mensageria etc.&lt;/p&gt;
+&lt;p&gt;Na teoria, tudo parece interessante e simples. Mas esses testes podem gerar e alterar um grande volume de dados, então é necessário tomar cuidado com os recursos utilizados. Até porque acidentes acontecem, e talvez, em um descuido, você pode acabar executando um DELETE sem WHERE, levando à exclusão total de uma tabela. 😅&lt;/p&gt;
+&lt;p&gt;Para evitar esse tipo de problemas, é possível criar esses recursos a partir de containers Docker por meio da lib &lt;a href=&#34;https://testcontainers.com/&#34;&gt;TestContainers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Neste tutorial, explicarei os passos para a utilização desses containers em uma API .Net.&lt;/p&gt;
+&lt;h2 id=&#34;api&#34;&gt;API&lt;/h2&gt;
+&lt;p&gt;O projeto completo pode ser encontrado &lt;a href=&#34;https://github.com/madebyluque/TutorialIntegrationTests&#34;&gt;neste link&lt;/a&gt;. Trata-se de uma API de gerenciamento de tarefas (a famosa &amp;ldquo;To-Do list&amp;rdquo;). Ela consiste de basicamente 3 partes:&lt;/p&gt;
+&lt;p&gt;Uma entidade:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;namespace IntegrationTestingDemo.API;
+
+public class Todo
+{
+    public Todo()
+    {
+    }
+
+    public Todo(string title, string description)
+    {
+        Title = title;
+        Description = description;
+        Id = Guid.NewGuid().ToString().Replace(&amp;#34;-&amp;#34;, &amp;#34;&amp;#34;);
+        CreatedAt = DateTime.UtcNow;
+        Done = false;
+    }
+
+    public string Id { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public bool Done { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? CompletedAt { get; set; }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Um service com a lógica da aplicação (visando a simplicidade, algumas operações não foram criadas):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class TodoService(TodoContext context) : ITodoService
+{
+    private readonly TodoContext _context = context;
+
+    public async Task&amp;lt;string&amp;gt; Create(string title, string description)
+    {
+        var todo = new Todo(title, description);
+        await _context.AddAsync(todo);
+        await _context.SaveChangesAsync();
+        return todo.Id;
+    }
+
+    public async Task&amp;lt;List&amp;lt;Todo&amp;gt;&amp;gt; GetAll()
+    {
+        return await _context.Todos.OrderBy(x =&amp;gt; x.CreatedAt).ToListAsync();
+    }
+
+    public async Task&amp;lt;Todo&amp;gt; GetById(string id)
+    {
+        return await _context.Todos.FirstOrDefaultAsync(x =&amp;gt; x.Id == id);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;E um controller:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[ApiController]
+[Route(&amp;#34;[controller]&amp;#34;)]
+public class TodoController(ITodoService todoService) : ControllerBase
+{
+    private readonly ITodoService _todoService = todoService;
+
+    [HttpPost]
+    public async Task&amp;lt;IActionResult&amp;gt; Create([FromBody] CreateTodoModel model)
+    {
+        var result = await _todoService.Create(model.Title, model.Description);
+        return CreatedAtRoute(nameof(GetById), routeValues: new { Id = result }, result);
+    }
+
+    [HttpGet]
+    public async Task&amp;lt;IActionResult&amp;gt; GetAll()
+    {
+        var todos = await _todoService.GetAll();
+        return Ok(todos);
+    }
+
+    [HttpGet(&amp;#34;{id}&amp;#34;, Name = &amp;#34;GetById&amp;#34;)]
+    public async Task&amp;lt;IActionResult&amp;gt; GetById(string id)
+    {
+        var todo = await _todoService.GetById(id);
+        return Ok(todo);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;testes&#34;&gt;Testes&lt;/h2&gt;
+&lt;p&gt;A configuração de &lt;strong&gt;TestContainer&lt;/strong&gt; é feita na criação da &lt;strong&gt;WebApplicationFactory&lt;/strong&gt; para os testes de integração. Neste tutorial, decidi utilizar PostgreSQL. A criação de um container desse banco de dados pode ser feita da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder().WithUsername(&amp;#34;postgres&amp;#34;).WithPassword(&amp;#34;postgres&amp;#34;).Build();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;É possível alterar o usuário e a senha da forma que desejar. Há, inclusive, a opção de alterar outras configurações no builder, como o nome do db, o host etc.&lt;/p&gt;
+&lt;p&gt;Com o container criado, é possível obter a connection string dele da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;_postgres.GetConnectionString()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Pode ser necessário remover o dbContext da aplicação para adicionar um novo com a connection string do container de teste. Nesse caso, é possível fazê-lo da seguinte forma:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var context = services.FirstOrDefault(descriptor =&amp;gt; descriptor.ServiceType == typeof(TodoContext));
+if (context != null)
+{
+    services.Remove(context);
+    var options = services.Where(r =&amp;gt; (r.ServiceType == typeof(DbContextOptions))
+      || (r.ServiceType.IsGenericType &amp;amp;&amp;amp; r.ServiceType.GetGenericTypeDefinition() == typeof(DbContextOptions&amp;lt;&amp;gt;))).ToArray();
+    foreach (var option in options)
+    {
+        services.Remove(option);
+    }
+}
+
+services.AddDbContext&amp;lt;TodoContext&amp;gt;(options =&amp;gt;
+{
+    options.UseNpgsql(_postgres.GetConnectionString());
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Por fim, é interessante que sua classe de &lt;strong&gt;WebApplicationFactory&lt;/strong&gt; implemente a interface IAsyncLifetime para que o container criado seja inicializado / parado.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public Task InitializeAsync()
+{
+    return _postgres.StartAsync();
+}
+
+public new Task DisposeAsync()
+{
+    return _postgres.StopAsync();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Com a configuração feita, já é possível criar testes de integração. No teste abaixo, utilizei o TodoService para criar uma tarefa, e então verifiquei se os dados no banco de dados estavam de acordo com o que deveriam:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Fact]
+public async Task Create_ShouldCreateTodoAndReturnItsId()
+{
+    // Act
+    var result = await _todoService.Create(TestTitle, TestDescription);
+
+    // Assert
+    var todo = await _dbContext.Todos.FirstOrDefaultAsync(x =&amp;gt; x.Id == result);
+    Assert.NotNull(todo);
+    Assert.False(todo.Done);
+    Assert.Equal(TestTitle, todo.Title);
+    Assert.Equal(TestDescription, todo.Description);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;(Acesse o &lt;a href=&#34;https://github.com/madebyluque/TutorialIntegrationTests&#34;&gt;repositório&lt;/a&gt; para verificar os demais testes.)&lt;/p&gt;
+&lt;p&gt;O exemplo acima testa uma classe simples. Entretanto, poderia testar uma classe mais complexa, como um Handler, que manipula os dados através de diversos objetos. Além disso, o service foi criado para não testar as chamadas diretas ao controller.&lt;/p&gt;
+&lt;h2 id=&#34;github-actions&#34;&gt;GitHub actions&lt;/h2&gt;
+&lt;p&gt;É possível integrar os testes à pipeline. &lt;a href=&#34;https://www.milanjovanovic.tech/blog/testcontainers-integration-testing-using-docker-in-dotnet&#34;&gt;Essa postagem do Milan Jovanović&lt;/a&gt; mostra como integrá-los a uma Github Action:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name: Run Tests 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: &amp;#39;8.0.x&amp;#39;
+
+      - name: Restore
+        run: dotnet restore ./IntegrationTestingDemo.sln
+
+      - name: Build
+        run: dotnet build ./IntegrationTestingDemo.sln --no-restore
+
+      - name: Test
+        run: dotnet test ./IntegrationTestingDemo.sln --no-build
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;p&gt;Este é o fim do tutorial. Espero que esse texto tenha sido o suficiente para te ajudar a implementar testes de integração com TestContainers na sua aplicação.&lt;/p&gt;
+&lt;p&gt;Até a próxima!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Uma forma simples de realizar soft delete em .Net utilizando Entity Framework Core</title>
+      <link>//localhost:1313/posts/dotnet-soft-delete/</link>
+      <pubDate>Fri, 19 Jan 2024 12:03:34 -0300</pubDate>
+      
+      <guid>//localhost:1313/posts/dotnet-soft-delete/</guid>
+      <description>&lt;p&gt;Ao desenvolver APIs, é comum ter de alterar o comportamento de DELETE para que, em vez de excluir o registro, simplesmente alterar uma propriedade booleana e considerar que aquele recurso não existe caso o valor da propriedade seja &lt;em&gt;false&lt;/em&gt;. Essa técnica é conhecida como &lt;strong&gt;&amp;ldquo;Soft Delete&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Há várias formas de implementar esse comportamento. A forma apresentada neste texto pode ser resumida aos seguintes passos:
+1- Adicionar uma propriedade booleana à classe desejada;
+2- Sobrescrever o método &lt;strong&gt;SaveChangesAsync&lt;/strong&gt; da classe que estende &lt;strong&gt;DbContext&lt;/strong&gt;;
+3- Adicionar um filtro na configuração da entidade para que as entidades &amp;ldquo;inativas&amp;rdquo; não sejam retornadas em queries.&lt;/p&gt;</description>
+      <content>&lt;p&gt;Ao desenvolver APIs, é comum ter de alterar o comportamento de DELETE para que, em vez de excluir o registro, simplesmente alterar uma propriedade booleana e considerar que aquele recurso não existe caso o valor da propriedade seja &lt;em&gt;false&lt;/em&gt;. Essa técnica é conhecida como &lt;strong&gt;&amp;ldquo;Soft Delete&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Há várias formas de implementar esse comportamento. A forma apresentada neste texto pode ser resumida aos seguintes passos:
+1- Adicionar uma propriedade booleana à classe desejada;
+2- Sobrescrever o método &lt;strong&gt;SaveChangesAsync&lt;/strong&gt; da classe que estende &lt;strong&gt;DbContext&lt;/strong&gt;;
+3- Adicionar um filtro na configuração da entidade para que as entidades &amp;ldquo;inativas&amp;rdquo; não sejam retornadas em queries.&lt;/p&gt;
+&lt;h2 id=&#34;adicionar-propriedade-booleana&#34;&gt;Adicionar propriedade booleana&lt;/h2&gt;
+&lt;p&gt;O primeiro passo é autoexplicativo. Crie uma entidade e adicione a propriedade booleana a ela. Caso várias entidades precisem desse comportamento, considere criar uma classe base ou interface que a contenha.&lt;/p&gt;
+&lt;h2 id=&#34;sobrescrever-o-método-savechangesasync&#34;&gt;Sobrescrever o método SaveChangesAsync&lt;/h2&gt;
+&lt;p&gt;Se você utiliza o EF, é provável que tenha estendido a classe &lt;strong&gt;DbContext&lt;/strong&gt; para criar um contexto próprio. A classe base possui um método chamado &lt;strong&gt;SaveChangesAsync&lt;/strong&gt;, o qual salva as alterações feitas no banco de dados.&lt;br&gt;
+A alteração que será realizada no método visa detectar o estado das  entidades rastreadas pelo &lt;a href=&#34;https://learn.microsoft.com/en-us/ef/core/change-tracking/&#34;&gt;ChangeTracker&lt;/a&gt;. Caso alguma tenha sido deletada, será necessário mudar o estado dela para &lt;strong&gt;Unchanged&lt;/strong&gt; (em vez de &lt;strong&gt;Deleted&lt;/strong&gt;), e então alterar a propriedade booleana adicionada no passo anterior.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public override Task&amp;lt;int&amp;gt; SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+{
+    foreach (var entry in ChangeTracker.Entries&amp;lt;T&amp;gt;()) // Onde &amp;#34;T&amp;#34; é o tipo da entidade
+    {
+        switch (entry.State)
+        {
+            case EntityState.Deleted:
+                entry.State = EntityState.Unchanged;
+                entry.Entity.PropriedadeBooleana = false; // Prefira utilizar um método para isso.
+                break;
+        }
+    }
+    return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;adicionar-filtro&#34;&gt;Adicionar filtro&lt;/h2&gt;
+&lt;p&gt;Com a alteração feita, já é possível alterar todas as queries para que elas deconsiderem entidades às quais o valor da propriedade booleana seja &lt;strong&gt;false&lt;/strong&gt;. Entretanto, dependendo do tamanho da sua aplicação, essa tarefa poderá ser bastante trabalhosa.&lt;/p&gt;
+&lt;p&gt;Para evitar a situação descrita acima, o EF fornece uma forma de realizar isso de forma automática através da configuração da entidade. Exemplo:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class SuaEntidadeConfiguration: IEntityTypeConfiguration&amp;lt;SuaEntidade&amp;gt;
+{
+    public void Configure(EntityTypeBuilder&amp;lt;SuaEntidade&amp;gt; builder)
+    {
+        builder.HasQueryFilter(x =&amp;gt; x.Active);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;O código acima faz com que somente as entidades que possuam a propriedade &lt;strong&gt;Active&lt;/strong&gt; como &lt;strong&gt;true&lt;/strong&gt; sejam retornadas em caso de queries.&lt;/p&gt;
+&lt;p&gt;Chegamos ao fim do tutorial. Espero que este texto tenha sido o suficiente para a implementação de um comportamento básico de &lt;strong&gt;Soft delete&lt;/strong&gt; na sua aplicação.&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Automatizando a criação de requisições no JMeter utilizando Postman</title>
       <link>//localhost:1313/posts/jmeter/</link>

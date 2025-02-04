@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Github on Words of Luke Silva</title>
+    <title>Github on Words of Lucas Silva</title>
     <link>//localhost:1313/tags/github/</link>
-    <description>Recent content in Github on Words of Luke Silva</description>
+    <description>Recent content in Github on Words of Lucas Silva</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Sun, 16 Jul 2023 12:01:55 -0300</lastBuildDate><atom:link href="//localhost:1313/tags/github/index.xml" rel="self" type="application/rss+xml" />
@@ -13,8 +13,107 @@
       <pubDate>Sun, 16 Jul 2023 12:01:55 -0300</pubDate>
       
       <guid>//localhost:1313/posts/unity-github-actions/</guid>
-      <description></description>
-      <content></content>
+      <description>&lt;p&gt;Após brincar com desenvolvimento de jogos por alguns anos, decidi levar a sério a carreira de game dev e abri um estúdio de jogos chamado Blue Flower Game Lab.
+Estou desenvolvendo meu primeiro projeto sozinho, então tenho tentado automatizar meus processos ao máximo. Foi assim que descobri a &lt;a href=&#34;https://game.ci/&#34;&gt;Game.ci&lt;/a&gt;, uma maneira de automatizar builds de projetos da Unity através do GitHub Actions.&lt;/p&gt;
+&lt;h2 id=&#34;configuração&#34;&gt;Configuração&lt;/h2&gt;
+&lt;h3 id=&#34;ativação-e-secrets&#34;&gt;Ativação e secrets&lt;/h3&gt;
+&lt;p&gt;Crie um arquivo chamado &lt;strong&gt;.github/workflows/activation.yml&lt;/strong&gt; e cole o seguinte conteúdo nele:&lt;/p&gt;</description>
+      <content>&lt;p&gt;Após brincar com desenvolvimento de jogos por alguns anos, decidi levar a sério a carreira de game dev e abri um estúdio de jogos chamado Blue Flower Game Lab.
+Estou desenvolvendo meu primeiro projeto sozinho, então tenho tentado automatizar meus processos ao máximo. Foi assim que descobri a &lt;a href=&#34;https://game.ci/&#34;&gt;Game.ci&lt;/a&gt;, uma maneira de automatizar builds de projetos da Unity através do GitHub Actions.&lt;/p&gt;
+&lt;h2 id=&#34;configuração&#34;&gt;Configuração&lt;/h2&gt;
+&lt;h3 id=&#34;ativação-e-secrets&#34;&gt;Ativação e secrets&lt;/h3&gt;
+&lt;p&gt;Crie um arquivo chamado &lt;strong&gt;.github/workflows/activation.yml&lt;/strong&gt; e cole o seguinte conteúdo nele:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name: Acquire activation file
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: game-ci/unity-request-activation-file@v2
+      # Upload artifact (Unity_v20XX.X.XXXX.alf)
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Execute essa ação. O resultado dela será um arquivo de ativação manual. Depois disso, pegue o arquivo e faça o upload dele em &lt;a href=&#34;https://license.unity3d.com/manual&#34;&gt;license.unity3d.com&lt;/a&gt; para obter um arquivo de licença.
+Com o arquivo de licença em mãos, será necessário criar os seguintes segredos no repositório do seu jogo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UNITY_LICENSE: conteúdo obtido no arquivo de licença;&lt;/li&gt;
+&lt;li&gt;UNITY_EMAIL: e-mail de login na Unity;&lt;/li&gt;
+&lt;li&gt;UNITY_PASSWORD: senha para login na Unity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; a senha e o e-mail não são solicitados nem armazenados pela game.ci. São necessárias apenas para reativação da licença durante o processo de build.&lt;/p&gt;
+&lt;h3 id=&#34;build&#34;&gt;Build&lt;/h3&gt;
+&lt;p&gt;Após obter a licença e configurar os secrets, crie um novo arquivo de pipeline com o seguinte conteúdo:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name: Build
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          # - StandaloneWindows # Build a Windows standalone.
+          # - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          # - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          # - iOS # Build an iOS player.
+          # - Android # Build an Android .apk standalone app.
+          # - WebGL # WebGL.
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles(&amp;#39;Assets/**&amp;#39;, &amp;#39;Packages/**&amp;#39;, &amp;#39;ProjectSettings/**&amp;#39;) }}
+          restore-keys: |
+            Library-
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+
+      # Discord notification
+      - name: Discord Notifier
+        uses: madebyluque/action-discord-notifier@v1.1.1
+        with:
+          webhook: Webhook do canal do discord
+          message-title: Título da mensagem do discord
+          message-description: Descrição da mensagem
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Com o arquivo criado, você precisará apenas selecionar as plataformas alvo. Para isso, remova o símbolo &amp;ldquo;#&amp;rdquo; das plataformas desejadas na seção &lt;strong&gt;targetPlatform&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;O último passo da pipeline envia uma notificação a um canal do Discord. Como a execução dela pode passar de 10 minutos, optei por ser avisado da conclusão dela em vez de ficar esperando. Para isso, fiz o fork de uma ação no github e modifiquei algumas informações para poder personalizar o título e a descrição da mensagem. Esse passo é opcional, então fique à vontade para removê-lo.&lt;/p&gt;
+</content>
     </item>
     
   </channel>
